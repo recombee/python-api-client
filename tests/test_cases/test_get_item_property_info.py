@@ -1,0 +1,11 @@
+#
+# This file is auto-generated, do not edit
+#
+
+from tests.test_cases.get_property_info import GetPropertyInfoTest
+from recombee_api_client.api_requests import *
+
+class GetItemPropertyInfoTestCase (GetPropertyInfoTest):
+
+    def create_request(self, property_name):
+        return GetItemPropertyInfo(property_name)
