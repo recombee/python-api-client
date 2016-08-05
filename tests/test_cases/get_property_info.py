@@ -8,7 +8,7 @@ from recombee_api_client.api_requests import *
 
 class GetPropertyInfoTest (RecombeeTest ):
 
-    def create_request(self,name):
+    def create_request(self,property_name):
         pass
 
     def test_get_property_info(self):

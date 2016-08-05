@@ -8,7 +8,7 @@ from recombee_api_client.api_requests import *
 
 class RemoveFromSeriesTest (RecombeeTest ):
 
-    def create_request(self,set_id,type,entity_id,time):
+    def create_request(self,series_id,item_type,item_id,time):
         pass
 
     def test_remove_from_series(self):

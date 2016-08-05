@@ -8,7 +8,7 @@ from recombee_api_client.api_requests import *
 
 class InsertToGroupTest (RecombeeTest ):
 
-    def create_request(self,set_id,type,entity_id,optional= dict()):
+    def create_request(self,group_id,item_type,item_id,cascade_create=None):
         pass
 
     def test_insert_to_group(self):
@@ -19,7 +19,7 @@ class InsertToGroupTest (RecombeeTest ):
         req = self.create_request('entity_id','item','new_item')
         resp = self.client.send(req)
         # it 'does not fail when cascadeCreate is used'
-        req = self.create_request('new_set','item','new_item2',{'cascadeCreate': True})
+        req = self.create_request('new_set','item','new_item2',cascade_create=True)
         resp = self.client.send(req)
         # it 'really inserts item to the set'
         req = AddItem('new_item3')

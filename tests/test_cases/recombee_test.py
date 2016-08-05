@@ -38,11 +38,11 @@ class InteractionsTest( RecombeeTest ):
     batch = Batch([
       AddUser('user'),
       AddItem('item'),
-      AddDetailView('user', 'item', {'timestamp': 0}),
-      AddPurchase('user', 'item', {'timestamp': 0}),
-      AddRating('user', 'item', 1, {'timestamp': 0}),
-      AddCartAddition('user', 'item', {'timestamp': 0}),
-      AddBookmark('user', 'item', {'timestamp': 0})
+      AddDetailView('user', 'item', timestamp=0),
+      AddPurchase('user', 'item', timestamp=0),
+      AddRating('user', 'item', 1, timestamp=0),
+      AddCartAddition('user', 'item', timestamp=0),
+      AddBookmark('user', 'item', timestamp=0)
     ])
 
     self.client.send(batch)

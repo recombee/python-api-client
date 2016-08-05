@@ -7,5 +7,5 @@ from recombee_api_client.api_requests import *
 
 class AddDetailViewTestCase (AddInteractionTest):
 
-    def create_request(self, user_id, item_id, optional=dict()):
-        return AddDetailView(user_id, item_id, optional)
+    def create_request(self, user_id, item_id, timestamp=None, duration=None, cascade_create=None):
+        return AddDetailView(user_id, item_id, timestamp=timestamp, duration=duration, cascade_create=cascade_create)

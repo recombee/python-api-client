@@ -6,7 +6,7 @@ class AddCartAddition(Request):
 
     """
 
-    def __init__(self,user_id, item_id, optional = dict()):
+    def __init__(self,user_id, item_id, timestamp=None, cascade_create=None):
         """
         Required parameters:
         @param user_id: User who added the item to the cart
@@ -14,19 +14,16 @@ class AddCartAddition(Request):
         @param item_id: Item added to the cart
         
         
-        Optional parameters (given as dictionary C{optional}):
+        Optional parameters:
         @param timestamp: UTC timestamp of the cart addition as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
         
-        @param cascadeCreate: Sets whether the given user/item should be created if not present in the database.
+        @param cascade_create: Sets whether the given user/item should be created if not present in the database.
         
         """
         self.user_id = user_id
         self.item_id = item_id
-        self.timestamp = optional.get('timestamp')
-        self.cascade_create = optional.get('cascadeCreate')
-        for par in optional:
-            if not par in {"timestamp","cascadeCreate"}:
-                raise ValueError("Unknown parameter %s was given to the request" % par)
+        self.timestamp = timestamp
+        self.cascade_create = cascade_create
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'post'

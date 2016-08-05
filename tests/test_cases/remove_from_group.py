@@ -8,7 +8,7 @@ from recombee_api_client.api_requests import *
 
 class RemoveFromGroupTest (RecombeeTest ):
 
-    def create_request(self,set_id,type,entity_id):
+    def create_request(self,group_id,item_type,item_id):
         pass
 
     def test_remove_from_group(self):

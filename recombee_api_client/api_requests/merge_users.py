@@ -9,7 +9,7 @@ class MergeUsers(Request):
 
     """
 
-    def __init__(self,target_user_id, source_user_id, optional = dict()):
+    def __init__(self,target_user_id, source_user_id, keep_source_user=None):
         """
         Required parameters:
         @param target_user_id: ID of the source user.
@@ -17,16 +17,13 @@ class MergeUsers(Request):
         @param source_user_id: ID of the target user.
         
         
-        Optional parameters (given as dictionary C{optional}):
-        @param keepSourceUser: If true, the source user will not be deleted, but also kept in the database..
+        Optional parameters:
+        @param keep_source_user: If true, the source user will not be deleted, but also kept in the database..
         
         """
         self.target_user_id = target_user_id
         self.source_user_id = source_user_id
-        self.keep_source_user = optional.get('keepSourceUser')
-        for par in optional:
-            if not par in {"keepSourceUser"}:
-                raise ValueError("Unknown parameter %s was given to the request" % par)
+        self.keep_source_user = keep_source_user
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'put'

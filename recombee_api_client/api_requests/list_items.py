@@ -5,17 +5,14 @@ class ListItems(Request):
     Gets a list of IDs of items currently present in the catalog.
     """
 
-    def __init__(self,optional = dict()):
+    def __init__(self,filter=None):
         """
         
-        Optional parameters (given as dictionary C{optional}):
+        Optional parameters:
         @param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression, which allows you to filter items to be listed. Only the items for which the expression is *true* will be returned.
         
         """
-        self.filter = optional.get('filter')
-        for par in optional:
-            if not par in {"filter"}:
-                raise ValueError("Unknown parameter %s was given to the request" % par)
+        self.filter = filter
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'get'

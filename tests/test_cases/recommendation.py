@@ -28,7 +28,7 @@ class RecommendationTest(RecombeeTest):
     self.client.send(Batch([AddUser(u) for u in my_users]))
     self.client.send(Batch([AddItemProperty('answer', 'int'), AddItemProperty('id2', 'string'), AddItemProperty('empty', 'string')]))
     self.client.send(Batch([SetItemValues(item_id, {'answer': 42, 'id2': item_id, '!cascadeCreate': True}) for item_id in my_items]))
-    self.client.send(Batch([AddPurchase(p['userId'], p['itemId'], {'timestamp': 0}) for p in my_purchases ]))
+    self.client.send(Batch([AddPurchase(p['userId'], p['itemId']) for p in my_purchases ]))
 
   def test_basic_recomm(self):
     req = self.create_request('entity_id', 9)
@@ -40,7 +40,7 @@ class RecommendationTest(RecombeeTest):
     recommended1 = self.client.send(req)
     self.assertEqual(len(recommended1), 9)
 
-    req = self.create_request('entity_id', 9, {'rotationRate': 1})
+    req = self.create_request('entity_id', 9, rotation_rate=1)
     recommended2 = self.client.send(req)
     self.assertEqual(len(recommended2), 9)
 
@@ -54,7 +54,7 @@ class RecommendationTest(RecombeeTest):
     self.client.send(Batch(reqs))
     
   def test_returning_properties(self):
-    req = self.create_request('entity_id', 9, {'returnProperties': True, 'includedProperties': ['answer', 'id2', 'empty']})
+    req = self.create_request('entity_id', 9, return_properties=True, included_properties=['answer', 'id2', 'empty'])
     recommended = self.client.send(req)
 
     for rec in recommended:
@@ -62,7 +62,7 @@ class RecommendationTest(RecombeeTest):
       self.assertEqual(rec['answer'], 42)
       self.assertIn('empty', rec)
 
-    req = self.create_request('entity_id', 9, {'returnProperties': True, 'includedProperties': 'answer,id2'})
+    req = self.create_request('entity_id', 9, return_properties=True, included_properties='answer,id2')
     recommended = self.client.send(req)
 
     for rec in recommended:

@@ -6,7 +6,7 @@ class DeleteDetailView(Request):
 
     """
 
-    def __init__(self,user_id, item_id, optional = dict()):
+    def __init__(self,user_id, item_id, timestamp=None):
         """
         Required parameters:
         @param user_id: ID of the user who made the detail view.
@@ -14,16 +14,13 @@ class DeleteDetailView(Request):
         @param item_id: ID of the item of which the details were viewed.
         
         
-        Optional parameters (given as dictionary C{optional}):
+        Optional parameters:
         @param timestamp: Unix timestamp of the detail view. If the `timestamp` is omitted, then all the detail views with given `userId` and `itemId` are deleted.
         
         """
         self.user_id = user_id
         self.item_id = item_id
-        self.timestamp = optional.get('timestamp')
-        for par in optional:
-            if not par in {"timestamp"}:
-                raise ValueError("Unknown parameter %s was given to the request" % par)
+        self.timestamp = timestamp
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'delete'

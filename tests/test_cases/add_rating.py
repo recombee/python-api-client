@@ -8,13 +8,13 @@ from recombee_api_client.api_requests import *
 
 class AddRatingTest (RecombeeTest ):
 
-    def create_request(self,user_id,item_id,rating,optional= dict()):
+    def create_request(self,user_id,item_id,rating,timestamp=None,cascade_create=None):
         pass
 
     def test_add_rating(self):
 
         # it 'does not fail with cascadeCreate'
-        req = self.create_request('u_id','i_id',1,{'cascadeCreate': True})
+        req = self.create_request('u_id','i_id',1,cascade_create=True)
         resp = self.client.send(req)
         # it 'does not fail with existing item and user'
         req = self.create_request('entity_id','entity_id',0)
@@ -34,7 +34,7 @@ class AddRatingTest (RecombeeTest ):
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 404)
         # it 'fails with invalid time'
-        req = self.create_request('entity_id','entity_id',0,{'timestamp': -15})
+        req = self.create_request('entity_id','entity_id',0,timestamp=-15)
         try:
             self.client.send(req)
             self.assertFail()
@@ -48,7 +48,7 @@ class AddRatingTest (RecombeeTest ):
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 400)
         # it 'really stores interaction to the system'
-        req = self.create_request('u_id','i_id',0.3,{'cascadeCreate': True,'timestamp': 5})
+        req = self.create_request('u_id','i_id',0.3,cascade_create=True,timestamp=5)
         resp = self.client.send(req)
         try:
             self.client.send(req)

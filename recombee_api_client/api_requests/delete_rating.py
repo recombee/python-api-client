@@ -6,7 +6,7 @@ class DeleteRating(Request):
 
     """
 
-    def __init__(self,user_id, item_id, optional = dict()):
+    def __init__(self,user_id, item_id, timestamp=None):
         """
         Required parameters:
         @param user_id: ID of the user who rated the item.
@@ -14,16 +14,13 @@ class DeleteRating(Request):
         @param item_id: ID of the item which was rated.
         
         
-        Optional parameters (given as dictionary C{optional}):
+        Optional parameters:
         @param timestamp: Unix timestamp of the rating. If the `timestamp` is omitted, then all the ratings with given `userId` and `itemId` are deleted.
         
         """
         self.user_id = user_id
         self.item_id = item_id
-        self.timestamp = optional.get('timestamp')
-        for par in optional:
-            if not par in {"timestamp"}:
-                raise ValueError("Unknown parameter %s was given to the request" % par)
+        self.timestamp = timestamp
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'delete'

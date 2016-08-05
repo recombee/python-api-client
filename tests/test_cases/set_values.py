@@ -8,7 +8,7 @@ from recombee_api_client.api_requests import *
 
 class SetValuesTest (RecombeeTest ):
 
-    def create_request(self,entity_id,values):
+    def create_request(self,item_id,values):
         pass
 
     def test_set_values(self):

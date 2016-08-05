@@ -6,7 +6,7 @@ class ListItemProperties(Request):
 
     """
 
-    def __init__(self,):
+    def __init__(self):
         """
         """
         self.timeout = 1000

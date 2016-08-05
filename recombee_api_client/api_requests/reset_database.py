@@ -6,7 +6,7 @@ class ResetDatabase(Request):
 
     """
 
-    def __init__(self,):
+    def __init__(self):
         """
         """
         self.timeout = 20000

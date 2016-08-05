@@ -7,5 +7,5 @@ from recombee_api_client.api_requests import *
 
 class ListItemsTestCase (ListEntitiesTest):
 
-    def create_request(self, optional=dict()):
-        return ListItems(optional)
+    def create_request(self, filter=None):
+        return ListItems(filter=filter)

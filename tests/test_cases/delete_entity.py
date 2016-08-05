@@ -8,7 +8,7 @@ from recombee_api_client.api_requests import *
 
 class DeleteEntityTest (RecombeeTest ):
 
-    def create_request(self,entity_id):
+    def create_request(self,item_id):
         pass
 
     def test_delete_entity(self):

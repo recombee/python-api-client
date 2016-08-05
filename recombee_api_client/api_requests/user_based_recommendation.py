@@ -6,7 +6,7 @@ class UserBasedRecommendation(Request):
 
     """
 
-    def __init__(self,user_id, count, optional = dict()):
+    def __init__(self,user_id, count, filter=None, booster=None, allow_nonexistent=None, cascade_create=None, scenario=None, return_properties=None, included_properties=None, diversity=None, min_relevance=None, rotation_rate=None, rotation_time=None):
         """
         Required parameters:
         @param user_id: ID of the user whose personalized recommendations are to be generated.
@@ -14,18 +14,18 @@ class UserBasedRecommendation(Request):
         @param count: Number of items to be recommended (N for the top-N recommendation).
         
         
-        Optional parameters (given as dictionary C{optional}):
+        Optional parameters:
         @param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to filter recommended items based on the values of their attributes.
         
         @param booster: Number-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to boost recommendation rate of some items based on the values of their attributes.
         
-        @param allowNonexistent: If the user does not exist in the database, returns a list of non-personalized recommendations instead of causing HTTP 404 error. It doesn't create the user in the database.
+        @param allow_nonexistent: If the user does not exist in the database, returns a list of non-personalized recommendations instead of causing HTTP 404 error. It doesn't create the user in the database.
         
-        @param cascadeCreate: If the user does not exist in the database, returns a list of non-personalized recommendations and creates the user in the database. This allows for example rotations in the following recommendations for that user, as the user will be already known to the system.
+        @param cascade_create: If the user does not exist in the database, returns a list of non-personalized recommendations and creates the user in the database. This allows for example rotations in the following recommendations for that user, as the user will be already known to the system.
         
         @param scenario: Scenario defines a particular application of recommendations. It can be for example "homepage" or "cart". The AI which optimizes models in order to get the best results may optimize different scenarios separately, or even use different models in each of the scenarios.
         
-        @param returnProperties: With `returnProperties=true`, property values of the recommended items are returned along with their IDs in a JSON dictionary. The acquired property values can be used for easy displaying of the recommended items to the user. 
+        @param return_properties: With `returnProperties=true`, property values of the recommended items are returned along with their IDs in a JSON dictionary. The acquired property values can be used for easy displaying of the recommended items to the user. 
         
         
         Example response:
@@ -65,7 +65,7 @@ class UserBasedRecommendation(Request):
         ```
         
         
-        @param includedProperties: Allows to specify, which properties should be returned when `returnProperties=true` is set. The properties are given as a comma-separated list. 
+        @param included_properties: Allows to specify, which properties should be returned when `returnProperties=true` is set. The properties are given as a comma-separated list. 
         
         
         Example response for `includedProperties=description,price`:
@@ -100,32 +100,29 @@ class UserBasedRecommendation(Request):
         @param diversity: **Expert option** Real number from [0.0, 1.0] which determines how much mutually dissimilar should the recommended items be. The default value is 0.0, i.e., no diversification. Value 1.0 means maximal diversification.
         
         
-        @param minRelevance: **Expert option** Specifies the threshold of how much relevant must the recommended items be to the user. Possible values one of: "low", "medium", "high". The default value is "low", meaning that the system attempts to recommend number of items equal to *count* at any cost. If there are not enough data (such as interactions or item properties), this may even lead to bestseller-based recommendations to be appended to reach the full *count*. This behavior may be suppressed by using "medium" or "high" values. In such case, the system only recommends items of at least the requested qualit, and may return less than *count* items when there is not enough data to fulfill it.
+        @param min_relevance: **Expert option** Specifies the threshold of how much relevant must the recommended items be to the user. Possible values one of: "low", "medium", "high". The default value is "low", meaning that the system attempts to recommend number of items equal to *count* at any cost. If there are not enough data (such as interactions or item properties), this may even lead to bestseller-based recommendations to be appended to reach the full *count*. This behavior may be suppressed by using "medium" or "high" values. In such case, the system only recommends items of at least the requested qualit, and may return less than *count* items when there is not enough data to fulfill it.
         
         
-        @param rotationRate: **Expert option** If your users browse the system in real-time, it may easily happen that you wish to offer them recommendations multiple times. Here comes the question: how much should the recommendations change? Should they remain the same, or should they rotate? Recombee API allows you to control this per-request in backward fashion. You may penalize an item for being recommended in the near past. For the specific user, `rotationRate=1` means maximal rotation, `rotationRate=0` means absolutely no rotation. You may also use, for example `rotationRate=0.2` for only slight rotation of recommended items.
+        @param rotation_rate: **Expert option** If your users browse the system in real-time, it may easily happen that you wish to offer them recommendations multiple times. Here comes the question: how much should the recommendations change? Should they remain the same, or should they rotate? Recombee API allows you to control this per-request in backward fashion. You may penalize an item for being recommended in the near past. For the specific user, `rotationRate=1` means maximal rotation, `rotationRate=0` means absolutely no rotation. You may also use, for example `rotationRate=0.2` for only slight rotation of recommended items.
         
         
-        @param rotationTime: **Expert option** Taking *rotationRate* into account, specifies how long time it takes to an item to fully recover from the penalization. By example, `rotationTime=7200.0` means that items recommended more than 2 hours ago are definitely not penalized anymore. Currently, the penalization is linear, so for `rotationTime=7200.0`, an item is still penalized by `0.5` to the user after 1 hour.
+        @param rotation_time: **Expert option** Taking *rotationRate* into account, specifies how long time it takes to an item to fully recover from the penalization. By example, `rotationTime=7200.0` means that items recommended more than 2 hours ago are definitely not penalized anymore. Currently, the penalization is linear, so for `rotationTime=7200.0`, an item is still penalized by `0.5` to the user after 1 hour.
         
         
         """
         self.user_id = user_id
         self.count = count
-        self.filter = optional.get('filter')
-        self.booster = optional.get('booster')
-        self.allow_nonexistent = optional.get('allowNonexistent')
-        self.cascade_create = optional.get('cascadeCreate')
-        self.scenario = optional.get('scenario')
-        self.return_properties = optional.get('returnProperties')
-        self.included_properties = optional.get('includedProperties')
-        self.diversity = optional.get('diversity')
-        self.min_relevance = optional.get('minRelevance')
-        self.rotation_rate = optional.get('rotationRate')
-        self.rotation_time = optional.get('rotationTime')
-        for par in optional:
-            if not par in {"filter","booster","allowNonexistent","cascadeCreate","scenario","returnProperties","includedProperties","diversity","minRelevance","rotationRate","rotationTime"}:
-                raise ValueError("Unknown parameter %s was given to the request" % par)
+        self.filter = filter
+        self.booster = booster
+        self.allow_nonexistent = allow_nonexistent
+        self.cascade_create = cascade_create
+        self.scenario = scenario
+        self.return_properties = return_properties
+        self.included_properties = included_properties
+        self.diversity = diversity
+        self.min_relevance = min_relevance
+        self.rotation_rate = rotation_rate
+        self.rotation_time = rotation_time
         self.timeout = 3000
         self.ensure_https = False
         self.method = 'get'

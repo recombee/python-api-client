@@ -17,14 +17,13 @@ class BatchTestCase(RecombeeTest):
                           'time': 27,
                           '!cascadeCreate': True}),
           ListItems(),
-          ListItems({'filter': "'num' < 99"}),
+          ListItems(filter="'num' < 99"),
           DeleteItem('item1'),
-          ListItems({'filter': "'num' >= 99"}),
-          AddCartAddition('user', 'item2',  {'timestamp': '2013-10-29T09:38:41.341Z'}),
-          AddCartAddition('user', 'item2', {'cascadeCreate': True}),
+          ListItems(filter="'num' >= 99"),
+          AddCartAddition('user', 'item2',  timestamp='2013-10-29T09:38:41.341Z'),
+          AddCartAddition('user', 'item2', cascade_create=True),
           ItemBasedRecommendation('item2', 30),
-          UserBasedRecommendation('user_id', 25, {'filter': "'num'==68",
-                                    'allowNonexistent': True})
+          UserBasedRecommendation('user_id', 25, filter="'num'==68",allow_nonexistent=True)
     ]
 
     resp = self.client.send(Batch(reqs))

@@ -8,7 +8,7 @@ from recombee_api_client.api_requests import *
 
 class ListUserInteractionsTest (InteractionsTest ):
 
-    def create_request(self,entity_id):
+    def create_request(self,user_id):
         pass
 
     def test_list_user_interactions(self):

@@ -8,13 +8,13 @@ from recombee_api_client.api_requests import *
 
 class DeleteInteractionTest (InteractionsTest ):
 
-    def create_request(self,user_id,item_id,optional= dict()):
+    def create_request(self,user_id,item_id,timestamp=None):
         pass
 
     def test_delete_interaction(self):
 
         # it 'does not fail with existing entity id'
-        req = self.create_request('user','item',{'timestamp': 0})
+        req = self.create_request('user','item',timestamp=0)
         resp = self.client.send(req)
         req = self.create_request('user','item')
         try:

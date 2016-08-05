@@ -5,7 +5,7 @@ class ListGroups(Request):
     Gets the list of all the groups currently present in the database.
     """
 
-    def __init__(self,):
+    def __init__(self):
         """
         """
         self.timeout = 1000

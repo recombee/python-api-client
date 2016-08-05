@@ -7,5 +7,5 @@ from recombee_api_client.api_requests import *
 
 class DeleteDetailViewTestCase (DeleteInteractionTest):
 
-    def create_request(self, user_id, item_id, optional=dict()):
-        return DeleteDetailView(user_id, item_id, optional)
+    def create_request(self, user_id, item_id, timestamp=None):
+        return DeleteDetailView(user_id, item_id, timestamp=timestamp)

@@ -60,7 +60,7 @@ Basic example
 
         # Get recommendations for user 'user-25'
         print('Recommend for a user')
-        recommended = client.send(UserBasedRecommendation('user-25', 5, {'rotationRate': 0}))
+        recommended = client.send(UserBasedRecommendation('user-25', 5))
         print("Recommended items: %s" % recommended)
     except APIException as e:
         print(e)
@@ -121,27 +121,26 @@ Using property values
     for item_id in items:
         #Use cascadeCreate to create unexisting users
         purchasing_users = [user_id for user_id in users if random.random() < PROBABILITY_PURCHASED]
-        requests += [AddPurchase(user_id, item_id, {'cascadeCreate': True}) for user_id in purchasing_users]
+        requests += [AddPurchase(user_id, item_id, cascade_create=True) for user_id in purchasing_users]
 
     # Send purchases to the recommender system
     client.send(Batch(requests))
 
     # Get 5 recommendations for user-42, who is currently viewing computer-6
-    recommended = client.send(ItemBasedRecommendation('computer-6', 5, {'targetUserId': 'user-42'}) )
+    recommended = client.send(ItemBasedRecommendation('computer-6', 5, target_user_id='user-42'))
     print("Recommended items: %s" % recommended)
 
     # Get 5 recommendations for user-42, but recommend only computers that
     # have at least 3 cores
     recommended = client.send(
-        ItemBasedRecommendation('computer-6', 5, {'targetUserId': 'user-42', 'filter': "'num-cores'>=3"})
+        ItemBasedRecommendation('computer-6', 5, target_user_id='user-42', filter="'num-cores'>=3")
     )
     print("Recommended items with at least 3 processor cores: %s" % recommended)
 
     # Get 5 recommendations for user-42, but recommend only items that
     # are more expensive then currently viewed item (up-sell)
     recommended = client.send(
-        ItemBasedRecommendation('computer-6', 5,
-          {'targetUserId': 'user-42', 'filter': "'price' > context_item[\"price\"]"})
+        ItemBasedRecommendation('computer-6', 5, target_user_id='user-42', filter="'price' > context_item[\"price\"]")
     )
     print("Recommended up-sell items: %s" % recommended)
   
@@ -159,8 +158,7 @@ Example:
 
   try:
     recommended = client.send(
-    ItemBasedRecommendation('computer-6', 5,
-      {'targetUserId': 'user-42', 'filter': "'price' > context_item[\"price\"]"})
+    ItemBasedRecommendation('computer-6', 5,target_user_id='user-42', filter="'price' > context_item[\"price\"]")
     )
   except ResponseException as e:
     #Handle errorneous request => use fallback

@@ -7,5 +7,5 @@ from recombee_api_client.api_requests import *
 
 class DeleteBookmarkTestCase (DeleteInteractionTest):
 
-    def create_request(self, user_id, item_id, optional=dict()):
-        return DeleteBookmark(user_id, item_id, optional)
+    def create_request(self, user_id, item_id, timestamp=None):
+        return DeleteBookmark(user_id, item_id, timestamp=timestamp)

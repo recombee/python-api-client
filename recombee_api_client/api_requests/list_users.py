@@ -5,7 +5,7 @@ class ListUsers(Request):
     Gets a list of IDs of users currently present in the catalog.
     """
 
-    def __init__(self,):
+    def __init__(self):
         """
         """
         self.timeout = 1000

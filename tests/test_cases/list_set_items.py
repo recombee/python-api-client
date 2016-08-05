@@ -8,7 +8,7 @@ from recombee_api_client.api_requests import *
 
 class ListSetItemsTest (RecombeeTest ):
 
-    def create_request(self,entity_id):
+    def create_request(self,series_id):
         pass
 
     def test_list_set_items(self):

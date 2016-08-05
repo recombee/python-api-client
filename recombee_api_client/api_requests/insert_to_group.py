@@ -6,7 +6,7 @@ class InsertToGroup(Request):
 
     """
 
-    def __init__(self,group_id, item_type, item_id, optional = dict()):
+    def __init__(self,group_id, item_type, item_id, cascade_create=None):
         """
         Required parameters:
         @param group_id: ID of the group to be inserted into.
@@ -16,17 +16,14 @@ class InsertToGroup(Request):
         @param item_id: ID of the item iff `itemType` is `item`. ID of the group iff `itemType` is `group`.
         
         
-        Optional parameters (given as dictionary C{optional}):
-        @param cascadeCreate: Indicates that any non-existing entity specified within the request should be created (as is corresponding PUT requests were invoked). This concerns both the `groupId` and the `groupId`. If `cascadeCreate` is set true, the behavior also depends on the `itemType`. Either items or group may be created if not present in the database.
+        Optional parameters:
+        @param cascade_create: Indicates that any non-existing entity specified within the request should be created (as is corresponding PUT requests were invoked). This concerns both the `groupId` and the `groupId`. If `cascadeCreate` is set true, the behavior also depends on the `itemType`. Either items or group may be created if not present in the database.
         
         """
         self.group_id = group_id
         self.item_type = item_type
         self.item_id = item_id
-        self.cascade_create = optional.get('cascadeCreate')
-        for par in optional:
-            if not par in {"cascadeCreate"}:
-                raise ValueError("Unknown parameter %s was given to the request" % par)
+        self.cascade_create = cascade_create
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'post'
