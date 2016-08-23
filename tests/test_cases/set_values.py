@@ -16,6 +16,9 @@ class SetValuesTest (RecombeeTest ):
         # it 'does not fail with existing entity and property'
         req = self.create_request('entity_id',{'int_property': 5})
         resp = self.client.send(req)
+        # it 'does not fail with non-ASCII string'
+        req = self.create_request('entity_id',{'str_property': 'šřžذ的‎'})
+        resp = self.client.send(req)
         # it 'sets multiple properties'
         req = self.create_request('entity_id',{'int_property': 5,'str_property': 'test'})
         resp = self.client.send(req)

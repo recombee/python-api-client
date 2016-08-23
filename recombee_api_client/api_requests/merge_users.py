@@ -9,7 +9,7 @@ class MergeUsers(Request):
 
     """
 
-    def __init__(self,target_user_id, source_user_id, keep_source_user=None):
+    def __init__(self,target_user_id, source_user_id, keep_source_user=None, cascade_create=None):
         """
         Required parameters:
         @param target_user_id: ID of the source user.
@@ -18,12 +18,15 @@ class MergeUsers(Request):
         
         
         Optional parameters:
-        @param keep_source_user: If true, the source user will not be deleted, but also kept in the database..
+        @param keep_source_user: If true, the source user will not be deleted, but also kept in the database.
+        
+        @param cascade_create: Sets whether the user *targetUserId* should be created if not present in the database.
         
         """
         self.target_user_id = target_user_id
         self.source_user_id = source_user_id
         self.keep_source_user = keep_source_user
+        self.cascade_create = cascade_create
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'put'
@@ -43,4 +46,6 @@ class MergeUsers(Request):
         params = dict()
         if self.keep_source_user is not None:
             params['keepSourceUser'] = self.keep_source_user
+        if self.cascade_create is not None:
+            params['cascadeCreate'] = self.cascade_create
         return params
