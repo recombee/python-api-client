@@ -8,7 +8,7 @@ class ListGroups(Request):
     def __init__(self):
         """
         """
-        self.timeout = 1000
+        self.timeout = 30000
         self.ensure_https = False
         self.method = 'get'
         self.path = "/{databaseId}/groups/list/" % ()

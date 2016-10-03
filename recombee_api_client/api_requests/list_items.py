@@ -13,7 +13,7 @@ class ListItems(Request):
         
         """
         self.filter = filter
-        self.timeout = 1000
+        self.timeout = 30000
         self.ensure_https = False
         self.method = 'get'
         self.path = "/{databaseId}/items/list/" % ()

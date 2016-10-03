@@ -23,6 +23,13 @@ class AddInteractionTest (RecombeeTest ):
         req = self.create_request('entity_id','entity_id',timestamp='2013-10-29T09:38:41.341Z')
         resp = self.client.send(req)
         # it 'fails with nonexisting item id'
+        req = self.create_request('entity_id','nonex_id')
+        try:
+            self.client.send(req)
+            self.assertFail()
+        except ResponseException as ex:
+            self.assertEqual(ex.status_code, 404)
+        # it 'fails with nonexisting user id'
         req = self.create_request('nonex_id','entity_id')
         try:
             self.client.send(req)

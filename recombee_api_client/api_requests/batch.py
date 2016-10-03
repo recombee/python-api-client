@@ -15,11 +15,13 @@ class Batch(Request):
     - currently, batch size is limited to **10,000** requests; if you wish to execute even larger number of requests, please split the batch into multiple parts.
     """
 
-    def __init__(self,requests):
+    def __init__(self, requests, distinctRecomms=None):
         """
-        @param requests: List of Requests
+        @param requests: List of Requests.
+        @param distinctRecomms: Makes all the recommended items for a certain user distinct among multiple recommendation requests in the batch.
         """
         self.requests = requests
+        self.distinctRecomms = distinctRecomms
         self.timeout = sum([req.timeout for req in self.requests])
         self.ensure_https = True
         self.method = 'post'
@@ -32,7 +34,10 @@ class Batch(Request):
         reqs = []
         for r in self.requests:
             reqs.append(self.__request_to_batch_dict(r))
-        return {'requests': reqs}
+        result = {'requests': reqs}
+        if self.distinctRecomms is not None:
+            result['distinctRecomms'] = self.distinctRecomms
+        return result
 
     def __request_to_batch_dict(self, req):
 
