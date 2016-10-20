@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from datetime import datetime
 
 class SetItemValues(Request):
     """
@@ -48,9 +49,7 @@ class SetItemValues(Request):
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
-        p = dict()
-        p.update(self.values)
-        return p
+        return {key: (val.utcnow().isoformat() if isinstance(val, datetime) else val) for (key, val) in self.values.items() }
 
     def get_query_parameters(self):
         """
