@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # This file is auto-generated, do not edit
 #
@@ -8,7 +10,7 @@ from recombee_api_client.api_requests import *
 
 class SetValuesTest (RecombeeTest ):
 
-    def create_request(self,item_id,values):
+    def create_request(self,item_id,values,cascade_create=None):
         pass
 
     def test_set_values(self):
@@ -24,6 +26,9 @@ class SetValuesTest (RecombeeTest ):
         resp = self.client.send(req)
         # it 'does not fail with !cascadeCreate'
         req = self.create_request('new_entity',{'int_property': 5,'str_property': 'test','!cascadeCreate': True})
+        resp = self.client.send(req)
+        # it 'does not fail with cascadeCreate optional parameter'
+        req = self.create_request('new_entity2',{'int_property': 5,'str_property': 'test'},cascade_create=True)
         resp = self.client.send(req)
         # it 'fails with nonexisting entity'
         req = self.create_request('nonexisting',{'int_property': 5})

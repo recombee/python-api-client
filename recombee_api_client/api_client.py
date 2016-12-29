@@ -11,12 +11,13 @@ except ImportError:
     from urllib.parse import quote
 
 from recombee_api_client.exceptions import ApiTimeoutException, ResponseException
-
+from recombee_api_client.api_requests import Batch
 
 class RecombeeClient:
     """
     Client for sending requests to Recombee recommender system
     """
+    BATCH_MAX_SIZE = 10000
 
     def __init__(self, database_id, token, protocol = 'http', options = {}):
         """
@@ -39,6 +40,10 @@ class RecombeeClient:
         """
         @param request: Request to be sent to Recombee recommender
         """
+        
+        if isinstance(request, Batch) and len(request.requests) > self.BATCH_MAX_SIZE:
+            return self.__send_multipart_batch(request)
+
         timeout = request.timeout / 1000
         uri = self.__process_request_uri(request)
         uri = self.__sign_url(uri)
@@ -84,6 +89,23 @@ class RecombeeClient:
         if status_code == 200 or status_code == 201:
             return
         raise ResponseException(request, status_code, response.text)
+
+    @staticmethod
+    def __get_list_chunks(l, n):
+        """Yield successive n-sized chunks from l."""
+
+        try: #Python 2/3 compatibility
+            xrange
+        except NameError:
+            xrange = range
+
+        for i in xrange(0, len(l), n):
+            yield l[i:i + n]
+
+    def __send_multipart_batch(self, batch):
+        requests_parts = [rqs for rqs in self.__get_list_chunks(batch.requests, self.BATCH_MAX_SIZE)]
+        responses = [self.send(Batch(rqs)) for rqs in requests_parts]
+        return sum(responses, [])
 
     def __process_request_uri(self, request):
         uri = request.path

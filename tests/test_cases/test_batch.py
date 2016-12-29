@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from tests.test_cases.recombee_test import RecombeeTest
 from recombee_api_client.api_requests import *
 
@@ -34,3 +37,13 @@ class BatchTestCase(RecombeeTest):
     self.assertEqual(resp[7]['json'], ['item2'])
     self.assertEqual(resp[9]['json'], [])
     self.assertEqual(resp[13]['json'], ['item2'])
+
+  def test_large_batch(self):
+    NUM = 23578
+    reqs = [AddItem("item-%s" % i) for i in range(NUM)]
+    resp = self.client.send(Batch(reqs))
+
+    self.assertEqual(len(resp), NUM)
+
+    for r in resp:
+      self.assertEqual(r['code'], 201)

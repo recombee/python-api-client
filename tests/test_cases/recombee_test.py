@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import unittest
 
 from recombee_api_client.api_client import RecombeeClient
@@ -23,7 +26,10 @@ class RecombeeTest( unittest.TestCase ):
       InsertToSeries('entity_id', 'item', 'entity_id', 1),
       AddItemProperty('int_property', 'int'),
       AddItemProperty('str_property', 'string'),
-      SetItemValues('entity_id', {'int_property': 42, 'str_property': 'hello'})
+      SetItemValues('entity_id', {'int_property': 42, 'str_property': 'hello'}),
+      AddUserProperty('int_property', 'int'),
+      AddUserProperty('str_property', 'string'),
+      SetUserValues('entity_id', {'int_property': 42, 'str_property': 'hello'})
     ])
 
     self.client.send(batch)

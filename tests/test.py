@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 #
 # This file is auto-generated, do not edit
@@ -59,10 +60,22 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(AddUserTestCase))
     from tests.test_cases.test_delete_user import DeleteUserTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteUserTestCase))
+    from tests.test_cases.test_set_user_values import SetUserValuesTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SetUserValuesTestCase))
+    from tests.test_cases.test_get_user_values import GetUserValuesTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(GetUserValuesTestCase))
     from tests.test_cases.test_merge_users import MergeUsersTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(MergeUsersTestCase))
     from tests.test_cases.test_list_users import ListUsersTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListUsersTestCase))
+    from tests.test_cases.test_add_user_property import AddUserPropertyTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(AddUserPropertyTestCase))
+    from tests.test_cases.test_delete_user_property import DeleteUserPropertyTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteUserPropertyTestCase))
+    from tests.test_cases.test_get_user_property_info import GetUserPropertyInfoTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(GetUserPropertyInfoTestCase))
+    from tests.test_cases.test_list_user_properties import ListUserPropertiesTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListUserPropertiesTestCase))
     from tests.test_cases.test_add_detail_view import AddDetailViewTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(AddDetailViewTestCase))
     from tests.test_cases.test_delete_detail_view import DeleteDetailViewTestCase

@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from tests.test_cases.recommendation import RecommendationTest
 from recombee_api_client.api_requests import *
 

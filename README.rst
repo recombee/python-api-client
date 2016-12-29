@@ -30,40 +30,35 @@ Basic example
 
     from recombee_api_client.api_client import RecombeeClient
     from recombee_api_client.exceptions import APIException
-    from recombee_api_client.api_requests import AddUser, AddItem, AddPurchase, UserBasedRecommendation, Batch
+    from recombee_api_client.api_requests import AddPurchase, UserBasedRecommendation, Batch
     import random
 
-    # Prepare some items and users
-    NUM = 100
-    my_users = ["user-%s" % i for i in range(NUM) ]
-    my_items = ["item-%s" % i for i in range(NUM) ]
+    client = RecombeeClient('client-test', 'jGGQ6ZKa8rQ1zTAyxTc0EMn55YPF7FJLUtaMLhbsGxmvwxgTwXYqmUk5xVZFw98L')
 
     #Generate some random purchases of items by users
     PROBABILITY_PURCHASED = 0.1
-    my_purchases = []
-    for user_id in my_users:
-        p = [item_id for item_id in my_items if random.random() < PROBABILITY_PURCHASED]
-        for item_id in p:
-            my_purchases.append({'userId': user_id, 'itemId': item_id})
+    NUM = 100
+    purchase_requests = []
 
-    # Use Recombee recommender
-    client = RecombeeClient('client-test', 'jGGQ6ZKa8rQ1zTAyxTc0EMn55YPF7FJLUtaMLhbsGxmvwxgTwXYqmUk5xVZFw98L')
+    for user_id in ["user-%s" % i for i in range(NUM) ]:
+      for item_id in ["item-%s" % i for i in range(NUM) ]:
+        if random.random() < PROBABILITY_PURCHASED:
+
+          request = AddPurchase(user_id, item_id, cascade_create=True)
+          purchase_requests.append(request)
 
     try:
-        # Send the data to Recombee, use Batch for faster processing
-        print('Send users')
-        client.send(Batch([AddUser(user_id) for user_id in my_users]))
-        print('Send items')
-        client.send(Batch([AddItem(item_id) for item_id in my_items]))
+        # Send the data to Recombee, use Batch for faster processing of larger data
         print('Send purchases')
-        client.send(Batch([AddPurchase(p['userId'], p['itemId']) for p in my_purchases]))
+        client.send(Batch(purchase_requests))
 
         # Get recommendations for user 'user-25'
-        print('Recommend for a user')
         recommended = client.send(UserBasedRecommendation('user-25', 5))
         print("Recommended items: %s" % recommended)
+
     except APIException as e:
         print(e)
+
 
 ---------------------
 Using property values
@@ -81,10 +76,10 @@ Using property values
     PROBABILITY_PURCHASED = 0.1
 
     client = RecombeeClient('client-test', 'jGGQ6ZKa8rQ1zTAyxTc0EMn55YPF7FJLUtaMLhbsGxmvwxgTwXYqmUk5xVZFw98L')
-    
+
     #Clear the entire database
     client.send(ResetDatabase())
-    
+
     # We will use computers as items in this example
     # Computers have three properties 
     #   - price (floating point number)
@@ -104,11 +99,11 @@ Using property values
           'price': random.uniform(500, 2000),
           'num-cores': random.randrange(1,9),
           'description': 'Great computer',
-          '!cascadeCreate': True   # Use !cascadeCreate for creating item
-                                   # with given itemId, if it doesn't exist
-        }
+        },
+        cascade_create=True   # Use cascadeCreate for creating item
+                              # with given itemId if it doesn't exist
       ) for i in range(NUM)]
-    
+
 
     # Send catalog to the recommender system
     client.send(Batch(requests))

@@ -12,7 +12,6 @@ class Batch(Request):
     - executing the requests in a batch is equivalent as if they were executed one-by-one individually; there are, however, many optimizations to make batch execution as fast as possible,
     - the status code of the batch request itself is 200 even if the individual requests result in error - you have to inspect the code values in the resulting array,
     - if the status code of the whole batch is not 200, then there is an error in the batch request itself; in such a case, the error message returned should help you to resolve the problem,
-    - currently, batch size is limited to **10,000** requests; if you wish to execute even larger number of requests, please split the batch into multiple parts.
     """
 
     def __init__(self, requests, distinctRecomms=None):
