@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class AddBookmark(Request):
     """
@@ -6,7 +9,7 @@ class AddBookmark(Request):
 
     """
 
-    def __init__(self,user_id, item_id, timestamp=None, cascade_create=None):
+    def __init__(self, user_id, item_id, timestamp=DEFAULT, cascade_create=DEFAULT):
         """
         Required parameters:
         @param user_id: User who bookmarked the item
@@ -27,7 +30,7 @@ class AddBookmark(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'post'
-        self.path = "/{databaseId}/bookmarks/" % ()
+        self.path = "/bookmarks/" % ()
 
     def get_body_parameters(self):
         """
@@ -36,9 +39,9 @@ class AddBookmark(Request):
         p = dict()
         p['userId'] = self.user_id
         p['itemId'] = self.item_id
-        if self.timestamp is not None:
+        if self.timestamp is not DEFAULT:
             p['timestamp'] = self.timestamp
-        if self.cascade_create is not None:
+        if self.cascade_create is not DEFAULT:
             p['cascadeCreate'] = self.cascade_create
         return p
 

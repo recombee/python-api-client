@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class MergeUsers(Request):
     """
@@ -9,7 +12,7 @@ class MergeUsers(Request):
 
     """
 
-    def __init__(self,target_user_id, source_user_id, keep_source_user=None, cascade_create=None):
+    def __init__(self, target_user_id, source_user_id, cascade_create=DEFAULT):
         """
         Required parameters:
         @param target_user_id: ID of the source user.
@@ -18,19 +21,16 @@ class MergeUsers(Request):
         
         
         Optional parameters:
-        @param keep_source_user: If true, the source user will not be deleted, but also kept in the database.
-        
         @param cascade_create: Sets whether the user *targetUserId* should be created if not present in the database.
         
         """
         self.target_user_id = target_user_id
         self.source_user_id = source_user_id
-        self.keep_source_user = keep_source_user
         self.cascade_create = cascade_create
-        self.timeout = 1000
+        self.timeout = 10000
         self.ensure_https = False
         self.method = 'put'
-        self.path = "/{databaseId}/users/%s/merge/%s" % (self.target_user_id,self.source_user_id)
+        self.path = "/users/%s/merge/%s" % (self.target_user_id,self.source_user_id)
 
     def get_body_parameters(self):
         """
@@ -44,8 +44,6 @@ class MergeUsers(Request):
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """
         params = dict()
-        if self.keep_source_user is not None:
-            params['keepSourceUser'] = self.keep_source_user
-        if self.cascade_create is not None:
+        if self.cascade_create is not DEFAULT:
             params['cascadeCreate'] = self.cascade_create
         return params

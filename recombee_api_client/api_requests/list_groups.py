@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class ListGroups(Request):
     """
@@ -8,10 +11,10 @@ class ListGroups(Request):
     def __init__(self):
         """
         """
-        self.timeout = 30000
+        self.timeout = 239000
         self.ensure_https = False
         self.method = 'get'
-        self.path = "/{databaseId}/groups/list/" % ()
+        self.path = "/groups/list/" % ()
 
     def get_body_parameters(self):
         """

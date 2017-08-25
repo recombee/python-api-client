@@ -61,25 +61,40 @@ class RecombeeClient:
         except requests.exceptions.Timeout:
             raise ApiTimeoutException(request)
 
+    @staticmethod
+    def __get_http_headers(additional_headers=None):
+        headers = {'User-Agent': 'recombee-python-api-client/1.4.0'}
+        if additional_headers:
+            headers.update(additional_headers)
+        return headers
+
     def __put(self, request, uri, timeout):
-        response = requests.put(uri, timeout=timeout)
+        response = requests.put(uri, 
+                                data=json.dumps(request.get_body_parameters()),
+                                headers= self.__get_http_headers({'Content-Type': 'application/json'}),
+                                timeout=timeout)
         self.__check_errors(response, request)
         return response.json()
 
     def __get(self, request, uri, timeout):
-        response = requests.get(uri, timeout=timeout)
+        response = requests.get(uri,
+                                headers= self.__get_http_headers(),
+                                timeout=timeout)
         self.__check_errors(response, request)
         return response.json()
 
     def __post(self, request, uri, timeout):
-        response = requests.post(uri, data=json.dumps(request.get_body_parameters()), 
-                                            headers={'Content-Type': 'application/json'},
-                                            timeout=timeout)
+        response = requests.post(uri,
+                                data=json.dumps(request.get_body_parameters()), 
+                                headers= self.__get_http_headers({'Content-Type': 'application/json'}),
+                                timeout=timeout)
         self.__check_errors(response, request)
         return response.json()
 
     def __delete(self, request, uri, timeout):
-        response = requests.delete(uri, timeout=timeout)
+        response = requests.delete(uri,
+                                headers= self.__get_http_headers(),
+                                timeout=timeout)
         self.__check_errors(response, request)
         return response.json()
 
@@ -109,7 +124,6 @@ class RecombeeClient:
 
     def __process_request_uri(self, request):
         uri = request.path
-        uri = uri[len('/{databaseId}/'):]
         uri += self.__query_parameters_to_url(request)
         return uri
 
@@ -131,7 +145,7 @@ class RecombeeClient:
     # Sign request with HMAC, request URI must be exacly the same
     # We have 30s to complete request with this token
     def __sign_url(self, req_part):
-        uri = '/' + self.database_id + '/' + req_part
+        uri = '/' + self.database_id + req_part
         time = self.__hmac_time(uri)
         sign = self.__hmac_sign(uri, time)
         res = uri + time + '&hmac_sign=' +sign

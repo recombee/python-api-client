@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class DeleteSeries(Request):
     """
@@ -8,7 +11,7 @@ class DeleteSeries(Request):
 
     """
 
-    def __init__(self,series_id):
+    def __init__(self, series_id):
         """
         Required parameters:
         @param series_id: ID of the series to be deleted.
@@ -18,7 +21,7 @@ class DeleteSeries(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'delete'
-        self.path = "/{databaseId}/series/%s" % (self.series_id)
+        self.path = "/series/%s" % (self.series_id)
 
     def get_body_parameters(self):
         """

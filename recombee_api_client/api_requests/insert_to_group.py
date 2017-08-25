@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class InsertToGroup(Request):
     """
@@ -6,7 +9,7 @@ class InsertToGroup(Request):
 
     """
 
-    def __init__(self,group_id, item_type, item_id, cascade_create=None):
+    def __init__(self, group_id, item_type, item_id, cascade_create=DEFAULT):
         """
         Required parameters:
         @param group_id: ID of the group to be inserted into.
@@ -27,7 +30,7 @@ class InsertToGroup(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'post'
-        self.path = "/{databaseId}/groups/%s/items/" % (self.group_id)
+        self.path = "/groups/%s/items/" % (self.group_id)
 
     def get_body_parameters(self):
         """
@@ -36,7 +39,7 @@ class InsertToGroup(Request):
         p = dict()
         p['itemType'] = self.item_type
         p['itemId'] = self.item_id
-        if self.cascade_create is not None:
+        if self.cascade_create is not DEFAULT:
             p['cascadeCreate'] = self.cascade_create
         return p
 

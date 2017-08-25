@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class DeleteRating(Request):
     """
@@ -6,7 +9,7 @@ class DeleteRating(Request):
 
     """
 
-    def __init__(self,user_id, item_id, timestamp=None):
+    def __init__(self, user_id, item_id, timestamp=DEFAULT):
         """
         Required parameters:
         @param user_id: ID of the user who rated the item.
@@ -24,7 +27,7 @@ class DeleteRating(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'delete'
-        self.path = "/{databaseId}/ratings/" % ()
+        self.path = "/ratings/" % ()
 
     def get_body_parameters(self):
         """
@@ -40,6 +43,6 @@ class DeleteRating(Request):
         params = dict()
         params['userId'] = self.user_id
         params['itemId'] = self.item_id
-        if self.timestamp is not None:
+        if self.timestamp is not DEFAULT:
             params['timestamp'] = self.timestamp
         return params

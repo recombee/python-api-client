@@ -1,11 +1,14 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class RemoveFromSeries(Request):
     """
     Removes an existing series item from the series.
     """
 
-    def __init__(self,series_id, item_type, item_id, time):
+    def __init__(self, series_id, item_type, item_id, time):
         """
         Required parameters:
         @param series_id: ID of the series from which a series item is to be removed.
@@ -24,7 +27,7 @@ class RemoveFromSeries(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'delete'
-        self.path = "/{databaseId}/series/%s/items/" % (self.series_id)
+        self.path = "/series/%s/items/" % (self.series_id)
 
     def get_body_parameters(self):
         """

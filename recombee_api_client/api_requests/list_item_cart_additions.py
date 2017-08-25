@@ -1,11 +1,14 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class ListItemCartAdditions(Request):
     """
     List all the ever-made cart addition of a given item.
     """
 
-    def __init__(self,item_id):
+    def __init__(self, item_id):
         """
         Required parameters:
         @param item_id: ID of the item of which the cart addition are to be listed.
@@ -13,10 +16,10 @@ class ListItemCartAdditions(Request):
         
         """
         self.item_id = item_id
-        self.timeout = 1000
+        self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'
-        self.path = "/{databaseId}/items/%s/cartadditions/" % (self.item_id)
+        self.path = "/items/%s/cartadditions/" % (self.item_id)
 
     def get_body_parameters(self):
         """

@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class GetUserValues(Request):
     """
@@ -6,7 +9,7 @@ class GetUserValues(Request):
 
     """
 
-    def __init__(self,user_id):
+    def __init__(self, user_id):
         """
         Required parameters:
         @param user_id: ID of the user properties of which are to be obtained.
@@ -17,7 +20,7 @@ class GetUserValues(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'get'
-        self.path = "/{databaseId}/users/%s" % (self.user_id)
+        self.path = "/users/%s" % (self.user_id)
 
     def get_body_parameters(self):
         """

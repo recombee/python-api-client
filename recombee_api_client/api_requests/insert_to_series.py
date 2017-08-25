@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class InsertToSeries(Request):
     """
@@ -6,7 +9,7 @@ class InsertToSeries(Request):
 
     """
 
-    def __init__(self,series_id, item_type, item_id, time, cascade_create=None):
+    def __init__(self, series_id, item_type, item_id, time, cascade_create=DEFAULT):
         """
         Required parameters:
         @param series_id: ID of the series to be inserted into.
@@ -30,7 +33,7 @@ class InsertToSeries(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'post'
-        self.path = "/{databaseId}/series/%s/items/" % (self.series_id)
+        self.path = "/series/%s/items/" % (self.series_id)
 
     def get_body_parameters(self):
         """
@@ -40,7 +43,7 @@ class InsertToSeries(Request):
         p['itemType'] = self.item_type
         p['itemId'] = self.item_id
         p['time'] = self.time
-        if self.cascade_create is not None:
+        if self.cascade_create is not DEFAULT:
             p['cascadeCreate'] = self.cascade_create
         return p
 

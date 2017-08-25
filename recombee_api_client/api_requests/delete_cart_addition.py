@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class DeleteCartAddition(Request):
     """
@@ -6,7 +9,7 @@ class DeleteCartAddition(Request):
 
     """
 
-    def __init__(self,user_id, item_id, timestamp=None):
+    def __init__(self, user_id, item_id, timestamp=DEFAULT):
         """
         Required parameters:
         @param user_id: ID of the user who made the cart addition.
@@ -24,7 +27,7 @@ class DeleteCartAddition(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'delete'
-        self.path = "/{databaseId}/cartadditions/" % ()
+        self.path = "/cartadditions/" % ()
 
     def get_body_parameters(self):
         """
@@ -40,6 +43,6 @@ class DeleteCartAddition(Request):
         params = dict()
         params['userId'] = self.user_id
         params['itemId'] = self.item_id
-        if self.timestamp is not None:
+        if self.timestamp is not DEFAULT:
             params['timestamp'] = self.timestamp
         return params

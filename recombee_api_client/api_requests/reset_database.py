@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class ResetDatabase(Request):
     """
@@ -9,10 +12,10 @@ class ResetDatabase(Request):
     def __init__(self):
         """
         """
-        self.timeout = 20000
+        self.timeout = 239000
         self.ensure_https = False
         self.method = 'delete'
-        self.path = "/{databaseId}/" % ()
+        self.path = "/" % ()
 
     def get_body_parameters(self):
         """

@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class AddItemProperty(Request):
     """
@@ -6,7 +9,7 @@ class AddItemProperty(Request):
 
     """
 
-    def __init__(self,property_name, type):
+    def __init__(self, property_name, type):
         """
         Required parameters:
         @param property_name: Name of the item property to be created. Currently, the following names are reserved:`id`, `itemid`, case insensitively. Also, the length of the property name must not exceed 63 characters.
@@ -21,7 +24,7 @@ class AddItemProperty(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'put'
-        self.path = "/{databaseId}/items/properties/%s" % (self.property_name)
+        self.path = "/items/properties/%s" % (self.property_name)
 
     def get_body_parameters(self):
         """

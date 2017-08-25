@@ -1,11 +1,14 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class ListSeriesItems(Request):
     """
     List all the items present in the given series, sorted according to their time index values.
     """
 
-    def __init__(self,series_id):
+    def __init__(self, series_id):
         """
         Required parameters:
         @param series_id: ID of the series items of which are to be listed.
@@ -15,7 +18,7 @@ class ListSeriesItems(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'get'
-        self.path = "/{databaseId}/series/%s/items/" % (self.series_id)
+        self.path = "/series/%s/items/" % (self.series_id)
 
     def get_body_parameters(self):
         """

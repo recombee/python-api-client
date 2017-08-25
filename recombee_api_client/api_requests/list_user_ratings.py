@@ -1,21 +1,24 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class ListUserRatings(Request):
     """
     List all the ratings ever submitted by a given user.
     """
 
-    def __init__(self,user_id):
+    def __init__(self, user_id):
         """
         Required parameters:
         @param user_id: ID of the user whose ratings are to be listed.
         
         """
         self.user_id = user_id
-        self.timeout = 1000
+        self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'
-        self.path = "/{databaseId}/users/%s/ratings/" % (self.user_id)
+        self.path = "/users/%s/ratings/" % (self.user_id)
 
     def get_body_parameters(self):
         """

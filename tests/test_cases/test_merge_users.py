@@ -9,5 +9,5 @@ from recombee_api_client.api_requests import *
 
 class MergeUsersTestCase (MergeUsersTest):
 
-    def create_request(self, target_user_id, source_user_id, keep_source_user=None, cascade_create=None):
-        return MergeUsers(target_user_id, source_user_id, keep_source_user=keep_source_user, cascade_create=cascade_create)
+    def create_request(self, target_user_id, source_user_id, cascade_create=None):
+        return MergeUsers(target_user_id, source_user_id, cascade_create=cascade_create)

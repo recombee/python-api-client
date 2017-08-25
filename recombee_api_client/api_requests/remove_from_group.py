@@ -1,11 +1,14 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class RemoveFromGroup(Request):
     """
     Removes an existing group item from the group.
     """
 
-    def __init__(self,group_id, item_type, item_id):
+    def __init__(self, group_id, item_type, item_id):
         """
         Required parameters:
         @param group_id: ID of the group from which a group item is to be removed.
@@ -21,7 +24,7 @@ class RemoveFromGroup(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'delete'
-        self.path = "/{databaseId}/groups/%s/items/" % (self.group_id)
+        self.path = "/groups/%s/items/" % (self.group_id)
 
     def get_body_parameters(self):
         """

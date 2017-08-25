@@ -24,7 +24,7 @@ class Batch(Request):
         self.timeout = sum([req.timeout for req in self.requests])
         self.ensure_https = True
         self.method = 'post'
-        self.path = '/{databaseId}/batch/'
+        self.path = '/batch/'
 
     def get_body_parameters(self):
         """
@@ -41,7 +41,6 @@ class Batch(Request):
     def __request_to_batch_dict(self, req):
 
         path = req.path
-        path = path[len('/{databaseId}'):]
         bd = {
             'method': req.method.upper(),
             'path':path

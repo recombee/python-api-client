@@ -38,4 +38,4 @@ class SetItemValues(SetValues):
         super(SetItemValues, self).__init__(values, cascade_create=cascade_create)
 
         self.item_id = item_id
-        self.path = "/{databaseId}/items/%s" % (self.item_id)
+        self.path = "/items/%s" % (self.item_id)

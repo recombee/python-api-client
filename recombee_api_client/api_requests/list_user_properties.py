@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class ListUserProperties(Request):
     """
@@ -12,7 +15,7 @@ class ListUserProperties(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'get'
-        self.path = "/{databaseId}/users/properties/list/" % ()
+        self.path = "/users/properties/list/" % ()
 
     def get_body_parameters(self):
         """

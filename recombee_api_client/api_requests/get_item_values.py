@@ -1,4 +1,7 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class GetItemValues(Request):
     """
@@ -6,7 +9,7 @@ class GetItemValues(Request):
 
     """
 
-    def __init__(self,item_id):
+    def __init__(self, item_id):
         """
         Required parameters:
         @param item_id: ID of the item properties of which are to be obtained.
@@ -17,7 +20,7 @@ class GetItemValues(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'get'
-        self.path = "/{databaseId}/items/%s" % (self.item_id)
+        self.path = "/items/%s" % (self.item_id)
 
     def get_body_parameters(self):
         """

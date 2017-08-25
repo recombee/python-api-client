@@ -1,11 +1,14 @@
 from recombee_api_client.api_requests.request import Request
+import uuid
+
+DEFAULT = uuid.uuid4()
 
 class AddSeries(Request):
     """
     Creates new series in the database.
     """
 
-    def __init__(self,series_id):
+    def __init__(self, series_id):
         """
         Required parameters:
         @param series_id: ID of the series to be created.
@@ -15,7 +18,7 @@ class AddSeries(Request):
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'put'
-        self.path = "/{databaseId}/series/%s" % (self.series_id)
+        self.path = "/series/%s" % (self.series_id)
 
     def get_body_parameters(self):
         """

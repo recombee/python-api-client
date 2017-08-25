@@ -2,7 +2,7 @@
 RecombeeApiClient
 *****************
 
-A Python client for easy use of the `Recombee <https://www.recombee.com/>`_  recommendation API.
+A Python client for easy use of the `Recombee <https://www.recombee.com/>`_  recommendation API. Both Python 2 and Python 3 are supported.
 
 If you don't have an account at Recombee yet, you can create a free account `here <https://www.recombee.com/>`_.
 
@@ -17,6 +17,8 @@ Install the client with pip:
 .. code-block:: bash
 
     $ pip install recombee-api-client
+
+(use pip3 instead of pip if you use Python 3)
 
 ========
 Examples

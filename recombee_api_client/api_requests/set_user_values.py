@@ -33,4 +33,4 @@ class SetUserValues(SetValues):
         super(SetUserValues, self).__init__(values, cascade_create=cascade_create)
 
         self.user_id = user_id
-        self.path = "/{databaseId}/users/%s" % (self.user_id)
+        self.path = "/users/%s" % (self.user_id)

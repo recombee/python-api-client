@@ -45,6 +45,8 @@ class SetValues(Request):
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         values = {key: (val.utcnow().isoformat() if isinstance(val, datetime) else val) for (key, val) in self.values.items() }
+        values = {key: (list(val) if isinstance(val, set) else val) for (key, val) in values.items() }
+
         if self.cascade_create is not None:
             values['!cascadeCreate'] = self.cascade_create
         return values
