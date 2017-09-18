@@ -116,6 +116,14 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListItemBookmarksTestCase))
     from tests.test_cases.test_list_user_bookmarks import ListUserBookmarksTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListUserBookmarksTestCase))
+    from tests.test_cases.test_set_view_portion import SetViewPortionTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SetViewPortionTestCase))
+    from tests.test_cases.test_delete_view_portion import DeleteViewPortionTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteViewPortionTestCase))
+    from tests.test_cases.test_list_item_view_portions import ListItemViewPortionsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListItemViewPortionsTestCase))
+    from tests.test_cases.test_list_user_view_portions import ListUserViewPortionsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListUserViewPortionsTestCase))
     from tests.test_cases.test_user_based_recommendation import UserBasedRecommendationTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UserBasedRecommendationTestCase))
     from tests.test_cases.test_item_based_recommendation import ItemBasedRecommendationTestCase

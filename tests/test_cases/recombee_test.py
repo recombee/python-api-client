@@ -48,7 +48,8 @@ class InteractionsTest( RecombeeTest ):
       AddPurchase('user', 'item', timestamp=0),
       AddRating('user', 'item', 1, timestamp=0),
       AddCartAddition('user', 'item', timestamp=0),
-      AddBookmark('user', 'item', timestamp=0)
+      AddBookmark('user', 'item', timestamp=0),
+      SetViewPortion('user', 'item', 1, timestamp=0),
     ])
 
     self.client.send(batch)
