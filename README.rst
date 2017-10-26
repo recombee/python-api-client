@@ -6,7 +6,7 @@ A Python client for easy use of the `Recombee <https://www.recombee.com/>`_  rec
 
 If you don't have an account at Recombee yet, you can create a free account `here <https://www.recombee.com/>`_.
 
-Documentation of the API can be found at `docs.recombee.com <https://docs.recombee.com/)>`_.
+Documentation of the API can be found at `docs.recombee.com <https://docs.recombee.com/>`_.
 
 =============
 Installation
