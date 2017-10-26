@@ -9,5 +9,5 @@ from recombee_api_client.api_requests import *
 
 class AddPurchaseTestCase (AddInteractionTest):
 
-    def create_request(self, user_id, item_id, timestamp=None, cascade_create=None):
-        return AddPurchase(user_id, item_id, timestamp=timestamp, cascade_create=cascade_create)
+    def create_request(self, user_id, item_id, timestamp=None, cascade_create=None, amount=None, price=None, profit=None):
+        return AddPurchase(user_id, item_id, timestamp=timestamp, cascade_create=cascade_create, amount=amount, price=price, profit=profit)

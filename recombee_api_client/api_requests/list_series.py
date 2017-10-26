@@ -11,7 +11,7 @@ class ListSeries(Request):
     def __init__(self):
         """
         """
-        self.timeout = 239000
+        self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'
         self.path = "/series/list/" % ()

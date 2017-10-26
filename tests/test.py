@@ -124,6 +124,14 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListItemViewPortionsTestCase))
     from tests.test_cases.test_list_user_view_portions import ListUserViewPortionsTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListUserViewPortionsTestCase))
+    from tests.test_cases.test_recommend_items_to_user import RecommendItemsToUserTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemsToUserTestCase))
+    from tests.test_cases.test_recommend_users_to_user import RecommendUsersToUserTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendUsersToUserTestCase))
+    from tests.test_cases.test_recommend_items_to_item import RecommendItemsToItemTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemsToItemTestCase))
+    from tests.test_cases.test_recommend_users_to_item import RecommendUsersToItemTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendUsersToItemTestCase))
     from tests.test_cases.test_user_based_recommendation import UserBasedRecommendationTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UserBasedRecommendationTestCase))
     from tests.test_cases.test_item_based_recommendation import ItemBasedRecommendationTestCase

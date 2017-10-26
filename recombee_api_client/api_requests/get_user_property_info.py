@@ -16,7 +16,7 @@ class GetUserPropertyInfo(Request):
         
         """
         self.property_name = property_name
-        self.timeout = 1000
+        self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'
         self.path = "/users/properties/%s" % (self.property_name)

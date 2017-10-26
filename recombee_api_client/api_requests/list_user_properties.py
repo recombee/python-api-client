@@ -12,7 +12,7 @@ class ListUserProperties(Request):
     def __init__(self):
         """
         """
-        self.timeout = 1000
+        self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'
         self.path = "/users/properties/list/" % ()

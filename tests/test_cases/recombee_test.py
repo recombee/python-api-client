@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+from random import random
 
 from recombee_api_client.api_client import RecombeeClient
 from recombee_api_client.api_requests import *
@@ -53,3 +54,27 @@ class InteractionsTest( RecombeeTest ):
     ])
 
     self.client.send(batch)
+
+class RecommendationsTest( RecombeeTest ):
+
+  def setUp(self):
+
+    super(RecommendationsTest, self).setUp()
+
+    num = 1000
+    probability_purchased = 0.007
+
+
+    my_users = ["user-%s" % i for i in range(num)]
+    my_items = ["item-%s" % i for i in range(num)]
+
+    my_purchases = []
+    for user in my_users:
+      p = [it for it in my_items if random() < probability_purchased]
+      for item in p:
+        my_purchases.append({'userId': user, 'itemId': item} )
+
+    self.client.send(Batch([AddUser(u) for u in my_users]))
+    self.client.send(Batch([AddItemProperty('answer', 'int'), AddItemProperty('id2', 'string'), AddItemProperty('empty', 'string')]))
+    self.client.send(Batch([SetItemValues(item_id, {'answer': 42, 'id2': item_id, '!cascadeCreate': True}) for item_id in my_items]))
+    self.client.send(Batch([AddPurchase(p['userId'], p['itemId']) for p in my_purchases ]))

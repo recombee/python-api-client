@@ -15,7 +15,7 @@ class ListGroupItems(Request):
         
         """
         self.group_id = group_id
-        self.timeout = 1000
+        self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'
         self.path = "/groups/%s/items/" % (self.group_id)

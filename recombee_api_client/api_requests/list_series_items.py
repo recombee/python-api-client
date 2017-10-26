@@ -15,7 +15,7 @@ class ListSeriesItems(Request):
         
         """
         self.series_id = series_id
-        self.timeout = 1000
+        self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'
         self.path = "/series/%s/items/" % (self.series_id)

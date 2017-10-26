@@ -9,7 +9,7 @@ class AddPurchase(Request):
 
     """
 
-    def __init__(self, user_id, item_id, timestamp=DEFAULT, cascade_create=DEFAULT):
+    def __init__(self, user_id, item_id, timestamp=DEFAULT, cascade_create=DEFAULT, amount=DEFAULT, price=DEFAULT, profit=DEFAULT):
         """
         Required parameters:
         @param user_id: User who purchased the item
@@ -22,11 +22,20 @@ class AddPurchase(Request):
         
         @param cascade_create: Sets whether the given user/item should be created if not present in the database.
         
+        @param amount: Amount (number) of purchased items. The default is 1. For example if `user-x` purchases two `item-y` during a single order (session...), the `amount` should equal to 2.
+        
+        @param price: Price paid by the user for the item. If `amount` is greater than 1, sum of prices of all the items should be given.
+        
+        @param profit: Your profit from the purchased item. The profit is natural in e-commerce domain (for example if `user-x` purchases `item-y` for $100 and the gross margin is 30 %, then the profit is $30), but is applicable also in other domains (for example at a news company it may be income from displayed advertisement on article page). If `amount` is greater than 1, sum of profit of all the items should be given.
+        
         """
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp
         self.cascade_create = cascade_create
+        self.amount = amount
+        self.price = price
+        self.profit = profit
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'post'
@@ -43,6 +52,12 @@ class AddPurchase(Request):
             p['timestamp'] = self.timestamp
         if self.cascade_create is not DEFAULT:
             p['cascadeCreate'] = self.cascade_create
+        if self.amount is not DEFAULT:
+            p['amount'] = self.amount
+        if self.price is not DEFAULT:
+            p['price'] = self.price
+        if self.profit is not DEFAULT:
+            p['profit'] = self.profit
         return p
 
     def get_query_parameters(self):

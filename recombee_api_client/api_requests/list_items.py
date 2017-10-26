@@ -96,7 +96,7 @@ class ListItems(Request):
         self.offset = offset
         self.return_properties = return_properties
         self.included_properties = included_properties
-        self.timeout = 600000
+        self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'
         self.path = "/items/list/" % ()

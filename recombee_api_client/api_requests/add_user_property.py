@@ -21,7 +21,7 @@ class AddUserProperty(Request):
         """
         self.property_name = property_name
         self.type = type
-        self.timeout = 1000
+        self.timeout = 100000
         self.ensure_https = False
         self.method = 'put'
         self.path = "/users/properties/%s" % (self.property_name)
