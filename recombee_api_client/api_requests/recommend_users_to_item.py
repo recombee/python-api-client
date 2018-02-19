@@ -5,8 +5,6 @@ DEFAULT = uuid.uuid4()
 
 class RecommendUsersToItem(Request):
     """
-    This feature is currently in beta.
-    
     Recommend users that are likely to be interested in a given item.
     
     It is also possible to use POST HTTP method (for example in case of very long ReQL filter) - query parameters then become body parameters.
@@ -39,7 +37,7 @@ class RecommendUsersToItem(Request):
         
         E{lb}
         
-        "recommId": "9eeebc318508302529e3241f4570834d",
+        "recommId": "039b71dc-b9cc-4645-a84f-62b841eecfce",
         
         "recomms":
         
@@ -84,7 +82,7 @@ class RecommendUsersToItem(Request):
         
         E{lb}
         
-        "recommId": "d4c826635efc3e01a83470008c5697f1",
+        "recommId": "b2b355dd-972a-4728-9c6b-2dc229db0678",
         
         "recomms":
         
@@ -133,7 +131,7 @@ class RecommendUsersToItem(Request):
         self.included_properties = included_properties
         self.diversity = diversity
         self.expert_settings = expert_settings
-        self.timeout = 3000
+        self.timeout = 50000
         self.ensure_https = False
         self.method = 'post'
         self.path = "/recomms/items/%s/users/" % (self.item_id)

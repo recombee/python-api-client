@@ -24,7 +24,7 @@ class DeletePropertyTest (RecombeeTest ):
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 404)
         # it 'fails with invalid property'
-        req = self.create_request('...not_valid...')
+        req = self.create_request('$$$not_valid$$$')
         try:
             self.client.send(req)
             self.assertFail()

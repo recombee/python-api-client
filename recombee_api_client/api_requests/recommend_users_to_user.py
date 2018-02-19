@@ -5,8 +5,6 @@ DEFAULT = uuid.uuid4()
 
 class RecommendUsersToUser(Request):
     """
-    This feature is currently in beta.
-    
     Get similar users as some given user, based on the user's past interactions (purchases, ratings, etc.) and values of properties.
     
     It is also possible to use POST HTTP method (for example in case of very long ReQL filter) - query parameters then become body parameters.
@@ -39,7 +37,7 @@ class RecommendUsersToUser(Request):
         
         E{lb}
         
-        "recommId": "32fc671480eb29d843e47def43503992",
+        "recommId": "9cb9c55d-50ba-4478-84fd-ab456136156e",
         
         "recomms": 
         
@@ -84,7 +82,7 @@ class RecommendUsersToUser(Request):
         
         E{lb}
         
-        "recommId": "27d81ade643621f45cc6ba5d30d7d683",
+        "recommId": "b326d82d-5d57-4b45-b362-c9d6f0895855",
         
         "recomms":
         
@@ -145,7 +143,7 @@ class RecommendUsersToUser(Request):
         self.rotation_rate = rotation_rate
         self.rotation_time = rotation_time
         self.expert_settings = expert_settings
-        self.timeout = 3000
+        self.timeout = 50000
         self.ensure_https = False
         self.method = 'post'
         self.path = "/recomms/users/%s/users/" % (self.user_id)

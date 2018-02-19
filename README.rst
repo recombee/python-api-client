@@ -32,10 +32,10 @@ Basic example
 
     from recombee_api_client.api_client import RecombeeClient
     from recombee_api_client.exceptions import APIException
-    from recombee_api_client.api_requests import AddPurchase, UserBasedRecommendation, Batch
+    from recombee_api_client.api_requests import AddPurchase, RecommendItemsToUser, Batch
     import random
 
-    client = RecombeeClient('client-test', 'jGGQ6ZKa8rQ1zTAyxTc0EMn55YPF7FJLUtaMLhbsGxmvwxgTwXYqmUk5xVZFw98L')
+    client = RecombeeClient('--my-database-id--', '--my-secret-token--'')
 
     #Generate some random purchases of items by users
     PROBABILITY_PURCHASED = 0.1
@@ -55,11 +55,12 @@ Basic example
         client.send(Batch(purchase_requests))
 
         # Get recommendations for user 'user-25'
-        recommended = client.send(UserBasedRecommendation('user-25', 5))
+        recommended = client.send(RecommendItemsToUser('user-25', 5))
         print("Recommended items: %s" % recommended)
 
     except APIException as e:
         print(e)
+
 
 
 ---------------------
@@ -68,16 +69,15 @@ Using property values
 
 .. code-block:: python
 
-
     from recombee_api_client.api_client import RecombeeClient
     from recombee_api_client.api_requests import AddItemProperty, SetItemValues, AddPurchase
-    from recombee_api_client.api_requests import ItemBasedRecommendation, Batch, ResetDatabase
+    from recombee_api_client.api_requests import RecommendItemsToItem, Batch, ResetDatabase
     import random
 
     NUM = 100
     PROBABILITY_PURCHASED = 0.1
 
-    client = RecombeeClient('client-test', 'jGGQ6ZKa8rQ1zTAyxTc0EMn55YPF7FJLUtaMLhbsGxmvwxgTwXYqmUk5xVZFw98L')
+    client = RecombeeClient('--my-database-id--', '--my-secret-token--'')
 
     #Clear the entire database
     client.send(ResetDatabase())
@@ -124,23 +124,21 @@ Using property values
     client.send(Batch(requests))
 
     # Get 5 recommendations for user-42, who is currently viewing computer-6
-    recommended = client.send(ItemBasedRecommendation('computer-6', 5, target_user_id='user-42'))
+    recommended = client.send(RecommendItemsToItem('computer-6', 'user-42', 5))
     print("Recommended items: %s" % recommended)
 
-    # Get 5 recommendations for user-42, but recommend only computers that
-    # have at least 3 cores
+    # Recommend only computers that have at least 3 cores
     recommended = client.send(
-        ItemBasedRecommendation('computer-6', 5, target_user_id='user-42', filter="'num-cores'>=3")
+        RecommendItemsToItem('computer-6', 'user-42', 5, filter="'num-cores'>=3")
     )
     print("Recommended items with at least 3 processor cores: %s" % recommended)
 
-    # Get 5 recommendations for user-42, but recommend only items that
-    # are more expensive then currently viewed item (up-sell)
+    # Recommend only items that are more expensive then currently viewed item (up-sell)
     recommended = client.send(
-        ItemBasedRecommendation('computer-6', 5, target_user_id='user-42', filter="'price' > context_item[\"price\"]")
+        RecommendItemsToItem('computer-6', 'user-42', 5, filter="'price' > context_item[\"price\"]")
     )
     print("Recommended up-sell items: %s" % recommended)
-  
+
 ------------------
 Exception handling
 ------------------
@@ -155,7 +153,7 @@ Example:
 
   try:
     recommended = client.send(
-    ItemBasedRecommendation('computer-6', 5,target_user_id='user-42', filter="'price' > context_item[\"price\"]")
+        RecommendItemsToItem('computer-6', 'user-42', 5, filter="'price' > context_item[\"price\"]")
     )
   except ResponseException as e:
     #Handle errorneous request => use fallback

@@ -19,7 +19,7 @@ class AddEntityTest (RecombeeTest ):
         req = self.create_request('valid_id')
         resp = self.client.send(req)
         # it 'fails with invalid entity id'
-        req = self.create_request('...not_valid...')
+        req = self.create_request('$$$not_valid$$$')
         try:
             self.client.send(req)
             self.assertFail()

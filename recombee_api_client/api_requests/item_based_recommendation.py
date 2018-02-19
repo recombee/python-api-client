@@ -5,6 +5,8 @@ DEFAULT = uuid.uuid4()
 
 class ItemBasedRecommendation(Request):
     """
+    Deprecated since version 2.0.0. Use RecommendItemsToItem request instead.
+    
     Recommends set of items that are somehow related to one given item, *X*. Typical scenario for using item-based recommendation is when user *A* is viewing *X*. Then you may display items to the user that he might be also interested in. Item-recommendation request gives you Top-N such items, optionally taking the target user *A* into account.
     
      It is also possible to use POST HTTP method (for example in case of very long ReQL filter) - query parameters then become body parameters.

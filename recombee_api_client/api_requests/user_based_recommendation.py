@@ -5,6 +5,8 @@ DEFAULT = uuid.uuid4()
 
 class UserBasedRecommendation(Request):
     """
+    Deprecated since version 2.0.0. Use RecommendItemsToUser request instead.
+    
     Based on user's past interactions (purchases, ratings, etc.) with the items, recommends top-N items that are most likely to be of high value for a given user.
     
     It is also possible to use POST HTTP method (for example in case of very long ReQL filter) - query parameters then become body parameters.

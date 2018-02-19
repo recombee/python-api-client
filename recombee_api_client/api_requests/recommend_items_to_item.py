@@ -5,8 +5,6 @@ DEFAULT = uuid.uuid4()
 
 class RecommendItemsToItem(Request):
     """
-    This feature is currently in beta.
-    
     Recommends set of items that are somehow related to one given item, *X*. Typical scenario  is when user *A* is viewing *X*. Then you may display items to the user that he might be also interested in. Recommend items to item request gives you Top-N such items, optionally taking the target user *A* into account.
     
     It is also possible to use POST HTTP method (for example in case of very long ReQL filter) - query parameters then become body parameters.
@@ -41,9 +39,9 @@ class RecommendItemsToItem(Request):
         
         Do not create some special dummy user for getting recommendations,
         
-        as it could cause  mislead the recommendation models,
+        as it could mislead the recommendation models,
         
-        leading to wrong recommendations.
+        and result in wrong recommendations.
         
         
         For anonymous/unregistered users it is possible to use for example their session ID.
@@ -73,7 +71,7 @@ class RecommendItemsToItem(Request):
         
         E{lb}
         
-        "recommId": "8ac80708afe9148130528757ebf6aaba",
+        "recommId": "0c6189e7-dc1a-429a-b613-192696309361",
         
         "recomms":
         
@@ -126,7 +124,7 @@ class RecommendItemsToItem(Request):
         
         E{lb}
         
-        "recommId": "c7dbfc503d262b80b77b4949ee9855fb",
+        "recommId": "6842c725-a79f-4537-a02c-f34d668a3f80",
         
         "recomms": 
         
