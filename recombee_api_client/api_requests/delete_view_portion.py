@@ -5,8 +5,6 @@ DEFAULT = uuid.uuid4()
 
 class DeleteViewPortion(Request):
     """
-    The view portions feature is currently experimental.
-    
     Deletes an existing view portion specified by (`userId`, `itemId`, `sessionId`) from the database.
 
     """

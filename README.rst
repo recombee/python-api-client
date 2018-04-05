@@ -83,15 +83,17 @@ Using property values
     client.send(ResetDatabase())
 
     # We will use computers as items in this example
-    # Computers have three properties 
+    # Computers have four properties 
     #   - price (floating point number)
     #   - number of processor cores (integer number)
     #   - description (string)
+    #   - image (url of computer's photo)
 
     # Add properties of items
     client.send(AddItemProperty('price', 'double'))
     client.send(AddItemProperty('num-cores', 'int'))
     client.send(AddItemProperty('description', 'string'))
+    client.send(AddItemProperty('image', 'image'))
 
     # Prepare requests for setting a catalog of computers
     requests = [SetItemValues(
@@ -101,6 +103,7 @@ Using property values
           'price': random.uniform(500, 2000),
           'num-cores': random.randrange(1,9),
           'description': 'Great computer',
+          'image': 'http://examplesite.com/products/computer-%s.jpg' % i
         },
         cascade_create=True   # Use cascadeCreate for creating item
                               # with given itemId if it doesn't exist

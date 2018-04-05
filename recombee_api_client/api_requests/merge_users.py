@@ -15,9 +15,9 @@ class MergeUsers(Request):
     def __init__(self, target_user_id, source_user_id, cascade_create=DEFAULT):
         """
         Required parameters:
-        @param target_user_id: ID of the source user.
+        @param target_user_id: ID of the targer user.
         
-        @param source_user_id: ID of the target user.
+        @param source_user_id: ID of the source user.
         
         
         Optional parameters:
