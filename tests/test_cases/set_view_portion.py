@@ -10,7 +10,7 @@ from recombee_api_client.api_requests import *
 
 class SetViewPortionTest (RecombeeTest ):
 
-    def create_request(self,user_id,item_id,portion,session_id=None,timestamp=None,cascade_create=None):
+    def create_request(self,user_id,item_id,portion,session_id=None,timestamp=None,cascade_create=None,recomm_id=None):
         pass
 
     def test_set_view_portion(self):

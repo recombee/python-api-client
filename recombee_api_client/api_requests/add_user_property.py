@@ -15,7 +15,25 @@ class AddUserProperty(Request):
         @param property_name: Name of the user property to be created. Currently, the following names are reserved:`id`, `userid`, case insensitively. Also, the length of the property name must not exceed 63 characters.
         
         
-        @param type: Value type of the user property to be created. One of: `int`, `double`, `string`, `boolean`, `timestamp`, `set`
+        @param type: Value type of the user property to be created. One of: `int`, `double`, `string`, `boolean`, `timestamp`, `set`.
+        
+        
+        * `int` - Signed integer number.
+        
+        
+        * `double` - Floating point number. It uses 64-bit base-2 format (IEEE 754 standard).
+        
+        
+        * `string` - UTF-8 string.
+        
+        
+        * `boolean` - *true* / *false*
+        
+        
+        * `timestamp` - Value representing date and time.
+        
+        
+        * `set` - Set of strings.
         
         
         """

@@ -9,5 +9,5 @@ from recombee_api_client.api_requests import *
 
 class SetViewPortionTestCase (SetViewPortionTest):
 
-    def create_request(self, user_id, item_id, portion, session_id=None, timestamp=None, cascade_create=None):
-        return SetViewPortion(user_id, item_id, portion, session_id=session_id, timestamp=timestamp, cascade_create=cascade_create)
+    def create_request(self, user_id, item_id, portion, session_id=None, timestamp=None, cascade_create=None, recomm_id=None):
+        return SetViewPortion(user_id, item_id, portion, session_id=session_id, timestamp=timestamp, cascade_create=cascade_create, recomm_id=recomm_id)

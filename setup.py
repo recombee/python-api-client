@@ -11,7 +11,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='recombee-api-client',
 
-    version='2.1.0',
+    version='2.2.0',
 
     description='Client for Recombee recommendation API',
     long_description=long_description,

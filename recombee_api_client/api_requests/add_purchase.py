@@ -9,7 +9,7 @@ class AddPurchase(Request):
 
     """
 
-    def __init__(self, user_id, item_id, timestamp=DEFAULT, cascade_create=DEFAULT, amount=DEFAULT, price=DEFAULT, profit=DEFAULT):
+    def __init__(self, user_id, item_id, timestamp=DEFAULT, cascade_create=DEFAULT, amount=DEFAULT, price=DEFAULT, profit=DEFAULT, recomm_id=DEFAULT):
         """
         Required parameters:
         @param user_id: User who purchased the item
@@ -28,6 +28,8 @@ class AddPurchase(Request):
         
         @param profit: Your profit from the purchased item. The profit is natural in e-commerce domain (for example if `user-x` purchases `item-y` for $100 and the gross margin is 30 %, then the profit is $30), but is applicable also in other domains (for example at a news company it may be income from displayed advertisement on article page). If `amount` is greater than 1, sum of profit of all the items should be given.
         
+        @param recomm_id: If this purchase is based on a recommendation request, `recommId` is the id of the clicked recommendation.
+        
         """
         self.user_id = user_id
         self.item_id = item_id
@@ -36,6 +38,7 @@ class AddPurchase(Request):
         self.amount = amount
         self.price = price
         self.profit = profit
+        self.recomm_id = recomm_id
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'post'
@@ -58,6 +61,8 @@ class AddPurchase(Request):
             p['price'] = self.price
         if self.profit is not DEFAULT:
             p['profit'] = self.profit
+        if self.recomm_id is not DEFAULT:
+            p['recommId'] = self.recomm_id
         return p
 
     def get_query_parameters(self):

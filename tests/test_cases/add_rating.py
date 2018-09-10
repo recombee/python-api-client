@@ -10,7 +10,7 @@ from recombee_api_client.api_requests import *
 
 class AddRatingTest (RecombeeTest ):
 
-    def create_request(self,user_id,item_id,rating,timestamp=None,cascade_create=None):
+    def create_request(self,user_id,item_id,rating,timestamp=None,cascade_create=None,recomm_id=None):
         pass
 
     def test_add_rating(self):

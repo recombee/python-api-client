@@ -9,7 +9,7 @@ class AddBookmark(Request):
 
     """
 
-    def __init__(self, user_id, item_id, timestamp=DEFAULT, cascade_create=DEFAULT):
+    def __init__(self, user_id, item_id, timestamp=DEFAULT, cascade_create=DEFAULT, recomm_id=DEFAULT):
         """
         Required parameters:
         @param user_id: User who bookmarked the item
@@ -22,11 +22,14 @@ class AddBookmark(Request):
         
         @param cascade_create: Sets whether the given user/item should be created if not present in the database.
         
+        @param recomm_id: If this bookmark is based on a recommendation request, `recommId` is the id of the clicked recommendation.
+        
         """
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp
         self.cascade_create = cascade_create
+        self.recomm_id = recomm_id
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'post'
@@ -43,6 +46,8 @@ class AddBookmark(Request):
             p['timestamp'] = self.timestamp
         if self.cascade_create is not DEFAULT:
             p['cascadeCreate'] = self.cascade_create
+        if self.recomm_id is not DEFAULT:
+            p['recommId'] = self.recomm_id
         return p
 
     def get_query_parameters(self):
