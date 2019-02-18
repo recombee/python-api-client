@@ -35,7 +35,7 @@ Basic example
     from recombee_api_client.api_requests import AddPurchase, RecommendItemsToUser, Batch
     import random
 
-    client = RecombeeClient('--my-database-id--', '--my-secret-token--'')
+    client = RecombeeClient('--my-database-id--', '--db-private-token--')
 
     #Generate some random purchases of items by users
     PROBABILITY_PURCHASED = 0.1
@@ -77,7 +77,7 @@ Using property values
     NUM = 100
     PROBABILITY_PURCHASED = 0.1
 
-    client = RecombeeClient('--my-database-id--', '--my-secret-token--'')
+    client = RecombeeClient('--my-database-id--', '--db-private-token--')
 
     #Clear the entire database
     client.send(ResetDatabase())

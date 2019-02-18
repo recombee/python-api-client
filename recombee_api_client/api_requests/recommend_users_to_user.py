@@ -8,10 +8,12 @@ class RecommendUsersToUser(Request):
     Get similar users as some given user, based on the user's past interactions (purchases, ratings, etc.) and values of properties.
     
     It is also possible to use POST HTTP method (for example in case of very long ReQL filter) - query parameters then become body parameters.
+    
+    The returned users are sorted by similarity (first user being the most similar).
 
     """
 
-    def __init__(self, user_id, count, filter=DEFAULT, booster=DEFAULT, cascade_create=DEFAULT, scenario=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT):
+    def __init__(self, user_id, count, filter=DEFAULT, booster=DEFAULT, cascade_create=DEFAULT, scenario=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
         """
         Required parameters:
         @param user_id: User to which we find similar users
@@ -129,6 +131,9 @@ class RecommendUsersToUser(Request):
         @param expert_settings: Dictionary of custom options.
         
         
+        @param return_ab_group: If there is a custom AB-testing running, return name of group to which the request belongs.
+        
+        
         """
         self.user_id = user_id
         self.count = count
@@ -143,6 +148,7 @@ class RecommendUsersToUser(Request):
         self.rotation_rate = rotation_rate
         self.rotation_time = rotation_time
         self.expert_settings = expert_settings
+        self.return_ab_group = return_ab_group
         self.timeout = 50000
         self.ensure_https = False
         self.method = 'post'
@@ -176,6 +182,8 @@ class RecommendUsersToUser(Request):
             p['rotationTime'] = self.rotation_time
         if self.expert_settings is not DEFAULT:
             p['expertSettings'] = self.expert_settings
+        if self.return_ab_group is not DEFAULT:
+            p['returnAbGroup'] = self.return_ab_group
         return p
 
     def get_query_parameters(self):

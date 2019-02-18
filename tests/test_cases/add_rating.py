@@ -10,13 +10,13 @@ from recombee_api_client.api_requests import *
 
 class AddRatingTest (RecombeeTest ):
 
-    def create_request(self,user_id,item_id,rating,timestamp=None,cascade_create=None,recomm_id=None):
+    def create_request(self,user_id,item_id,rating,timestamp=None,cascade_create=None,recomm_id=None,additional_data=None):
         pass
 
     def test_add_rating(self):
 
         # it 'does not fail with cascadeCreate'
-        req = self.create_request('u_id','i_id',1,cascade_create=True)
+        req = self.create_request('u_id','i_id',1,cascade_create=True,additional_data={'answer': 42})
         resp = self.client.send(req)
         # it 'does not fail with existing item and user'
         req = self.create_request('entity_id','entity_id',0)

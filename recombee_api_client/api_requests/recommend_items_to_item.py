@@ -8,10 +8,12 @@ class RecommendItemsToItem(Request):
     Recommends set of items that are somehow related to one given item, *X*. Typical scenario  is when user *A* is viewing *X*. Then you may display items to the user that he might be also interested in. Recommend items to item request gives you Top-N such items, optionally taking the target user *A* into account.
     
     It is also possible to use POST HTTP method (for example in case of very long ReQL filter) - query parameters then become body parameters.
+    
+    The returned items are sorted by relevancy (first item being the most relevant).
 
     """
 
-    def __init__(self, item_id, target_user_id, count, user_impact=DEFAULT, filter=DEFAULT, booster=DEFAULT, cascade_create=DEFAULT, scenario=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT):
+    def __init__(self, item_id, target_user_id, count, user_impact=DEFAULT, filter=DEFAULT, booster=DEFAULT, cascade_create=DEFAULT, scenario=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
         """
         Required parameters:
         @param item_id: ID of the item for which the recommendations are to be generated.
@@ -175,6 +177,9 @@ class RecommendItemsToItem(Request):
         @param expert_settings: Dictionary of custom options.
         
         
+        @param return_ab_group: If there is a custom AB-testing running, return name of group to which the request belongs.
+        
+        
         """
         self.item_id = item_id
         self.target_user_id = target_user_id
@@ -191,6 +196,7 @@ class RecommendItemsToItem(Request):
         self.rotation_rate = rotation_rate
         self.rotation_time = rotation_time
         self.expert_settings = expert_settings
+        self.return_ab_group = return_ab_group
         self.timeout = 3000
         self.ensure_https = False
         self.method = 'post'
@@ -227,6 +233,8 @@ class RecommendItemsToItem(Request):
             p['rotationTime'] = self.rotation_time
         if self.expert_settings is not DEFAULT:
             p['expertSettings'] = self.expert_settings
+        if self.return_ab_group is not DEFAULT:
+            p['returnAbGroup'] = self.return_ab_group
         return p
 
     def get_query_parameters(self):

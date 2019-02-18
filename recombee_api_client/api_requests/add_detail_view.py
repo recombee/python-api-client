@@ -9,7 +9,7 @@ class AddDetailView(Request):
 
     """
 
-    def __init__(self, user_id, item_id, timestamp=DEFAULT, duration=DEFAULT, cascade_create=DEFAULT, recomm_id=DEFAULT):
+    def __init__(self, user_id, item_id, timestamp=DEFAULT, duration=DEFAULT, cascade_create=DEFAULT, recomm_id=DEFAULT, additional_data=DEFAULT):
         """
         Required parameters:
         @param user_id: User who viewed the item
@@ -26,6 +26,8 @@ class AddDetailView(Request):
         
         @param recomm_id: If this detail view is based on a recommendation request, `recommId` is the id of the clicked recommendation.
         
+        @param additional_data: A dictionary of additional data for the interaction.
+        
         """
         self.user_id = user_id
         self.item_id = item_id
@@ -33,6 +35,7 @@ class AddDetailView(Request):
         self.duration = duration
         self.cascade_create = cascade_create
         self.recomm_id = recomm_id
+        self.additional_data = additional_data
         self.timeout = 1000
         self.ensure_https = False
         self.method = 'post'
@@ -53,6 +56,8 @@ class AddDetailView(Request):
             p['cascadeCreate'] = self.cascade_create
         if self.recomm_id is not DEFAULT:
             p['recommId'] = self.recomm_id
+        if self.additional_data is not DEFAULT:
+            p['additionalData'] = self.additional_data
         return p
 
     def get_query_parameters(self):
