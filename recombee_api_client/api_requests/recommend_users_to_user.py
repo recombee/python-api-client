@@ -13,7 +13,7 @@ class RecommendUsersToUser(Request):
 
     """
 
-    def __init__(self, user_id, count, filter=DEFAULT, booster=DEFAULT, cascade_create=DEFAULT, scenario=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
+    def __init__(self, user_id, count, filter=DEFAULT, booster=DEFAULT, cascade_create=DEFAULT, scenario=DEFAULT, logic=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
         """
         Required parameters:
         @param user_id: User to which we find similar users
@@ -29,6 +29,14 @@ class RecommendUsersToUser(Request):
         @param cascade_create: If the user does not exist in the database, returns a list of non-personalized recommendations and creates the user in the database. This allows for example rotations in the following recommendations for that user, as the user will be already known to the system.
         
         @param scenario: Scenario defines a particular application of recommendations. It can be for example "homepage", "cart" or "emailing". You can see each scenario in the UI separately, so you can check how well each application performs. The AI which optimizes models in order to get the best results may optimize different scenarios separately, or even use different models in each of the scenarios.
+        
+        @param logic: Logic specifies particular behavior of the recommendation models. You can pick tailored logic for your domain (e-commerce, multimedia, fashion ...) and use case.
+        
+        See [this section](https://docs.recombee.com/recommendation_logic.html) for list of available logics and other details.
+        
+        
+        The difference between `logic` and `scenario` is that `logic` specifies mainly behavior, while `scenario` specifies the place where recommendations are shown to the users.
+        
         
         @param return_properties: With `returnProperties=true`, property values of the recommended users are returned along with their IDs in a JSON dictionary. The acquired property values can be used for easy displaying the recommended users. 
         
@@ -141,6 +149,7 @@ class RecommendUsersToUser(Request):
         self.booster = booster
         self.cascade_create = cascade_create
         self.scenario = scenario
+        self.logic = logic
         self.return_properties = return_properties
         self.included_properties = included_properties
         self.diversity = diversity
@@ -168,6 +177,8 @@ class RecommendUsersToUser(Request):
             p['cascadeCreate'] = self.cascade_create
         if self.scenario is not DEFAULT:
             p['scenario'] = self.scenario
+        if self.logic is not DEFAULT:
+            p['logic'] = self.logic
         if self.return_properties is not DEFAULT:
             p['returnProperties'] = self.return_properties
         if self.included_properties is not DEFAULT:

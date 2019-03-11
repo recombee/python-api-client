@@ -19,7 +19,7 @@ class RecombeeClient:
     """
     BATCH_MAX_SIZE = 10000
 
-    def __init__(self, database_id, token, protocol = 'http', options = {}):
+    def __init__(self, database_id, token, protocol = 'https', options = {}):
         """
         @param database_id: Name of your database_id at Recombee
         @param token: Secret token obtained from Recombee for signing requests
@@ -63,7 +63,7 @@ class RecombeeClient:
 
     @staticmethod
     def __get_http_headers(additional_headers=None):
-        headers = {'User-Agent': 'recombee-python-api-client/2.3.0'}
+        headers = {'User-Agent': 'recombee-python-api-client/2.4.0'}
         if additional_headers:
             headers.update(additional_headers)
         return headers
