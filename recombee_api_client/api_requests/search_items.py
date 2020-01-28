@@ -3,11 +3,13 @@ import uuid
 
 DEFAULT = uuid.uuid4()
 
-class RecommendItemsToUser(Request):
+class SearchItems(Request):
     """
-    Based on user's past interactions (purchases, ratings, etc.) with the items, recommends top-N items that are most likely to be of high value for a given user.
+    Full-text personalized search. The results are based on the provided `searchQuery` and also on the user's past interactions (purchases, ratings, etc.) with the items (items more suitable for the user are preferred in the results).
     
-    The most typical use cases are recommendations at homepage, in some "Picked just for you" section or in email.
+    All the string and set item properties are indexed by the search engine.
+    
+    This endpoint should be used in a search box at your website/app. It can be called multiple times as the user is typing the query in order to get the most viable suggestions based on current state of the query, or once after submitting the whole query. 
     
     It is also possible to use POST HTTP method (for example in case of very long ReQL filter) - query parameters then become body parameters.
     
@@ -15,27 +17,27 @@ class RecommendItemsToUser(Request):
 
     """
 
-    def __init__(self, user_id, count, scenario=DEFAULT, cascade_create=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, filter=DEFAULT, booster=DEFAULT, logic=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
+    def __init__(self, user_id, search_query, count, scenario=DEFAULT, cascade_create=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, filter=DEFAULT, booster=DEFAULT, logic=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
         """
         Required parameters:
-        @param user_id: ID of the user for whom personalized recommendations are to be generated.
+        @param user_id: ID of the user for whom personalized search will be performed.
         
-        @param count: Number of items to be recommended (N for the top-N recommendation).
+        @param search_query: Search query provided by the user. It is used for the full-text search.
         
+        @param count: Number of items to be returned (N for the top-N results).
         
         
         Optional parameters:
-        @param scenario: Scenario defines a particular application of recommendations. It can be for example "homepage", "cart" or "emailing".
+        @param scenario: Scenario defines a particular search field in your user interface.
         
         
-        You can set various settings to the [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com). You can also see performance of each scenario in the Admin UI separately, so you can check how well each application performs.
+        You can set various settings to the [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com). You can also see performance of each scenario in the Admin UI separately, so you can check how well each field performs.
         
         
         The AI which optimizes models in order to get the best results may optimize different scenarios separately, or even use different models in each of the scenarios.
         
         
-        @param cascade_create: If the user does not exist in the database, returns a list of non-personalized recommendations and creates the user in the database. This allows for example rotations in the following recommendations for that user, as the user will be already known to the system.
-        
+        @param cascade_create: If the user does not exist in the database, returns a list of non-personalized search results and creates the user in the database. This allows for example rotations in the following recommendations for that user, as the user will be already known to the system.
         
         @param return_properties: With `returnProperties=true`, property values of the recommended items are returned along with their IDs in a JSON dictionary. The acquired property values can be used for easy displaying of the recommended items to the user. 
         
@@ -158,18 +160,6 @@ class RecommendItemsToUser(Request):
         Logic can be also set to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
         
         
-        @param diversity: **Expert option** Real number from [0.0, 1.0] which determines how much mutually dissimilar should the recommended items be. The default value is 0.0, i.e., no diversification. Value 1.0 means maximal diversification.
-        
-        
-        @param min_relevance: **Expert option** Specifies the threshold of how much relevant must the recommended items be to the user. Possible values one of: "low", "medium", "high". The default value is "low", meaning that the system attempts to recommend number of items equal to *count* at any cost. If there are not enough data (such as interactions or item properties), this may even lead to bestseller-based recommendations to be appended to reach the full *count*. This behavior may be suppressed by using "medium" or "high" values. In such case, the system only recommends items of at least the requested relevancy, and may return less than *count* items when there is not enough data to fulfill it.
-        
-        
-        @param rotation_rate: **Expert option** If your users browse the system in real-time, it may easily happen that you wish to offer them recommendations multiple times. Here comes the question: how much should the recommendations change? Should they remain the same, or should they rotate? Recombee API allows you to control this per-request in backward fashion. You may penalize an item for being recommended in the near past. For the specific user, `rotationRate=1` means maximal rotation, `rotationRate=0` means absolutely no rotation. You may also use, for example `rotationRate=0.2` for only slight rotation of recommended items. Default: `0.1`.
-        
-        
-        @param rotation_time: **Expert option** Taking *rotationRate* into account, specifies how long time it takes to an item to recover from the penalization. For example, `rotationTime=7200.0` means that items recommended less than 2 hours ago are penalized. Default: `7200.0`.
-        
-        
         @param expert_settings: Dictionary of custom options.
         
         
@@ -178,6 +168,7 @@ class RecommendItemsToUser(Request):
         
         """
         self.user_id = user_id
+        self.search_query = search_query
         self.count = count
         self.scenario = scenario
         self.cascade_create = cascade_create
@@ -186,22 +177,19 @@ class RecommendItemsToUser(Request):
         self.filter = filter
         self.booster = booster
         self.logic = logic
-        self.diversity = diversity
-        self.min_relevance = min_relevance
-        self.rotation_rate = rotation_rate
-        self.rotation_time = rotation_time
         self.expert_settings = expert_settings
         self.return_ab_group = return_ab_group
         self.timeout = 3000
         self.ensure_https = False
         self.method = 'post'
-        self.path = "/recomms/users/%s/items/" % (self.user_id)
+        self.path = "/search/users/%s/items/" % (self.user_id)
 
     def get_body_parameters(self):
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
+        p['searchQuery'] = self.search_query
         p['count'] = self.count
         if self.scenario is not DEFAULT:
             p['scenario'] = self.scenario
@@ -217,14 +205,6 @@ class RecommendItemsToUser(Request):
             p['booster'] = self.booster
         if self.logic is not DEFAULT:
             p['logic'] = self.logic
-        if self.diversity is not DEFAULT:
-            p['diversity'] = self.diversity
-        if self.min_relevance is not DEFAULT:
-            p['minRelevance'] = self.min_relevance
-        if self.rotation_rate is not DEFAULT:
-            p['rotationRate'] = self.rotation_rate
-        if self.rotation_time is not DEFAULT:
-            p['rotationTime'] = self.rotation_time
         if self.expert_settings is not DEFAULT:
             p['expertSettings'] = self.expert_settings
         if self.return_ab_group is not DEFAULT:

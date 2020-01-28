@@ -13,7 +13,7 @@ class RecommendItemsToItem(Request):
 
     """
 
-    def __init__(self, item_id, target_user_id, count, filter=DEFAULT, booster=DEFAULT, cascade_create=DEFAULT, scenario=DEFAULT, logic=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, user_impact=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
+    def __init__(self, item_id, target_user_id, count, scenario=DEFAULT, cascade_create=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, filter=DEFAULT, booster=DEFAULT, logic=DEFAULT, user_impact=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
         """
         Required parameters:
         @param item_id: ID of the item for which the recommendations are to be generated.
@@ -53,21 +53,16 @@ class RecommendItemsToItem(Request):
         
         
         Optional parameters:
-        @param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to filter recommended items based on the values of their attributes.
+        @param scenario: Scenario defines a particular application of recommendations. It can be for example "homepage", "cart" or "emailing".
         
-        @param booster: Number-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to boost recommendation rate of some items based on the values of their attributes.
+        
+        You can set various settings to the [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com). You can also see performance of each scenario in the Admin UI separately, so you can check how well each application performs.
+        
+        
+        The AI which optimizes models in order to get the best results may optimize different scenarios separately, or even use different models in each of the scenarios.
+        
         
         @param cascade_create: If item of given *itemId* or user of given *targetUserId* doesn't exist in the database, it creates the missing entity/entities and returns some (non-personalized) recommendations. This allows for example rotations in the following recommendations for the user of given *targetUserId*, as the user will be already known to the system.
-        
-        @param scenario: Scenario defines a particular application of recommendations. It can be for example "homepage", "cart" or "emailing". You can see each scenario in the UI separately, so you can check how well each application performs. The AI which optimizes models in order to get the best results may optimize different scenarios separately, or even use different models in each of the scenarios.
-        
-        @param logic: Logic specifies particular behavior of the recommendation models. You can pick tailored logic for your domain (e-commerce, multimedia, fashion ...) and use case.
-        
-        See [this section](https://docs.recombee.com/recommendation_logic.html) for list of available logics and other details.
-        
-        
-        The difference between `logic` and `scenario` is that `logic` specifies mainly behavior, while `scenario` specifies the place where recommendations are shown to the users.
-        
         
         @param return_properties: With `returnProperties=true`, property values of the recommended items are returned along with their IDs in a JSON dictionary. The acquired property values can be used for easy displaying of the recommended items to the user. 
         
@@ -167,6 +162,29 @@ class RecommendItemsToItem(Request):
         ```
         
         
+        @param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to filter recommended items based on the values of their attributes.
+        
+        
+        Filters can be also assigned to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
+        
+        
+        @param booster: Number-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to boost recommendation rate of some items based on the values of their attributes.
+        
+        
+        Boosters can be also assigned to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
+        
+        
+        @param logic: Logic specifies particular behavior of the recommendation models. You can pick tailored logic for your domain and use case.
+        
+        See [this section](https://docs.recombee.com/recommendation_logics.html) for list of available logics and other details.
+        
+        
+        The difference between `logic` and `scenario` is that `logic` specifies mainly behavior, while `scenario` specifies the place where recommendations are shown to the users.
+        
+        
+        Logic can be also set to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
+        
+        
         @param user_impact: **Expert option** If *targetUserId* parameter is present, the recommendations are biased towards the given user. Using *userImpact*, you may control this bias. For an extreme case of `userImpact=0.0`, the interactions made by the user are not taken into account at all (with the exception of history-based blacklisting), for `userImpact=1.0`, you'll get user-based recommendation. The default value is `0`.
         
         
@@ -192,13 +210,13 @@ class RecommendItemsToItem(Request):
         self.item_id = item_id
         self.target_user_id = target_user_id
         self.count = count
-        self.filter = filter
-        self.booster = booster
-        self.cascade_create = cascade_create
         self.scenario = scenario
-        self.logic = logic
+        self.cascade_create = cascade_create
         self.return_properties = return_properties
         self.included_properties = included_properties
+        self.filter = filter
+        self.booster = booster
+        self.logic = logic
         self.user_impact = user_impact
         self.diversity = diversity
         self.min_relevance = min_relevance
@@ -218,20 +236,20 @@ class RecommendItemsToItem(Request):
         p = dict()
         p['targetUserId'] = self.target_user_id
         p['count'] = self.count
-        if self.filter is not DEFAULT:
-            p['filter'] = self.filter
-        if self.booster is not DEFAULT:
-            p['booster'] = self.booster
-        if self.cascade_create is not DEFAULT:
-            p['cascadeCreate'] = self.cascade_create
         if self.scenario is not DEFAULT:
             p['scenario'] = self.scenario
-        if self.logic is not DEFAULT:
-            p['logic'] = self.logic
+        if self.cascade_create is not DEFAULT:
+            p['cascadeCreate'] = self.cascade_create
         if self.return_properties is not DEFAULT:
             p['returnProperties'] = self.return_properties
         if self.included_properties is not DEFAULT:
             p['includedProperties'] = self.included_properties
+        if self.filter is not DEFAULT:
+            p['filter'] = self.filter
+        if self.booster is not DEFAULT:
+            p['booster'] = self.booster
+        if self.logic is not DEFAULT:
+            p['logic'] = self.logic
         if self.user_impact is not DEFAULT:
             p['userImpact'] = self.user_impact
         if self.diversity is not DEFAULT:

@@ -6,6 +6,7 @@ from random import random
 
 from recombee_api_client.api_client import RecombeeClient
 from recombee_api_client.api_requests import *
+from recombee_api_client.exceptions import *
 
 class RecombeeTest( unittest.TestCase ):
 
@@ -17,6 +18,14 @@ class RecombeeTest( unittest.TestCase ):
   def setUp(self):
 
     self.client.send(ResetDatabase())
+
+    while True:
+      try:
+        self.client.send(ListItems())
+      except ResponseException as e:
+        # Wait until DB is erased
+        continue
+      break
 
     batch = Batch([
       AddItem('entity_id'),

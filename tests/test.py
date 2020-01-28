@@ -132,6 +132,8 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemsToItemTestCase))
     from tests.test_cases.test_recommend_users_to_item import RecommendUsersToItemTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendUsersToItemTestCase))
+    from tests.test_cases.test_search_items import SearchItemsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SearchItemsTestCase))
     from tests.test_cases.test_user_based_recommendation import UserBasedRecommendationTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UserBasedRecommendationTestCase))
     from tests.test_cases.test_item_based_recommendation import ItemBasedRecommendationTestCase

@@ -71,7 +71,7 @@ Using property values
 
     from recombee_api_client.api_client import RecombeeClient
     from recombee_api_client.api_requests import AddItemProperty, SetItemValues, AddPurchase
-    from recombee_api_client.api_requests import RecommendItemsToItem, Batch, ResetDatabase
+    from recombee_api_client.api_requests import RecommendItemsToItem, SearchItems, Batch, ResetDatabase
     import random
 
     NUM = 100
@@ -79,7 +79,7 @@ Using property values
 
     client = RecombeeClient('--my-database-id--', '--db-private-token--')
 
-    #Clear the entire database
+    # Clear the entire database
     client.send(ResetDatabase())
 
     # We will use computers as items in this example
@@ -127,9 +127,6 @@ Using property values
     client.send(Batch(requests))
 
     # Get 5 recommendations for user-42, who is currently viewing computer-6
-    recommended = client.send(RecommendItemsToItem('computer-6', 'user-42', 5))
-    print("Recommended items: %s" % recommended)
-
     # Recommend only computers that have at least 3 cores
     recommended = client.send(
         RecommendItemsToItem('computer-6', 'user-42', 5, filter="'num-cores'>=3")
@@ -142,6 +139,16 @@ Using property values
     )
     print("Recommended up-sell items: %s" % recommended)
 
+    # Filters, boosters and other settings can be also set in the Admin UI (admin.recombee.com)
+    # when scenario is specified
+    recommended = client.send(
+      RecommendItemsToItem('computer-6', 'user-42', 5, scenario='product_detail')
+      )
+
+    # Perform personalized full-text search with a user's search query (e.g. 'computers').
+    matches = client.send(SearchItems('user-42', 'computers', 5))
+    print("Matched items: %s" % matches)
+
 ------------------
 Exception handling
 ------------------
@@ -153,6 +160,7 @@ We are doing our best to provide the fastest and most reliable service, but prod
 Example:
 
 .. code-block:: python
+  from recombee_api_client.exceptions import *
 
   try:
     recommended = client.send(

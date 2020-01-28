@@ -16,7 +16,7 @@ class UserBasedRecommendation(Request):
     def __init__(self, user_id, count, filter=DEFAULT, booster=DEFAULT, allow_nonexistent=DEFAULT, cascade_create=DEFAULT, scenario=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT):
         """
         Required parameters:
-        @param user_id: ID of the user for which the personalized recommendations are to be generated.
+        @param user_id: ID of the user for whom the personalized recommendations are to be generated.
         
         @param count: Number of items to be recommended (N for the top-N recommendation).
         

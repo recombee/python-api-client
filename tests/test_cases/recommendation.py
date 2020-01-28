@@ -10,7 +10,7 @@ from recombee_api_client.api_requests import *
 
 class RecommendationTest (RecommendationsTest ):
 
-    def create_request(self,user_id,count,filter=None,booster=None,cascade_create=None,scenario=None,logic=None,return_properties=None,included_properties=None,diversity=None,expert_settings=None,return_ab_group=None):
+    def create_request(self,user_id,count,scenario=None,cascade_create=None,return_properties=None,included_properties=None,filter=None,booster=None,logic=None,diversity=None,expert_settings=None,return_ab_group=None):
         pass
 
     def test_recommendation(self):
