@@ -160,6 +160,7 @@ We are doing our best to provide the fastest and most reliable service, but prod
 Example:
 
 .. code-block:: python
+
   from recombee_api_client.exceptions import *
 
   try:
