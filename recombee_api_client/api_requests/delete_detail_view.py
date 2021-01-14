@@ -6,21 +6,22 @@ DEFAULT = uuid.uuid4()
 class DeleteDetailView(Request):
     """
     Deletes an existing detail view uniquely specified by (`userId`, `itemId`, and `timestamp`) or all the detail views with given `userId` and `itemId` if `timestamp` is omitted.
+    
+    Required parameters:
+    
+    :param user_id: ID of the user who made the detail view.
+    
+    :param item_id: ID of the item of which the details were viewed.
+    
+    
+    Optional parameters:
+    
+    :param timestamp: Unix timestamp of the detail view. If the `timestamp` is omitted, then all the detail views with given `userId` and `itemId` are deleted.
+    
 
     """
 
     def __init__(self, user_id, item_id, timestamp=DEFAULT):
-        """
-        Required parameters:
-        @param user_id: ID of the user who made the detail view.
-        
-        @param item_id: ID of the item of which the details were viewed.
-        
-        
-        Optional parameters:
-        @param timestamp: Unix timestamp of the detail view. If the `timestamp` is omitted, then all the detail views with given `userId` and `itemId` are deleted.
-        
-        """
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp

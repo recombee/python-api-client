@@ -16,10 +16,10 @@ class RemoveFromGroupTest (RecombeeTest ):
     def test_remove_from_group(self):
 
         # it 'does not fail when removing item that is contained in the set'
-        req = self.create_request('entity_id','item','entity_id')
+        req = self.create_request('entity_id', 'item', 'entity_id')
         resp = self.client.send(req)
         # it 'fails when removing item that is not contained in the set'
-        req = self.create_request('entity_id','item','not_contained')
+        req = self.create_request('entity_id', 'item', 'not_contained')
         try:
             self.client.send(req)
             self.assertFail()

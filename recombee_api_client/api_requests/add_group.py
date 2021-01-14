@@ -6,14 +6,14 @@ DEFAULT = uuid.uuid4()
 class AddGroup(Request):
     """
     Creates new group in the database.
+    Required parameters:
+    
+    :param group_id: ID of the group to be created.
+    
+
     """
 
     def __init__(self, group_id):
-        """
-        Required parameters:
-        @param group_id: ID of the group to be created.
-        
-        """
         self.group_id = group_id
         self.timeout = 1000
         self.ensure_https = False

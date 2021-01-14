@@ -10,157 +10,162 @@ class RecommendUsersToUser(Request):
     It is also possible to use POST HTTP method (for example in case of very long ReQL filter) - query parameters then become body parameters.
     
     The returned users are sorted by similarity (first user being the most similar).
+    
+    Required parameters:
+    
+    :param user_id: User to whom we find similar users
+    
+    :param count: Number of users to be recommended (N for the top-N recommendation).
+    
+    
+    Optional parameters:
+    
+    :param scenario: Scenario defines a particular application of recommendations. It can be for example "homepage", "cart" or "emailing".
+    
+    
+    You can set various settings to the [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com). You can also see performance of each scenario in the Admin UI separately, so you can check how well each application performs.
+    
+    
+    The AI which optimizes models in order to get the best results may optimize different scenarios separately, or even use different models in each of the scenarios.
+    
+    
+    :param cascade_create: If the user does not exist in the database, returns a list of non-personalized recommendations and creates the user in the database. This allows for example rotations in the following recommendations for that user, as the user will be already known to the system.
+    
+    :param return_properties: With `returnProperties=true`, property values of the recommended users are returned along with their IDs in a JSON dictionary. The acquired property values can be used for easy displaying the recommended users. 
+    
+    
+    Example response:
+    
+    ```
+    
+    E{lb}
+    
+    "recommId": "9cb9c55d-50ba-4478-84fd-ab456136156e",
+    
+    "recomms": 
+    
+    [
+    
+    E{lb}
+    
+    "id": "user-17",
+    
+    "values": E{lb}
+    
+    "country": "US",
+    
+    "sex": "F"
+    E{rb}
+    E{rb},
+    
+    E{lb}
+    
+    "id": "user-2",
+    
+    "values": E{lb}
+    
+    "country": "CAN",
+    
+    "sex": "M"
+    E{rb}
+    E{rb}
+    
+    ],
+    
+    "numberNextRecommsCalls": 0
+    E{rb}
+    
+    ```
+    
+    
+    :param included_properties: Allows to specify, which properties should be returned when `returnProperties=true` is set. The properties are given as a comma-separated list. 
+    
+    
+    Example response for `includedProperties=country`:
+    
+    ```
+    
+    E{lb}
+    
+    "recommId": "b326d82d-5d57-4b45-b362-c9d6f0895855",
+    
+    "recomms":
+    
+    [
+    
+    E{lb}
+    
+    "id": "user-17",
+    
+    "values": E{lb}
+    
+    "country": "US"
+    E{rb}
+    E{rb},
+    
+    E{lb}
+    
+    "id": "user-2",
+    
+    "values": E{lb}
+    
+    "country": "CAN"
+    E{rb}
+    E{rb}
+    
+    ],
+    
+    "numberNextRecommsCalls": 0
+    E{rb}
+    
+    ```
+    
+    
+    :param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to filter recommended items based on the values of their attributes.
+    
+    
+    Filters can be also assigned to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
+    
+    
+    :param booster: Number-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to boost recommendation rate of some items based on the values of their attributes.
+    
+    
+    Boosters can be also assigned to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
+    
+    
+    :param logic: Logic specifies particular behavior of the recommendation models. You can pick tailored logic for your domain and use case.
+    
+    See [this section](https://docs.recombee.com/recommendation_logics.html) for list of available logics and other details.
+    
+    
+    The difference between `logic` and `scenario` is that `logic` specifies mainly behavior, while `scenario` specifies the place where recommendations are shown to the users.
+    
+    
+    Logic can be also set to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
+    
+    
+    :param diversity: **Expert option** Real number from [0.0, 1.0] which determines how much mutually dissimilar should the recommended users be. The default value is 0.0, i.e., no diversification. Value 1.0 means maximal diversification.
+    
+    
+    :param min_relevance: **Expert option** Specifies the threshold of how much relevant must the recommended users be. Possible values one of: "low", "medium", "high".
+    
+    
+    :param rotation_rate: **Expert option** If your users browse the system in real-time, it may easily happen that you wish to offer them recommendations multiple times. Here comes the question: how much should the recommendations change? Should they remain the same, or should they rotate? Recombee API allows you to control this per-request in backward fashion. You may penalize an user for being recommended in the near past. For the specific user, `rotationRate=1` means maximal rotation, `rotationRate=0` means absolutely no rotation. You may also use, for example `rotationRate=0.2` for only slight rotation of recommended users.
+    
+    
+    :param rotation_time: **Expert option** Taking *rotationRate* into account, specifies how long time it takes to an user to recover from the penalization. For example, `rotationTime=7200.0` means that users recommended less than 2 hours ago are penalized.
+    
+    
+    :param expert_settings: Dictionary of custom options.
+    
+    
+    :param return_ab_group: If there is a custom AB-testing running, return name of group to which the request belongs.
+    
+    
 
     """
 
     def __init__(self, user_id, count, scenario=DEFAULT, cascade_create=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, filter=DEFAULT, booster=DEFAULT, logic=DEFAULT, diversity=DEFAULT, min_relevance=DEFAULT, rotation_rate=DEFAULT, rotation_time=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
-        """
-        Required parameters:
-        @param user_id: User to whom we find similar users
-        
-        @param count: Number of users to be recommended (N for the top-N recommendation).
-        
-        
-        Optional parameters:
-        @param scenario: Scenario defines a particular application of recommendations. It can be for example "homepage", "cart" or "emailing".
-        
-        
-        You can set various settings to the [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com). You can also see performance of each scenario in the Admin UI separately, so you can check how well each application performs.
-        
-        
-        The AI which optimizes models in order to get the best results may optimize different scenarios separately, or even use different models in each of the scenarios.
-        
-        
-        @param cascade_create: If the user does not exist in the database, returns a list of non-personalized recommendations and creates the user in the database. This allows for example rotations in the following recommendations for that user, as the user will be already known to the system.
-        
-        @param return_properties: With `returnProperties=true`, property values of the recommended users are returned along with their IDs in a JSON dictionary. The acquired property values can be used for easy displaying the recommended users. 
-        
-        
-        Example response:
-        
-        ```
-        
-        E{lb}
-        
-        "recommId": "9cb9c55d-50ba-4478-84fd-ab456136156e",
-        
-        "recomms": 
-        
-        [
-        
-        E{lb}
-        
-        "id": "user-17",
-        
-        "values": E{lb}
-        
-        "country": "US",
-        
-        "sex": "F"
-        E{rb}
-        E{rb},
-        
-        E{lb}
-        
-        "id": "user-2",
-        
-        "values": E{lb}
-        
-        "country": "CAN",
-        
-        "sex": "M"
-        E{rb}
-        E{rb}
-        
-        ]
-        E{rb}
-        
-        ```
-        
-        
-        @param included_properties: Allows to specify, which properties should be returned when `returnProperties=true` is set. The properties are given as a comma-separated list. 
-        
-        
-        Example response for `includedProperties=country`:
-        
-        ```
-        
-        E{lb}
-        
-        "recommId": "b326d82d-5d57-4b45-b362-c9d6f0895855",
-        
-        "recomms":
-        
-        [
-        
-        E{lb}
-        
-        "id": "user-17",
-        
-        "values": E{lb}
-        
-        "country": "US"
-        E{rb}
-        E{rb},
-        
-        E{lb}
-        
-        "id": "user-2",
-        
-        "values": E{lb}
-        
-        "country": "CAN"
-        E{rb}
-        E{rb}
-        
-        ]
-        E{rb}
-        
-        ```
-        
-        
-        @param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to filter recommended items based on the values of their attributes.
-        
-        
-        Filters can be also assigned to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
-        
-        
-        @param booster: Number-returning [ReQL](https://docs.recombee.com/reql.html) expression which allows you to boost recommendation rate of some items based on the values of their attributes.
-        
-        
-        Boosters can be also assigned to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
-        
-        
-        @param logic: Logic specifies particular behavior of the recommendation models. You can pick tailored logic for your domain and use case.
-        
-        See [this section](https://docs.recombee.com/recommendation_logics.html) for list of available logics and other details.
-        
-        
-        The difference between `logic` and `scenario` is that `logic` specifies mainly behavior, while `scenario` specifies the place where recommendations are shown to the users.
-        
-        
-        Logic can be also set to a [scenario](https://docs.recombee.com/scenarios.html) in the [Admin UI](https://admin.recombee.com).
-        
-        
-        @param diversity: **Expert option** Real number from [0.0, 1.0] which determines how much mutually dissimilar should the recommended users be. The default value is 0.0, i.e., no diversification. Value 1.0 means maximal diversification.
-        
-        
-        @param min_relevance: **Expert option** Specifies the threshold of how much relevant must the recommended users be. Possible values one of: "low", "medium", "high".
-        
-        
-        @param rotation_rate: **Expert option** If your users browse the system in real-time, it may easily happen that you wish to offer them recommendations multiple times. Here comes the question: how much should the recommendations change? Should they remain the same, or should they rotate? Recombee API allows you to control this per-request in backward fashion. You may penalize an user for being recommended in the near past. For the specific user, `rotationRate=1` means maximal rotation, `rotationRate=0` means absolutely no rotation. You may also use, for example `rotationRate=0.2` for only slight rotation of recommended users.
-        
-        
-        @param rotation_time: **Expert option** Taking *rotationRate* into account, specifies how long time it takes to an user to recover from the penalization. For example, `rotationTime=7200.0` means that users recommended less than 2 hours ago are penalized.
-        
-        
-        @param expert_settings: Dictionary of custom options.
-        
-        
-        @param return_ab_group: If there is a custom AB-testing running, return name of group to which the request belongs.
-        
-        
-        """
         self.user_id = user_id
         self.count = count
         self.scenario = scenario

@@ -18,15 +18,15 @@ class InsertToSeriesTest (RecombeeTest ):
         # it 'does not fail when inserting existing item into existing set'
         req = AddItem('new_item')
         resp = self.client.send(req)
-        req = self.create_request('entity_id','item','new_item',3)
+        req = self.create_request('entity_id', 'item', 'new_item', 3)
         resp = self.client.send(req)
         # it 'does not fail when cascadeCreate is used'
-        req = self.create_request('new_set','item','new_item2',1,cascade_create=True)
+        req = self.create_request('new_set', 'item', 'new_item2', 1, cascade_create=True)
         resp = self.client.send(req)
         # it 'really inserts item to the set'
         req = AddItem('new_item3')
         resp = self.client.send(req)
-        req = self.create_request('entity_id','item','new_item3',2)
+        req = self.create_request('entity_id', 'item', 'new_item3', 2)
         resp = self.client.send(req)
         try:
             self.client.send(req)

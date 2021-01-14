@@ -6,29 +6,30 @@ DEFAULT = uuid.uuid4()
 class AddDetailView(Request):
     """
     Adds a detail view of a given item made by a given user.
+    
+    Required parameters:
+    
+    :param user_id: User who viewed the item
+    
+    :param item_id: Viewed item
+    
+    
+    Optional parameters:
+    
+    :param timestamp: UTC timestamp of the view as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
+    
+    :param duration: Duration of the view
+    
+    :param cascade_create: Sets whether the given user/item should be created if not present in the database.
+    
+    :param recomm_id: If this detail view is based on a recommendation request, `recommId` is the id of the clicked recommendation.
+    
+    :param additional_data: A dictionary of additional data for the interaction.
+    
 
     """
 
     def __init__(self, user_id, item_id, timestamp=DEFAULT, duration=DEFAULT, cascade_create=DEFAULT, recomm_id=DEFAULT, additional_data=DEFAULT):
-        """
-        Required parameters:
-        @param user_id: User who viewed the item
-        
-        @param item_id: Viewed item
-        
-        
-        Optional parameters:
-        @param timestamp: UTC timestamp of the view as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
-        
-        @param duration: Duration of the view
-        
-        @param cascade_create: Sets whether the given user/item should be created if not present in the database.
-        
-        @param recomm_id: If this detail view is based on a recommendation request, `recommId` is the id of the clicked recommendation.
-        
-        @param additional_data: A dictionary of additional data for the interaction.
-        
-        """
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp

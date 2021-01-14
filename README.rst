@@ -32,7 +32,7 @@ Basic example
 
     from recombee_api_client.api_client import RecombeeClient
     from recombee_api_client.exceptions import APIException
-    from recombee_api_client.api_requests import AddPurchase, RecommendItemsToUser, Batch
+    from recombee_api_client.api_requests import *
     import random
 
     client = RecombeeClient('--my-database-id--', '--db-private-token--')
@@ -55,8 +55,12 @@ Basic example
         client.send(Batch(purchase_requests))
 
         # Get recommendations for user 'user-25'
-        recommended = client.send(RecommendItemsToUser('user-25', 5))
-        print("Recommended items: %s" % recommended)
+        response = client.send(RecommendItemsToUser('user-25', 5))
+        print("Recommended items: %s" % response)
+
+        # User scrolled down - get next 3 recommended items
+        response = client.send(RecommendNextItems(response['recommId'], 3))
+        print("Next recommended items: %s" % response)
 
     except APIException as e:
         print(e)
@@ -146,7 +150,7 @@ Using property values
       )
 
     # Perform personalized full-text search with a user's search query (e.g. 'computers').
-    matches = client.send(SearchItems('user-42', 'computers', 5))
+    matches = client.send(SearchItems('user-42', 'computers', 5, scenario='search_top'))
     print("Matched items: %s" % matches)
 
 ------------------
@@ -160,7 +164,6 @@ We are doing our best to provide the fastest and most reliable service, but prod
 Example:
 
 .. code-block:: python
-
   from recombee_api_client.exceptions import *
 
   try:

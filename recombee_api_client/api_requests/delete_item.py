@@ -10,15 +10,15 @@ class DeleteItem(Request):
     If there are any *purchases*, *ratings*, *bookmarks*, *cart additions* or *detail views* of the item present in the database, they will be deleted in cascade as well. Also, if the item is present in some *series*, it will be removed from all the *series* where present.
     
     If an item becomes obsolete/no longer available, it is often meaningful to keep it in the catalog (along with all the interaction data, which are very useful), and only exclude the item from recommendations. In such a case, use [ReQL filter](https://docs.recombee.com/reql.html) instead of deleting the item completely.
+    
+    Required parameters:
+    
+    :param item_id: ID of the item to be deleted.
+    
 
     """
 
     def __init__(self, item_id):
-        """
-        Required parameters:
-        @param item_id: ID of the item to be deleted.
-        
-        """
         self.item_id = item_id
         self.timeout = 1000
         self.ensure_https = False

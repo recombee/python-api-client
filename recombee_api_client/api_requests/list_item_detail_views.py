@@ -6,15 +6,15 @@ DEFAULT = uuid.uuid4()
 class ListItemDetailViews(Request):
     """
     List all the detail views of a given item ever made by different users.
+    Required parameters:
+    
+    :param item_id: ID of the item of which the detail views are to be listed.
+    
+    
+
     """
 
     def __init__(self, item_id):
-        """
-        Required parameters:
-        @param item_id: ID of the item of which the detail views are to be listed.
-        
-        
-        """
         self.item_id = item_id
         self.timeout = 100000
         self.ensure_https = False

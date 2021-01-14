@@ -6,16 +6,16 @@ DEFAULT = uuid.uuid4()
 class GetItemValues(Request):
     """
     Get all the current property values of a given item.
+    
+    Required parameters:
+    
+    :param item_id: ID of the item properties of which are to be obtained.
+    
+    
 
     """
 
     def __init__(self, item_id):
-        """
-        Required parameters:
-        @param item_id: ID of the item properties of which are to be obtained.
-        
-        
-        """
         self.item_id = item_id
         self.timeout = 1000
         self.ensure_https = False

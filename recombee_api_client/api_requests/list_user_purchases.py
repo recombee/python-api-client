@@ -6,14 +6,14 @@ DEFAULT = uuid.uuid4()
 class ListUserPurchases(Request):
     """
     List all the purchases ever made by a given user.
+    Required parameters:
+    
+    :param user_id: ID of the user whose purchases are to be listed.
+    
+
     """
 
     def __init__(self, user_id):
-        """
-        Required parameters:
-        @param user_id: ID of the user whose purchases are to be listed.
-        
-        """
         self.user_id = user_id
         self.timeout = 100000
         self.ensure_https = False

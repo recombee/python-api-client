@@ -16,15 +16,15 @@ class RecommendationDeprecatedTest (RecommendationsTest ):
     def test_recommendation_deprecated(self):
 
         # it 'recommends'
-        req = self.create_request('entity_id',9)
+        req = self.create_request('entity_id', 9)
         resp = self.client.send(req)
         self.assertEqual(len(resp), 9)
         # it 'recommends to previously nonexisting entity with cascadeCreate'
-        req = self.create_request('nonexisting',9,cascade_create=True)
+        req = self.create_request('nonexisting', 9, cascade_create=True)
         resp = self.client.send(req)
         self.assertEqual(len(resp), 9)
         # it 'recommends with expert settings'
-        req = self.create_request('nonexisting2',9,cascade_create=True,expert_settings={})
+        req = self.create_request('nonexisting2', 9, cascade_create=True, expert_settings={})
         resp = self.client.send(req)
         self.assertEqual(len(resp), 9)
 

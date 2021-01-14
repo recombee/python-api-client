@@ -8,15 +8,15 @@ class AddItem(Request):
     Adds new item of given `itemId` to the items catalog.
     
     All the item properties for the newly created items are set null.
+    
+    Required parameters:
+    
+    :param item_id: ID of the item to be created.
+    
 
     """
 
     def __init__(self, item_id):
-        """
-        Required parameters:
-        @param item_id: ID of the item to be created.
-        
-        """
         self.item_id = item_id
         self.timeout = 1000
         self.ensure_https = False

@@ -6,14 +6,14 @@ DEFAULT = uuid.uuid4()
 class ListSeriesItems(Request):
     """
     List all the items present in the given series, sorted according to their time index values.
+    Required parameters:
+    
+    :param series_id: ID of the series items of which are to be listed.
+    
+
     """
 
     def __init__(self, series_id):
-        """
-        Required parameters:
-        @param series_id: ID of the series items of which are to be listed.
-        
-        """
         self.series_id = series_id
         self.timeout = 100000
         self.ensure_https = False

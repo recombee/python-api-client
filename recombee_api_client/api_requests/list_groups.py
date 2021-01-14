@@ -6,11 +6,10 @@ DEFAULT = uuid.uuid4()
 class ListGroups(Request):
     """
     Gets the list of all the groups currently present in the database.
+
     """
 
     def __init__(self):
-        """
-        """
         self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'

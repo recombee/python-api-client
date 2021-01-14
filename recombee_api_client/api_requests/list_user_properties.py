@@ -6,12 +6,11 @@ DEFAULT = uuid.uuid4()
 class ListUserProperties(Request):
     """
     Gets the list of all the user properties in your database.
+    
 
     """
 
     def __init__(self):
-        """
-        """
         self.timeout = 100000
         self.ensure_https = False
         self.method = 'get'

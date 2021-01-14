@@ -6,14 +6,14 @@ DEFAULT = uuid.uuid4()
 class AddSeries(Request):
     """
     Creates new series in the database.
+    Required parameters:
+    
+    :param series_id: ID of the series to be created.
+    
+
     """
 
     def __init__(self, series_id):
-        """
-        Required parameters:
-        @param series_id: ID of the series to be created.
-        
-        """
         self.series_id = series_id
         self.timeout = 1000
         self.ensure_https = False

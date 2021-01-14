@@ -6,33 +6,34 @@ DEFAULT = uuid.uuid4()
 class AddPurchase(Request):
     """
     Adds a purchase of a given item made by a given user.
+    
+    Required parameters:
+    
+    :param user_id: User who purchased the item
+    
+    :param item_id: Purchased item
+    
+    
+    Optional parameters:
+    
+    :param timestamp: UTC timestamp of the purchase as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
+    
+    :param cascade_create: Sets whether the given user/item should be created if not present in the database.
+    
+    :param amount: Amount (number) of purchased items. The default is 1. For example if `user-x` purchases two `item-y` during a single order (session...), the `amount` should equal to 2.
+    
+    :param price: Price paid by the user for the item. If `amount` is greater than 1, sum of prices of all the items should be given.
+    
+    :param profit: Your profit from the purchased item. The profit is natural in e-commerce domain (for example if `user-x` purchases `item-y` for $100 and the gross margin is 30 %, then the profit is $30), but is applicable also in other domains (for example at a news company it may be income from displayed advertisement on article page). If `amount` is greater than 1, sum of profit of all the items should be given.
+    
+    :param recomm_id: If this purchase is based on a recommendation request, `recommId` is the id of the clicked recommendation.
+    
+    :param additional_data: A dictionary of additional data for the interaction.
+    
 
     """
 
     def __init__(self, user_id, item_id, timestamp=DEFAULT, cascade_create=DEFAULT, amount=DEFAULT, price=DEFAULT, profit=DEFAULT, recomm_id=DEFAULT, additional_data=DEFAULT):
-        """
-        Required parameters:
-        @param user_id: User who purchased the item
-        
-        @param item_id: Purchased item
-        
-        
-        Optional parameters:
-        @param timestamp: UTC timestamp of the purchase as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
-        
-        @param cascade_create: Sets whether the given user/item should be created if not present in the database.
-        
-        @param amount: Amount (number) of purchased items. The default is 1. For example if `user-x` purchases two `item-y` during a single order (session...), the `amount` should equal to 2.
-        
-        @param price: Price paid by the user for the item. If `amount` is greater than 1, sum of prices of all the items should be given.
-        
-        @param profit: Your profit from the purchased item. The profit is natural in e-commerce domain (for example if `user-x` purchases `item-y` for $100 and the gross margin is 30 %, then the profit is $30), but is applicable also in other domains (for example at a news company it may be income from displayed advertisement on article page). If `amount` is greater than 1, sum of profit of all the items should be given.
-        
-        @param recomm_id: If this purchase is based on a recommendation request, `recommId` is the id of the clicked recommendation.
-        
-        @param additional_data: A dictionary of additional data for the interaction.
-        
-        """
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp

@@ -16,19 +16,19 @@ class AddPropertyTest (RecombeeTest ):
     def test_add_property(self):
 
         # it 'does not fail with valid name and type'
-        req = self.create_request('number','int')
+        req = self.create_request('number', 'int')
         resp = self.client.send(req)
-        req = self.create_request('str','string')
+        req = self.create_request('str', 'string')
         resp = self.client.send(req)
         # it 'fails with invalid type'
-        req = self.create_request('prop','integer')
+        req = self.create_request('prop', 'integer')
         try:
             self.client.send(req)
             self.assertFail()
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 400)
         # it 'really stores property to the system'
-        req = self.create_request('number2','int')
+        req = self.create_request('number2', 'int')
         resp = self.client.send(req)
         try:
             self.client.send(req)

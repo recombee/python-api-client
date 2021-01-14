@@ -6,12 +6,11 @@ DEFAULT = uuid.uuid4()
 class ResetDatabase(Request):
     """
     Completely erases all your data, including items, item properties, series, user database, purchases, ratings, detail views, and bookmarks. Make sure the request to be never executed in production environment! Resetting your database is irreversible.
+    
 
     """
 
     def __init__(self):
-        """
-        """
         self.timeout = 100000
         self.ensure_https = False
         self.method = 'delete'

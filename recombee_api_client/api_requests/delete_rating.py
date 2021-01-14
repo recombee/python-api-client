@@ -6,21 +6,22 @@ DEFAULT = uuid.uuid4()
 class DeleteRating(Request):
     """
     Deletes an existing rating specified by (`userId`, `itemId`, `timestamp`) from the database or all the ratings with given `userId` and `itemId` if `timestamp` is omitted.
+    
+    Required parameters:
+    
+    :param user_id: ID of the user who rated the item.
+    
+    :param item_id: ID of the item which was rated.
+    
+    
+    Optional parameters:
+    
+    :param timestamp: Unix timestamp of the rating. If the `timestamp` is omitted, then all the ratings with given `userId` and `itemId` are deleted.
+    
 
     """
 
     def __init__(self, user_id, item_id, timestamp=DEFAULT):
-        """
-        Required parameters:
-        @param user_id: ID of the user who rated the item.
-        
-        @param item_id: ID of the item which was rated.
-        
-        
-        Optional parameters:
-        @param timestamp: Unix timestamp of the rating. If the `timestamp` is omitted, then all the ratings with given `userId` and `itemId` are deleted.
-        
-        """
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp

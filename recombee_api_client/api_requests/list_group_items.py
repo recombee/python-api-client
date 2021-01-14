@@ -6,14 +6,14 @@ DEFAULT = uuid.uuid4()
 class ListGroupItems(Request):
     """
     List all the items present in the given group.
+    Required parameters:
+    
+    :param group_id: ID of the group items of which are to be listed.
+    
+
     """
 
     def __init__(self, group_id):
-        """
-        Required parameters:
-        @param group_id: ID of the group items of which are to be listed.
-        
-        """
         self.group_id = group_id
         self.timeout = 100000
         self.ensure_https = False

@@ -6,20 +6,20 @@ DEFAULT = uuid.uuid4()
 class RemoveFromSeries(Request):
     """
     Removes an existing series item from the series.
+    Required parameters:
+    
+    :param series_id: ID of the series from which a series item is to be removed.
+    
+    :param item_type: Type of the item to be removed.
+    
+    :param item_id: ID of the item iff `itemType` is `item`. ID of the series iff `itemType` is `series`.
+    
+    :param time: Time index of the item to be removed.
+    
+
     """
 
     def __init__(self, series_id, item_type, item_id, time):
-        """
-        Required parameters:
-        @param series_id: ID of the series from which a series item is to be removed.
-        
-        @param item_type: Type of the item to be removed.
-        
-        @param item_id: ID of the item iff `itemType` is `item`. ID of the series iff `itemType` is `series`.
-        
-        @param time: Time index of the item to be removed.
-        
-        """
         self.series_id = series_id
         self.item_type = item_type
         self.item_id = item_id

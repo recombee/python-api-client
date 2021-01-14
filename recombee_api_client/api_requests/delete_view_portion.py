@@ -6,21 +6,22 @@ DEFAULT = uuid.uuid4()
 class DeleteViewPortion(Request):
     """
     Deletes an existing view portion specified by (`userId`, `itemId`, `sessionId`) from the database.
+    
+    Required parameters:
+    
+    :param user_id: ID of the user who rated the item.
+    
+    :param item_id: ID of the item which was rated.
+    
+    
+    Optional parameters:
+    
+    :param session_id: Identifier of a session.
+    
 
     """
 
     def __init__(self, user_id, item_id, session_id=DEFAULT):
-        """
-        Required parameters:
-        @param user_id: ID of the user who rated the item.
-        
-        @param item_id: ID of the item which was rated.
-        
-        
-        Optional parameters:
-        @param session_id: Identifier of a session.
-        
-        """
         self.user_id = user_id
         self.item_id = item_id
         self.session_id = session_id

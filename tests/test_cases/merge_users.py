@@ -18,10 +18,10 @@ class MergeUsersTest (RecombeeTest ):
         # it 'does not fail with existing users'
         req = AddUser('target')
         resp = self.client.send(req)
-        req = self.create_request('target','entity_id')
+        req = self.create_request('target', 'entity_id')
         resp = self.client.send(req)
         # it 'fails with nonexisting user'
-        req = self.create_request('nonex_id','entity_id')
+        req = self.create_request('nonex_id', 'entity_id')
         try:
             self.client.send(req)
             self.assertFail()

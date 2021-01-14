@@ -6,79 +6,79 @@ DEFAULT = uuid.uuid4()
 class ListUsers(Request):
     """
     Gets a list of IDs of users currently present in the catalog.
+    
+    Optional parameters:
+    
+    :param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression, which allows you to filter users to be listed. Only the users for which the expression is *true* will be returned.
+    
+    :param count: The number of users to be listed.
+    
+    :param offset: Specifies the number of users to skip (ordered by `userId`).
+    
+    :param return_properties: With `returnProperties=true`, property values of the listed users are returned along with their IDs in a JSON dictionary. 
+    
+    
+    Example response:
+    
+    ```
+    
+    [
+    
+    E{lb}
+    
+    "userId": "user-81",
+    
+    "country": "US",
+    
+    "sex": "M"
+    E{rb},
+    
+    E{lb}
+    
+    "userId": "user-314",
+    
+    "country": "CAN",
+    
+    "sex": "F"
+    E{rb}
+    
+    ]
+    
+    ```
+    
+    
+    :param included_properties: Allows to specify, which properties should be returned when `returnProperties=true` is set. The properties are given as a comma-separated list. 
+    
+    
+    Example response for `includedProperties=country`:
+    
+    ```
+    
+    [
+    
+    E{lb}
+    
+    "userId": "user-81",
+    
+    "country": "US"
+    E{rb},
+    
+    E{lb}
+    
+    "userId": "user-314",
+    
+    "country": "CAN"
+    E{rb}
+    
+    ]
+    
+    ```
+    
+    
+
     """
 
     def __init__(self, filter=DEFAULT, count=DEFAULT, offset=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT):
-        """
-        
-        Optional parameters:
-        @param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression, which allows you to filter users to be listed. Only the users for which the expression is *true* will be returned.
-        
-        @param count: The number of users to be listed.
-        
-        @param offset: Specifies the number of users to skip (ordered by `userId`).
-        
-        @param return_properties: With `returnProperties=true`, property values of the listed users are returned along with their IDs in a JSON dictionary. 
-        
-        
-        Example response:
-        
-        ```
-        
-        [
-        
-        E{lb}
-        
-        "userId": "user-81",
-        
-        "country": "US",
-        
-        "sex": "M"
-        E{rb},
-        
-        E{lb}
-        
-        "userId": "user-314",
-        
-        "country": "CAN",
-        
-        "sex": "F"
-        E{rb}
-        
-        ]
-        
-        ```
-        
-        
-        @param included_properties: Allows to specify, which properties should be returned when `returnProperties=true` is set. The properties are given as a comma-separated list. 
-        
-        
-        Example response for `includedProperties=country`:
-        
-        ```
-        
-        [
-        
-        E{lb}
-        
-        "userId": "user-81",
-        
-        "country": "US"
-        E{rb},
-        
-        E{lb}
-        
-        "userId": "user-314",
-        
-        "country": "CAN"
-        E{rb}
-        
-        ]
-        
-        ```
-        
-        
-        """
         self.filter = filter
         self.count = count
         self.offset = offset

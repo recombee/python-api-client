@@ -6,15 +6,15 @@ DEFAULT = uuid.uuid4()
 class DeleteUserProperty(Request):
     """
     Deleting an user property is roughly equivalent to removing a column from the table of users.
+    
+    Required parameters:
+    
+    :param property_name: Name of the property to be deleted.
+    
 
     """
 
     def __init__(self, property_name):
-        """
-        Required parameters:
-        @param property_name: Name of the property to be deleted.
-        
-        """
         self.property_name = property_name
         self.timeout = 100000
         self.ensure_https = False

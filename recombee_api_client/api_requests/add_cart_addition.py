@@ -6,31 +6,32 @@ DEFAULT = uuid.uuid4()
 class AddCartAddition(Request):
     """
     Adds a cart addition of a given item made by a given user.
+    
+    Required parameters:
+    
+    :param user_id: User who added the item to the cart
+    
+    :param item_id: Item added to the cart
+    
+    
+    Optional parameters:
+    
+    :param timestamp: UTC timestamp of the cart addition as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
+    
+    :param cascade_create: Sets whether the given user/item should be created if not present in the database.
+    
+    :param amount: Amount (number) added to cart. The default is 1. For example if `user-x` adds two `item-y` during a single order (session...), the `amount` should equal to 2.
+    
+    :param price: Price of the added item. If `amount` is greater than 1, sum of prices of all the items should be given.
+    
+    :param recomm_id: If this cart addition is based on a recommendation request, `recommId` is the id of the clicked recommendation.
+    
+    :param additional_data: A dictionary of additional data for the interaction.
+    
 
     """
 
     def __init__(self, user_id, item_id, timestamp=DEFAULT, cascade_create=DEFAULT, amount=DEFAULT, price=DEFAULT, recomm_id=DEFAULT, additional_data=DEFAULT):
-        """
-        Required parameters:
-        @param user_id: User who added the item to the cart
-        
-        @param item_id: Item added to the cart
-        
-        
-        Optional parameters:
-        @param timestamp: UTC timestamp of the cart addition as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
-        
-        @param cascade_create: Sets whether the given user/item should be created if not present in the database.
-        
-        @param amount: Amount (number) added to cart. The default is 1. For example if `user-x` adds two `item-y` during a single order (session...), the `amount` should equal to 2.
-        
-        @param price: Price of the added item. If `amount` is greater than 1, sum of prices of all the items should be given.
-        
-        @param recomm_id: If this cart addition is based on a recommendation request, `recommId` is the id of the clicked recommendation.
-        
-        @param additional_data: A dictionary of additional data for the interaction.
-        
-        """
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp

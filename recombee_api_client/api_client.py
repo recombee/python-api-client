@@ -16,15 +16,16 @@ from recombee_api_client.api_requests import Batch
 class RecombeeClient:
     """
     Client for sending requests to Recombee recommender system
+
+    :param database_id: Name of your database_id at Recombee
+    
+    :param token: Secret token obtained from Recombee for signing requests
+    
+    :param protocol: Default protocol for sending requests. Possible values: 'http', 'https'.
     """
     BATCH_MAX_SIZE = 10000
 
     def __init__(self, database_id, token, protocol = 'https', options = {}):
-        """
-        @param database_id: Name of your database_id at Recombee
-        @param token: Secret token obtained from Recombee for signing requests
-        @param protocol: Default protocol for sending requests. Possible values: 'http', 'https'.
-        """
         self.database_id = database_id
         self.token = token
         self.protocol = protocol
@@ -38,7 +39,7 @@ class RecombeeClient:
 
     def send(self, request):
         """
-        @param request: Request to be sent to Recombee recommender
+        :param request: Request to be sent to Recombee recommender
         """
         
         if isinstance(request, Batch) and len(request.requests) > self.BATCH_MAX_SIZE:
@@ -63,7 +64,7 @@ class RecombeeClient:
 
     @staticmethod
     def __get_http_headers(additional_headers=None):
-        headers = {'User-Agent': 'recombee-python-api-client/3.0.0'}
+        headers = {'User-Agent': 'recombee-python-api-client/3.1.0'}
         if additional_headers:
             headers.update(additional_headers)
         return headers

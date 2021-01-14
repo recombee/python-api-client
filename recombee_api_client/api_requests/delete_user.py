@@ -8,15 +8,15 @@ class DeleteUser(Request):
     Deletes a user of given *userId* from the database.
     
     If there are any purchases, ratings, bookmarks, cart additions or detail views made by the user present in the database, they will be deleted in cascade as well.
+    
+    Required parameters:
+    
+    :param user_id: ID of the user to be added.
+    
 
     """
 
     def __init__(self, user_id):
-        """
-        Required parameters:
-        @param user_id: ID of the user to be added.
-        
-        """
         self.user_id = user_id
         self.timeout = 1000
         self.ensure_https = False

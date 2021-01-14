@@ -6,15 +6,15 @@ DEFAULT = uuid.uuid4()
 class ListUserViewPortions(Request):
     """
     List all the view portions ever submitted by a given user.
+    
+    Required parameters:
+    
+    :param user_id: ID of the user whose view portions are to be listed.
+    
 
     """
 
     def __init__(self, user_id):
-        """
-        Required parameters:
-        @param user_id: ID of the user whose view portions are to be listed.
-        
-        """
         self.user_id = user_id
         self.timeout = 100000
         self.ensure_https = False

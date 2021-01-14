@@ -12,13 +12,12 @@ class Batch(Request):
     - executing the requests in a batch is equivalent as if they were executed one-by-one individually; there are, however, many optimizations to make batch execution as fast as possible,
     - the status code of the batch request itself is 200 even if the individual requests result in error - you have to inspect the code values in the resulting array,
     - if the status code of the whole batch is not 200, then there is an error in the batch request itself; in such a case, the error message returned should help you to resolve the problem,
+
+    :param requests: List of Requests.
+    :param distinctRecomms: Makes all the recommended items for a certain user distinct among multiple recommendation requests in the batch.
     """
 
     def __init__(self, requests, distinctRecomms=None):
-        """
-        @param requests: List of Requests.
-        @param distinctRecomms: Makes all the recommended items for a certain user distinct among multiple recommendation requests in the batch.
-        """
         self.requests = requests
         self.distinctRecomms = distinctRecomms
         self.timeout = sum([req.timeout for req in self.requests])

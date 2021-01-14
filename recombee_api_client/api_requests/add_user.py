@@ -6,15 +6,15 @@ DEFAULT = uuid.uuid4()
 class AddUser(Request):
     """
     Adds a new user to the database.
+    
+    Required parameters:
+    
+    :param user_id: ID of the user to be added.
+    
 
     """
 
     def __init__(self, user_id):
-        """
-        Required parameters:
-        @param user_id: ID of the user to be added.
-        
-        """
         self.user_id = user_id
         self.timeout = 1000
         self.ensure_https = False

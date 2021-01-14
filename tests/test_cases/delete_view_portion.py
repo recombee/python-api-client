@@ -16,9 +16,9 @@ class DeleteViewPortionTest (InteractionsTest ):
     def test_delete_view_portion(self):
 
         # it 'does not fail with existing entity id'
-        req = self.create_request('user','item')
+        req = self.create_request('user', 'item')
         resp = self.client.send(req)
-        req = self.create_request('user','item')
+        req = self.create_request('user', 'item')
         try:
             self.client.send(req)
             self.assertFail()

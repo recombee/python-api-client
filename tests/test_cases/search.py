@@ -16,15 +16,15 @@ class SearchTest (RecommendationsTest ):
     def test_search(self):
 
         # it 'finds "hello"'
-        req = self.create_request('entity_id','hell',9)
+        req = self.create_request('entity_id', 'hell', 9)
         resp = self.client.send(req)
         self.assertEqual(len(resp['recomms']), 1)
         # it 'does not find random string'
-        req = self.create_request('entity_id','sdhskldf',9)
+        req = self.create_request('entity_id', 'sdhskldf', 9)
         resp = self.client.send(req)
         self.assertEqual(len(resp['recomms']), 0)
         # it 'returnProperties'
-        req = self.create_request('entity_id','hell',9,return_properties=True)
+        req = self.create_request('entity_id', 'hell', 9, return_properties=True)
         resp = self.client.send(req)
         self.assertEqual(len(resp['recomms']), 1)
 

@@ -8,7 +8,6 @@ class BatchTestCase(RecombeeTest):
 
   def test_batch(self):
     reqs = [
-          ResetDatabase(),
           AddItemProperty('num', 'int'),
           AddItemProperty('time', 'timestamp'),
           SetItemValues('item1', {
@@ -32,11 +31,11 @@ class BatchTestCase(RecombeeTest):
     resp = self.client.send(Batch(reqs))
 
     codes = [r['code'] for r in resp]
-    self.assertEqual(codes, [200, 201, 201, 200, 409, 200, 200, 200, 200, 200, 404, 200, 200, 200])
-    self.assertEqual(sorted(resp[6]['json']), ['item1', 'item2'])
-    self.assertEqual(resp[7]['json'], ['item2'])
-    self.assertEqual(resp[9]['json'], [])
-    self.assertEqual(resp[13]['json'], ['item2'])
+    self.assertEqual(codes, [201, 201, 200, 409, 200, 200, 200, 200, 200, 404, 200, 200, 200])
+    self.assertEqual(sorted(resp[5]['json']), ['entity_id', 'item1', 'item2'])
+    self.assertEqual(resp[6]['json'], ['item2'])
+    self.assertEqual(resp[8]['json'], [])
+    self.assertEqual(resp[12]['json'], ['item2'])
 
   def test_large_batch(self):
     NUM = 23578

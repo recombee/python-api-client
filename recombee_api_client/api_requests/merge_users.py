@@ -9,21 +9,22 @@ class MergeUsers(Request):
     
     
     Merging happens between two users referred to as the *target* and the *source*. After the merge, all the interactions of the source user are attributed to the target user, and the source user is **deleted**.
+    
+    Required parameters:
+    
+    :param target_user_id: ID of the targer user.
+    
+    :param source_user_id: ID of the source user.
+    
+    
+    Optional parameters:
+    
+    :param cascade_create: Sets whether the user *targetUserId* should be created if not present in the database.
+    
 
     """
 
     def __init__(self, target_user_id, source_user_id, cascade_create=DEFAULT):
-        """
-        Required parameters:
-        @param target_user_id: ID of the targer user.
-        
-        @param source_user_id: ID of the source user.
-        
-        
-        Optional parameters:
-        @param cascade_create: Sets whether the user *targetUserId* should be created if not present in the database.
-        
-        """
         self.target_user_id = target_user_id
         self.source_user_id = source_user_id
         self.cascade_create = cascade_create

@@ -8,15 +8,15 @@ class DeleteGroup(Request):
     Deletes the group of given `groupId` from the database.
     
     Deleting a group will only delete assignment of items to it, not the items themselves!
+    
+    Required parameters:
+    
+    :param group_id: ID of the group to be deleted.
+    
 
     """
 
     def __init__(self, group_id):
-        """
-        Required parameters:
-        @param group_id: ID of the group to be deleted.
-        
-        """
         self.group_id = group_id
         self.timeout = 1000
         self.ensure_https = False

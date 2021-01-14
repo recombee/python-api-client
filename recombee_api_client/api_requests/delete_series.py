@@ -8,15 +8,15 @@ class DeleteSeries(Request):
     Deletes the series of given `seriesId` from the database.
     
     Deleting a series will only delete assignment of items to it, not the items themselves!
+    
+    Required parameters:
+    
+    :param series_id: ID of the series to be deleted.
+    
 
     """
 
     def __init__(self, series_id):
-        """
-        Required parameters:
-        @param series_id: ID of the series to be deleted.
-        
-        """
         self.series_id = series_id
         self.timeout = 1000
         self.ensure_https = False

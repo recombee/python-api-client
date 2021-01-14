@@ -6,29 +6,30 @@ DEFAULT = uuid.uuid4()
 class AddRating(Request):
     """
     Adds a rating of given item made by a given user.
+    
+    Required parameters:
+    
+    :param user_id: User who submitted the rating
+    
+    :param item_id: Rated item
+    
+    :param rating: Rating rescaled to interval [-1.0,1.0], where -1.0 means the worst rating possible, 0.0 means neutral, and 1.0 means absolutely positive rating. For example, in the case of 5-star evaluations, rating = (numStars-3)/2 formula may be used for the conversion.
+    
+    
+    Optional parameters:
+    
+    :param timestamp: UTC timestamp of the rating as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
+    
+    :param cascade_create: Sets whether the given user/item should be created if not present in the database.
+    
+    :param recomm_id: If this rating is based on a recommendation request, `recommId` is the id of the clicked recommendation.
+    
+    :param additional_data: A dictionary of additional data for the interaction.
+    
 
     """
 
     def __init__(self, user_id, item_id, rating, timestamp=DEFAULT, cascade_create=DEFAULT, recomm_id=DEFAULT, additional_data=DEFAULT):
-        """
-        Required parameters:
-        @param user_id: User who submitted the rating
-        
-        @param item_id: Rated item
-        
-        @param rating: Rating rescaled to interval [-1.0,1.0], where -1.0 means the worst rating possible, 0.0 means neutral, and 1.0 means absolutely positive rating. For example, in the case of 5-star evaluations, rating = (numStars-3)/2 formula may be used for the conversion.
-        
-        
-        Optional parameters:
-        @param timestamp: UTC timestamp of the rating as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
-        
-        @param cascade_create: Sets whether the given user/item should be created if not present in the database.
-        
-        @param recomm_id: If this rating is based on a recommendation request, `recommId` is the id of the clicked recommendation.
-        
-        @param additional_data: A dictionary of additional data for the interaction.
-        
-        """
         self.user_id = user_id
         self.item_id = item_id
         self.rating = rating

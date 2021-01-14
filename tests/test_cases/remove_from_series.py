@@ -16,17 +16,17 @@ class RemoveFromSeriesTest (RecombeeTest ):
     def test_remove_from_series(self):
 
         # it 'fails when removing item which have different time'
-        req = self.create_request('entity_id','item','entity_id',0)
+        req = self.create_request('entity_id', 'item', 'entity_id', 0)
         try:
             self.client.send(req)
             self.assertFail()
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 404)
         # it 'does not fail when removing item that is contained in the set'
-        req = self.create_request('entity_id','item','entity_id',1)
+        req = self.create_request('entity_id', 'item', 'entity_id', 1)
         resp = self.client.send(req)
         # it 'fails when removing item that is not contained in the set'
-        req = self.create_request('entity_id','item','not_contained',1)
+        req = self.create_request('entity_id', 'item', 'not_contained', 1)
         try:
             self.client.send(req)
             self.assertFail()

@@ -6,16 +6,16 @@ DEFAULT = uuid.uuid4()
 class GetUserValues(Request):
     """
     Get all the current property values of a given user.
+    
+    Required parameters:
+    
+    :param user_id: ID of the user properties of which are to be obtained.
+    
+    
 
     """
 
     def __init__(self, user_id):
-        """
-        Required parameters:
-        @param user_id: ID of the user properties of which are to be obtained.
-        
-        
-        """
         self.user_id = user_id
         self.timeout = 1000
         self.ensure_https = False

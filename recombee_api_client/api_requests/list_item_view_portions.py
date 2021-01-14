@@ -6,16 +6,16 @@ DEFAULT = uuid.uuid4()
 class ListItemViewPortions(Request):
     """
     List all the view portions of an item ever submitted by different users.
+    
+    Required parameters:
+    
+    :param item_id: ID of the item of which the view portions are to be listed.
+    
+    
 
     """
 
     def __init__(self, item_id):
-        """
-        Required parameters:
-        @param item_id: ID of the item of which the view portions are to be listed.
-        
-        
-        """
         self.item_id = item_id
         self.timeout = 100000
         self.ensure_https = False

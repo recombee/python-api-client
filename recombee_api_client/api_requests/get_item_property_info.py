@@ -6,15 +6,15 @@ DEFAULT = uuid.uuid4()
 class GetItemPropertyInfo(Request):
     """
     Gets information about specified item property.
+    
+    Required parameters:
+    
+    :param property_name: Name of the property about which the information is to be retrieved.
+    
 
     """
 
     def __init__(self, property_name):
-        """
-        Required parameters:
-        @param property_name: Name of the property about which the information is to be retrieved.
-        
-        """
         self.property_name = property_name
         self.timeout = 1000
         self.ensure_https = False
