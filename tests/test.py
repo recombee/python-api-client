@@ -134,12 +134,20 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendUsersToUserTestCase))
     from tests.test_cases.test_recommend_users_to_item import RecommendUsersToItemTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendUsersToItemTestCase))
-    from tests.test_cases.test_search_items import SearchItemsTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SearchItemsTestCase))
     from tests.test_cases.test_user_based_recommendation import UserBasedRecommendationTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UserBasedRecommendationTestCase))
     from tests.test_cases.test_item_based_recommendation import ItemBasedRecommendationTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ItemBasedRecommendationTestCase))
+    from tests.test_cases.test_search_items import SearchItemsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SearchItemsTestCase))
+    from tests.test_cases.test_add_search_synonym import AddSearchSynonymTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(AddSearchSynonymTestCase))
+    from tests.test_cases.test_list_search_synonyms import ListSearchSynonymsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListSearchSynonymsTestCase))
+    from tests.test_cases.test_delete_all_search_synonyms import DeleteAllSearchSynonymsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteAllSearchSynonymsTestCase))
+    from tests.test_cases.test_delete_search_synonym import DeleteSearchSynonymTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteSearchSynonymTestCase))
     from tests.test_cases.test_batch import BatchTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(BatchTestCase))
 
