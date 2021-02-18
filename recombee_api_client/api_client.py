@@ -41,7 +41,7 @@ class RecombeeClient:
         """
         :param request: Request to be sent to Recombee recommender
         """
-        
+
         if isinstance(request, Batch) and len(request.requests) > self.BATCH_MAX_SIZE:
             return self.__send_multipart_batch(request)
 
@@ -70,8 +70,8 @@ class RecombeeClient:
         return headers
 
     def __put(self, request, uri, timeout):
-        response = requests.put(uri, 
-                                data=json.dumps(request.get_body_parameters()),
+        response = requests.put(uri,
+                                json=request.get_body_parameters(),
                                 headers= self.__get_http_headers({'Content-Type': 'application/json'}),
                                 timeout=timeout)
         self.__check_errors(response, request)
@@ -86,7 +86,7 @@ class RecombeeClient:
 
     def __post(self, request, uri, timeout):
         response = requests.post(uri,
-                                data=json.dumps(request.get_body_parameters()), 
+                                json=request.get_body_parameters(),
                                 headers= self.__get_http_headers({'Content-Type': 'application/json'}),
                                 timeout=timeout)
         self.__check_errors(response, request)
