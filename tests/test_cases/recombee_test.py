@@ -1,18 +1,33 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import unittest
 from random import random
 
-from recombee_api_client.api_client import RecombeeClient
+from recombee_api_client.api_client import RecombeeClient, Region
 from recombee_api_client.api_requests import *
 from recombee_api_client.exceptions import *
+
+
+class MissingEnvironmentVariable(Exception):
+    pass
+
 
 class RecombeeTest( unittest.TestCase ):
 
   def __init__(self, *args, **kwargs):
     super(RecombeeTest, self).__init__(*args, **kwargs)
-    self.client = RecombeeClient('client-test', 'jGGQ6ZKa8rQ1zTAyxTc0EMn55YPF7FJLUtaMLhbsGxmvwxgTwXYqmUk5xVZFw98L')
+
+    db_id = os.environ.get('DB_ID')
+    if db_id is None:
+      raise MissingEnvironmentVariable('DB_ID env var must be specified')
+
+    token = os.environ.get('PRIVATE_TOKEN')
+    if token is None:
+      raise MissingEnvironmentVariable('PRIVATE_TOKEN env var must be specified')
+
+    self.client = RecombeeClient(db_id, token, region=Region.EU_WEST)
 
 
   def setUp(self):

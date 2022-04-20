@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -176,7 +177,8 @@ class SearchItems(Request):
 
     """
 
-    def __init__(self, user_id, search_query, count, scenario=DEFAULT, cascade_create=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, filter=DEFAULT, booster=DEFAULT, logic=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
+    def __init__(self, user_id: str, search_query: str, count: int, scenario: str = DEFAULT, cascade_create: bool = DEFAULT, return_properties: bool = DEFAULT, included_properties: list = DEFAULT, filter: str = DEFAULT, booster: str = DEFAULT, logic: Union[str, dict] = DEFAULT, expert_settings: dict = DEFAULT, return_ab_group: bool = DEFAULT):
+        super().__init__(path="/search/users/%s/items/" % (user_id), method='post', timeout=3000, ensure_https=False)
         self.user_id = user_id
         self.search_query = search_query
         self.count = count
@@ -189,12 +191,8 @@ class SearchItems(Request):
         self.logic = logic
         self.expert_settings = expert_settings
         self.return_ab_group = return_ab_group
-        self.timeout = 3000
-        self.ensure_https = False
-        self.method = 'post'
-        self.path = "/search/users/%s/items/" % (self.user_id)
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
@@ -221,7 +219,7 @@ class SearchItems(Request):
             p['returnAbGroup'] = self.return_ab_group
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

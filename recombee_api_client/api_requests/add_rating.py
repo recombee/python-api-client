@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -29,7 +30,8 @@ class AddRating(Request):
 
     """
 
-    def __init__(self, user_id, item_id, rating, timestamp=DEFAULT, cascade_create=DEFAULT, recomm_id=DEFAULT, additional_data=DEFAULT):
+    def __init__(self, user_id: str, item_id: str, rating: float, timestamp: Union[str, int] = DEFAULT, cascade_create: bool = DEFAULT, recomm_id: str = DEFAULT, additional_data: dict = DEFAULT):
+        super().__init__(path="/ratings/" % (), method='post', timeout=1000, ensure_https=False)
         self.user_id = user_id
         self.item_id = item_id
         self.rating = rating
@@ -37,12 +39,8 @@ class AddRating(Request):
         self.cascade_create = cascade_create
         self.recomm_id = recomm_id
         self.additional_data = additional_data
-        self.timeout = 1000
-        self.ensure_https = False
-        self.method = 'post'
-        self.path = "/ratings/" % ()
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
@@ -60,7 +58,7 @@ class AddRating(Request):
             p['additionalData'] = self.additional_data
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

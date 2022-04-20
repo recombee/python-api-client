@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -17,23 +18,20 @@ class RemoveFromGroup(Request):
 
     """
 
-    def __init__(self, group_id, item_type, item_id):
+    def __init__(self, group_id: str, item_type: str, item_id: str):
+        super().__init__(path="/groups/%s/items/" % (group_id), method='delete', timeout=1000, ensure_https=False)
         self.group_id = group_id
         self.item_type = item_type
         self.item_id = item_id
-        self.timeout = 1000
-        self.ensure_https = False
-        self.method = 'delete'
-        self.path = "/groups/%s/items/" % (self.group_id)
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

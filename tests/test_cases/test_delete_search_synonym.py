@@ -7,7 +7,7 @@
 from tests.test_cases.delete_search_synonym import DeleteSearchSynonymTest
 from recombee_api_client.api_requests import *
 
-class DeleteSearchSynonymTestCase (DeleteSearchSynonymTest):
+class DeleteSearchSynonymTestCase(DeleteSearchSynonymTest):
 
     def create_request(self, id):
         return DeleteSearchSynonym(id)

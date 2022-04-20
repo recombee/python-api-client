@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -32,15 +33,12 @@ class RecommendNextItems(Request):
 
     """
 
-    def __init__(self, recomm_id, count):
+    def __init__(self, recomm_id: str, count: int):
+        super().__init__(path="/recomms/next/items/%s" % (recomm_id), method='post', timeout=3000, ensure_https=False)
         self.recomm_id = recomm_id
         self.count = count
-        self.timeout = 3000
-        self.ensure_https = False
-        self.method = 'post'
-        self.path = "/recomms/next/items/%s" % (self.recomm_id)
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
@@ -48,7 +46,7 @@ class RecommendNextItems(Request):
         p['count'] = self.count
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

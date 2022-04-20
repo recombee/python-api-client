@@ -7,7 +7,7 @@
 from tests.test_cases.list_set_items import ListSetItemsTest
 from recombee_api_client.api_requests import *
 
-class ListGroupItemsTestCase (ListSetItemsTest):
+class ListGroupItemsTestCase(ListSetItemsTest):
 
     def create_request(self, group_id):
         return ListGroupItems(group_id)

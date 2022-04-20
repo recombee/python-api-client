@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -30,16 +31,13 @@ class AddSearchSynonym(Request):
 
     """
 
-    def __init__(self, term, synonym, one_way=DEFAULT):
+    def __init__(self, term: str, synonym: str, one_way: bool = DEFAULT):
+        super().__init__(path="/synonyms/items/" % (), method='post', timeout=10000, ensure_https=False)
         self.term = term
         self.synonym = synonym
         self.one_way = one_way
-        self.timeout = 10000
-        self.ensure_https = False
-        self.method = 'post'
-        self.path = "/synonyms/items/" % ()
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
@@ -50,7 +48,7 @@ class AddSearchSynonym(Request):
             p['oneWay'] = self.one_way
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

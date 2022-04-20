@@ -1,5 +1,6 @@
 from recombee_api_client.api_requests.set_values import SetValues
 
+
 class SetItemValues(SetValues):
     """
     Set/update (some) property values of a given item. The properties (columns) must be previously created by [Add item property](https://docs.recombee.com/api.html#add-item-property).
@@ -34,8 +35,6 @@ class SetItemValues(SetValues):
 
     """
 
-    def __init__(self,item_id, values, cascade_create=None):
-        super(SetItemValues, self).__init__(values, cascade_create=cascade_create)
-
+    def __init__(self, item_id: str, values: dict, cascade_create: bool = None):
+        super().__init__(path="/items/%s" % item_id, values=values, cascade_create=cascade_create)
         self.item_id = item_id
-        self.path = "/items/%s" % (self.item_id)

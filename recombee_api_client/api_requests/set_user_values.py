@@ -1,5 +1,6 @@
 from recombee_api_client.api_requests.set_values import SetValues
 
+
 class SetUserValues(SetValues):
     """
     Set/update (some) property values of a given user. The properties (columns) must be previously created by [Add user property](https://docs.recombee.com/api.html#add-user-property).
@@ -27,8 +28,6 @@ class SetUserValues(SetValues):
     :param cascade_create: Sets whether the given user should be created if not present in the database.
     """
 
-    def __init__(self,user_id, values, cascade_create=None):
-        super(SetUserValues, self).__init__(values, cascade_create=cascade_create)
-
+    def __init__(self, user_id: str, values: dict, cascade_create: bool = None):
+        super().__init__(path="/users/%s" % user_id, values=values, cascade_create=cascade_create)
         self.user_id = user_id
-        self.path = "/users/%s" % (self.user_id)

@@ -7,7 +7,7 @@
 from tests.test_cases.list_entities import ListEntitiesTest
 from recombee_api_client.api_requests import *
 
-class ListSeriesTestCase (ListEntitiesTest):
+class ListSeriesTestCase(ListEntitiesTest):
 
     def create_request(self):
         return ListSeries()

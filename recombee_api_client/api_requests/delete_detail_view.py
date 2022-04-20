@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -21,23 +22,20 @@ class DeleteDetailView(Request):
 
     """
 
-    def __init__(self, user_id, item_id, timestamp=DEFAULT):
+    def __init__(self, user_id: str, item_id: str, timestamp: Union[str, int] = DEFAULT):
+        super().__init__(path="/detailviews/" % (), method='delete', timeout=1000, ensure_https=False)
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp
-        self.timeout = 1000
-        self.ensure_https = False
-        self.method = 'delete'
-        self.path = "/detailviews/" % ()
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

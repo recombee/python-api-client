@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -78,25 +79,22 @@ class ListUsers(Request):
 
     """
 
-    def __init__(self, filter=DEFAULT, count=DEFAULT, offset=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT):
+    def __init__(self, filter: str = DEFAULT, count: int = DEFAULT, offset: int = DEFAULT, return_properties: bool = DEFAULT, included_properties: list = DEFAULT):
+        super().__init__(path="/users/list/" % (), method='get', timeout=100000, ensure_https=False)
         self.filter = filter
         self.count = count
         self.offset = offset
         self.return_properties = return_properties
         self.included_properties = included_properties
-        self.timeout = 100000
-        self.ensure_https = False
-        self.method = 'get'
-        self.path = "/users/list/" % ()
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -16,22 +17,19 @@ class ListSearchSynonyms(Request):
 
     """
 
-    def __init__(self, count=DEFAULT, offset=DEFAULT):
+    def __init__(self, count: int = DEFAULT, offset: int = DEFAULT):
+        super().__init__(path="/synonyms/items/" % (), method='get', timeout=100000, ensure_https=False)
         self.count = count
         self.offset = offset
-        self.timeout = 100000
-        self.ensure_https = False
-        self.method = 'get'
-        self.path = "/synonyms/items/" % ()
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

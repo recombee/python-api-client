@@ -24,8 +24,8 @@ class BatchTestCase(RecombeeTest):
           ListItems(filter="'num' >= 99"),
           AddCartAddition('user', 'item2',  timestamp='2013-10-29T09:38:41.341Z'),
           AddCartAddition('user', 'item2', cascade_create=True),
-          ItemBasedRecommendation('item2', 30),
-          UserBasedRecommendation('user_id', 25, filter="'num'==68",allow_nonexistent=True)
+          RecommendItemsToItem('item2', 'user', 30),
+          RecommendItemsToUser('user_id', 25, filter="'num'==68",cascade_create=True)
     ]
 
     resp = self.client.send(Batch(reqs))

@@ -7,6 +7,8 @@ from recombee_api_client.api_requests.add_item_property import AddItemProperty
 from recombee_api_client.api_requests.delete_item_property import DeleteItemProperty
 from recombee_api_client.api_requests.get_item_property_info import GetItemPropertyInfo
 from recombee_api_client.api_requests.list_item_properties import ListItemProperties
+from recombee_api_client.api_requests.update_more_items import UpdateMoreItems
+from recombee_api_client.api_requests.delete_more_items import DeleteMoreItems
 from recombee_api_client.api_requests.add_series import AddSeries
 from recombee_api_client.api_requests.delete_series import DeleteSeries
 from recombee_api_client.api_requests.list_series import ListSeries
@@ -58,8 +60,6 @@ from recombee_api_client.api_requests.recommend_items_to_item import RecommendIt
 from recombee_api_client.api_requests.recommend_next_items import RecommendNextItems
 from recombee_api_client.api_requests.recommend_users_to_user import RecommendUsersToUser
 from recombee_api_client.api_requests.recommend_users_to_item import RecommendUsersToItem
-from recombee_api_client.api_requests.user_based_recommendation import UserBasedRecommendation
-from recombee_api_client.api_requests.item_based_recommendation import ItemBasedRecommendation
 from recombee_api_client.api_requests.search_items import SearchItems
 from recombee_api_client.api_requests.add_search_synonym import AddSearchSynonym
 from recombee_api_client.api_requests.list_search_synonyms import ListSearchSynonyms
@@ -67,3 +67,4 @@ from recombee_api_client.api_requests.delete_all_search_synonyms import DeleteAl
 from recombee_api_client.api_requests.delete_search_synonym import DeleteSearchSynonym
 from recombee_api_client.api_requests.reset_database import ResetDatabase
 from recombee_api_client.api_requests.batch import Batch
+from recombee_api_client.api_requests.request import Request

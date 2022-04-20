@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -14,21 +15,18 @@ class GetItemPropertyInfo(Request):
 
     """
 
-    def __init__(self, property_name):
+    def __init__(self, property_name: str):
+        super().__init__(path="/items/properties/%s" % (property_name), method='get', timeout=1000, ensure_https=False)
         self.property_name = property_name
-        self.timeout = 1000
-        self.ensure_https = False
-        self.method = 'get'
-        self.path = "/items/properties/%s" % (self.property_name)
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

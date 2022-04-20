@@ -8,7 +8,7 @@ from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, Recom
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class MergeUsersTest (RecombeeTest ):
+class MergeUsersTest(RecombeeTest):
 
     def create_request(self,target_user_id,source_user_id,cascade_create=None):
         pass

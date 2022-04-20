@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -156,7 +157,8 @@ class RecommendUsersToItem(Request):
 
     """
 
-    def __init__(self, item_id, count, scenario=DEFAULT, cascade_create=DEFAULT, return_properties=DEFAULT, included_properties=DEFAULT, filter=DEFAULT, booster=DEFAULT, logic=DEFAULT, diversity=DEFAULT, expert_settings=DEFAULT, return_ab_group=DEFAULT):
+    def __init__(self, item_id: str, count: int, scenario: str = DEFAULT, cascade_create: bool = DEFAULT, return_properties: bool = DEFAULT, included_properties: list = DEFAULT, filter: str = DEFAULT, booster: str = DEFAULT, logic: Union[str, dict] = DEFAULT, diversity: float = DEFAULT, expert_settings: dict = DEFAULT, return_ab_group: bool = DEFAULT):
+        super().__init__(path="/recomms/items/%s/users/" % (item_id), method='post', timeout=50000, ensure_https=False)
         self.item_id = item_id
         self.count = count
         self.scenario = scenario
@@ -169,12 +171,8 @@ class RecommendUsersToItem(Request):
         self.diversity = diversity
         self.expert_settings = expert_settings
         self.return_ab_group = return_ab_group
-        self.timeout = 50000
-        self.ensure_https = False
-        self.method = 'post'
-        self.path = "/recomms/items/%s/users/" % (self.item_id)
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
@@ -202,7 +200,7 @@ class RecommendUsersToItem(Request):
             p['returnAbGroup'] = self.return_ab_group
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

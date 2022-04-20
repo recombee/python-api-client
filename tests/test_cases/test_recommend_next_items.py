@@ -7,7 +7,7 @@
 from tests.test_cases.next_items_recommendation import NextItemsRecommendationTest
 from recombee_api_client.api_requests import *
 
-class RecommendNextItemsTestCase (NextItemsRecommendationTest):
+class RecommendNextItemsTestCase(NextItemsRecommendationTest):
 
     def create_request(self, recomm_id, count):
         return RecommendNextItems(recomm_id, count)

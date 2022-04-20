@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from typing import List
 
 from recombee_api_client.api_requests.request import Request
+
 
 class Batch(Request):
     """
@@ -14,16 +16,14 @@ class Batch(Request):
     - if the status code of the whole batch is not 200, then there is an error in the batch request itself; in such a case, the error message returned should help you to resolve the problem,
 
     :param requests: List of Requests.
-    :param distinctRecomms: Makes all the recommended items for a certain user distinct among multiple recommendation requests in the batch.
+    :param distinct_recomms: Makes all the recommended items for a certain user distinct among multiple recommendation requests in the batch.
     """
 
-    def __init__(self, requests, distinctRecomms=None):
+    def __init__(self, requests: List[Request], distinct_recomms: bool = None, distinctRecomms=None):
+        super().__init__(path='/batch/', method='post', timeout=0, ensure_https=True)
         self.requests = requests
-        self.distinctRecomms = distinctRecomms
+        self.distinct_recomms = distinctRecomms or distinct_recomms  # wrongly formatted distinctRecomms are kept for backward compatibility
         self.timeout = sum([req.timeout for req in self.requests])
-        self.ensure_https = True
-        self.method = 'post'
-        self.path = '/batch/'
 
     def get_body_parameters(self):
         """
@@ -33,16 +33,17 @@ class Batch(Request):
         for r in self.requests:
             reqs.append(self.__request_to_batch_dict(r))
         result = {'requests': reqs}
-        if self.distinctRecomms is not None:
-            result['distinctRecomms'] = self.distinctRecomms
+        if self.distinct_recomms is not None:
+            result['distinctRecomms'] = self.distinct_recomms
         return result
 
-    def __request_to_batch_dict(self, req):
+    @staticmethod
+    def __request_to_batch_dict(req: Request) -> dict:
 
         path = req.path
         bd = {
             'method': req.method.upper(),
-            'path':path
+            'path': path
         }
         params = req.get_query_parameters()
 

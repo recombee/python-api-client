@@ -1,4 +1,5 @@
 from recombee_api_client.api_requests.request import Request
+from typing import Union, List
 import uuid
 
 DEFAULT = uuid.uuid4()
@@ -24,23 +25,20 @@ class MergeUsers(Request):
 
     """
 
-    def __init__(self, target_user_id, source_user_id, cascade_create=DEFAULT):
+    def __init__(self, target_user_id: str, source_user_id: str, cascade_create: bool = DEFAULT):
+        super().__init__(path="/users/%s/merge/%s" % (target_user_id,source_user_id), method='put', timeout=10000, ensure_https=False)
         self.target_user_id = target_user_id
         self.source_user_id = source_user_id
         self.cascade_create = cascade_create
-        self.timeout = 10000
-        self.ensure_https = False
-        self.method = 'put'
-        self.path = "/users/%s/merge/%s" % (self.target_user_id,self.source_user_id)
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
         return p
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

@@ -32,6 +32,10 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(GetItemPropertyInfoTestCase))
     from tests.test_cases.test_list_item_properties import ListItemPropertiesTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListItemPropertiesTestCase))
+    from tests.test_cases.test_update_more_items import UpdateMoreItemsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UpdateMoreItemsTestCase))
+    from tests.test_cases.test_delete_more_items import DeleteMoreItemsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteMoreItemsTestCase))
     from tests.test_cases.test_add_series import AddSeriesTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(AddSeriesTestCase))
     from tests.test_cases.test_delete_series import DeleteSeriesTestCase
@@ -134,10 +138,6 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendUsersToUserTestCase))
     from tests.test_cases.test_recommend_users_to_item import RecommendUsersToItemTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendUsersToItemTestCase))
-    from tests.test_cases.test_user_based_recommendation import UserBasedRecommendationTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UserBasedRecommendationTestCase))
-    from tests.test_cases.test_item_based_recommendation import ItemBasedRecommendationTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ItemBasedRecommendationTestCase))
     from tests.test_cases.test_search_items import SearchItemsTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SearchItemsTestCase))
     from tests.test_cases.test_add_search_synonym import AddSearchSynonymTestCase

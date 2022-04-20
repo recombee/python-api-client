@@ -8,7 +8,7 @@ from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, Recom
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class ItemToItemRecommendationTest (RecommendationsTest ):
+class ItemToItemRecommendationTest(RecommendationsTest):
 
     def create_request(self,item_id,target_user_id,count,scenario=None,cascade_create=None,return_properties=None,included_properties=None,filter=None,booster=None,logic=None,user_impact=None,diversity=None,min_relevance=None,rotation_rate=None,rotation_time=None,expert_settings=None,return_ab_group=None):
         pass

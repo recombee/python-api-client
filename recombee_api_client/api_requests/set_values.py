@@ -1,6 +1,7 @@
 from recombee_api_client.api_requests.request import Request
 from datetime import datetime
 
+
 class SetValues(Request):
     """
     Set/update (some) property values of an entity.
@@ -31,14 +32,12 @@ class SetValues(Request):
 
     """
 
-    def __init__(self, values, cascade_create=None):
+    def __init__(self, path: str, values: dict, cascade_create: bool = None):
+        super().__init__(path=path, method='post', timeout=1000, ensure_https=False)
         self.values = values
         self.cascade_create = cascade_create
-        self.timeout = 1000
-        self.ensure_https = False
-        self.method = 'post'
 
-    def get_body_parameters(self):
+    def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
@@ -49,7 +48,7 @@ class SetValues(Request):
             values['!cascadeCreate'] = self.cascade_create
         return values
 
-    def get_query_parameters(self):
+    def get_query_parameters(self) -> dict:
         """
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """

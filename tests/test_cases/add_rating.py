@@ -8,7 +8,7 @@ from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, Recom
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class AddRatingTest (RecombeeTest ):
+class AddRatingTest(RecombeeTest):
 
     def create_request(self,user_id,item_id,rating,timestamp=None,cascade_create=None,recomm_id=None,additional_data=None):
         pass

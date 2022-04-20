@@ -2,7 +2,7 @@
 RecombeeApiClient
 *****************
 
-A Python client for easy use of the `Recombee <https://www.recombee.com/>`_  recommendation API. Both Python 2 and Python 3 are supported.
+A Python 3 client for easy use of the `Recombee <https://www.recombee.com/>`_  recommendation API.
 
 If you don't have an account at Recombee yet, you can create a free account `here <https://www.recombee.com/>`_.
 
@@ -18,8 +18,6 @@ Install the client with pip:
 
     $ pip install recombee-api-client
 
-(use pip3 instead of pip if you use Python 3)
-
 ========
 Examples
 ========
@@ -30,12 +28,12 @@ Basic example
 
 .. code-block:: python
 
-    from recombee_api_client.api_client import RecombeeClient
+    from recombee_api_client.api_client import RecombeeClient, Region
     from recombee_api_client.exceptions import APIException
     from recombee_api_client.api_requests import *
     import random
 
-    client = RecombeeClient('--my-database-id--', '--db-private-token--')
+    client = RecombeeClient('--my-database-id--', '--db-private-token--', region=Region.US_WEST)
 
     #Generate some random purchases of items by users
     PROBABILITY_PURCHASED = 0.1
@@ -73,7 +71,7 @@ Using property values
 
 .. code-block:: python
 
-    from recombee_api_client.api_client import RecombeeClient
+    from recombee_api_client.api_client import RecombeeClient, Region
     from recombee_api_client.api_requests import AddItemProperty, SetItemValues, AddPurchase
     from recombee_api_client.api_requests import RecommendItemsToItem, SearchItems, Batch, ResetDatabase
     import random
@@ -81,7 +79,7 @@ Using property values
     NUM = 100
     PROBABILITY_PURCHASED = 0.1
 
-    client = RecombeeClient('--my-database-id--', '--db-private-token--')
+    client = RecombeeClient('--my-database-id--', '--db-private-token--', region=Region.AP_SE)
 
     # Clear the entire database
     client.send(ResetDatabase())

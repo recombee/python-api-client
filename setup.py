@@ -11,7 +11,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='recombee-api-client',
 
-    version='3.2.0',
+    version='4.0.0',
 
     description='Client for Recombee recommendation API',
     long_description=long_description,
@@ -35,14 +35,13 @@ setup(
 
         'License :: OSI Approved :: MIT License',
 
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.1',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
 
     keywords='recommendation engine as a service',
@@ -52,6 +51,8 @@ setup(
 
 
     install_requires=['requests'],
+
+    python_requires='>=3.4',
 
     extras_require={},
 

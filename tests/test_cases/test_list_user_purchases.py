@@ -7,7 +7,7 @@
 from tests.test_cases.list_user_interactions import ListUserInteractionsTest
 from recombee_api_client.api_requests import *
 
-class ListUserPurchasesTestCase (ListUserInteractionsTest):
+class ListUserPurchasesTestCase(ListUserInteractionsTest):
 
     def create_request(self, user_id):
         return ListUserPurchases(user_id)

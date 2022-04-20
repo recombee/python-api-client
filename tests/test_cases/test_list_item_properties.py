@@ -7,7 +7,7 @@
 from tests.test_cases.list_properties import ListPropertiesTest
 from recombee_api_client.api_requests import *
 
-class ListItemPropertiesTestCase (ListPropertiesTest):
+class ListItemPropertiesTestCase(ListPropertiesTest):
 
     def create_request(self):
         return ListItemProperties()

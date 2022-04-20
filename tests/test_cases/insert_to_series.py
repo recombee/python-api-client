@@ -8,7 +8,7 @@ from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, Recom
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class InsertToSeriesTest (RecombeeTest ):
+class InsertToSeriesTest(RecombeeTest):
 
     def create_request(self,series_id,item_type,item_id,time,cascade_create=None):
         pass
