@@ -6,11 +6,11 @@ DEFAULT = uuid.uuid4()
 
 class GetUserValues(Request):
     """
-    Get all the current property values of a given user.
+    Gets all the current property values of the given user.
     
     Required parameters:
     
-    :param user_id: ID of the user properties of which are to be obtained.
+    :param user_id: ID of the user whose properties are to be obtained.
     
     
 

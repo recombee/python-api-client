@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class AddGroup(Request):
     """
-    Creates new group in the database.
+    Creates a new group in the database.
     Required parameters:
     
     :param group_id: ID of the group to be created.

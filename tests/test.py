@@ -138,8 +138,16 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendUsersToUserTestCase))
     from tests.test_cases.test_recommend_users_to_item import RecommendUsersToItemTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendUsersToItemTestCase))
+    from tests.test_cases.test_recommend_item_segments_to_user import RecommendItemSegmentsToUserTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemSegmentsToUserTestCase))
+    from tests.test_cases.test_recommend_item_segments_to_item import RecommendItemSegmentsToItemTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemSegmentsToItemTestCase))
+    from tests.test_cases.test_recommend_item_segments_to_item_segment import RecommendItemSegmentsToItemSegmentTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemSegmentsToItemSegmentTestCase))
     from tests.test_cases.test_search_items import SearchItemsTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SearchItemsTestCase))
+    from tests.test_cases.test_search_item_segments import SearchItemSegmentsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SearchItemSegmentsTestCase))
     from tests.test_cases.test_add_search_synonym import AddSearchSynonymTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(AddSearchSynonymTestCase))
     from tests.test_cases.test_list_search_synonyms import ListSearchSynonymsTestCase
@@ -148,6 +156,30 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteAllSearchSynonymsTestCase))
     from tests.test_cases.test_delete_search_synonym import DeleteSearchSynonymTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteSearchSynonymTestCase))
+    from tests.test_cases.test_create_property_based_segmentation import CreatePropertyBasedSegmentationTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(CreatePropertyBasedSegmentationTestCase))
+    from tests.test_cases.test_update_property_based_segmentation import UpdatePropertyBasedSegmentationTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UpdatePropertyBasedSegmentationTestCase))
+    from tests.test_cases.test_create_auto_reql_segmentation import CreateAutoReqlSegmentationTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(CreateAutoReqlSegmentationTestCase))
+    from tests.test_cases.test_update_auto_reql_segmentation import UpdateAutoReqlSegmentationTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UpdateAutoReqlSegmentationTestCase))
+    from tests.test_cases.test_create_manual_reql_segmentation import CreateManualReqlSegmentationTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(CreateManualReqlSegmentationTestCase))
+    from tests.test_cases.test_update_manual_reql_segmentation import UpdateManualReqlSegmentationTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UpdateManualReqlSegmentationTestCase))
+    from tests.test_cases.test_add_manual_reql_segment import AddManualReqlSegmentTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(AddManualReqlSegmentTestCase))
+    from tests.test_cases.test_update_manual_reql_segment import UpdateManualReqlSegmentTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(UpdateManualReqlSegmentTestCase))
+    from tests.test_cases.test_delete_manual_reql_segment import DeleteManualReqlSegmentTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteManualReqlSegmentTestCase))
+    from tests.test_cases.test_list_segmentations import ListSegmentationsTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListSegmentationsTestCase))
+    from tests.test_cases.test_get_segmentation import GetSegmentationTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(GetSegmentationTestCase))
+    from tests.test_cases.test_delete_segmentation import DeleteSegmentationTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteSegmentationTestCase))
     from tests.test_cases.test_batch import BatchTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(BatchTestCase))
 

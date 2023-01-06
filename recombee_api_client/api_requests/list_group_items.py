@@ -9,7 +9,7 @@ class ListGroupItems(Request):
     List all the items present in the given group.
     Required parameters:
     
-    :param group_id: ID of the group items of which are to be listed.
+    :param group_id: ID of the group whose items are to be listed.
     
 
     """

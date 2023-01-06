@@ -18,7 +18,7 @@ class ListSearchSynonyms(Request):
     """
 
     def __init__(self, count: int = DEFAULT, offset: int = DEFAULT):
-        super().__init__(path="/synonyms/items/" % (), method='get', timeout=100000, ensure_https=False)
+        super().__init__(path="/synonyms/items/", method='get', timeout=100000, ensure_https=False)
         self.count = count
         self.offset = offset
 

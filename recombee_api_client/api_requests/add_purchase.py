@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class AddPurchase(Request):
     """
-    Adds a purchase of a given item made by a given user.
+    Adds a purchase of the given item made by the given user.
     
     Required parameters:
     
@@ -21,11 +21,11 @@ class AddPurchase(Request):
     
     :param cascade_create: Sets whether the given user/item should be created if not present in the database.
     
-    :param amount: Amount (number) of purchased items. The default is 1. For example if `user-x` purchases two `item-y` during a single order (session...), the `amount` should equal to 2.
+    :param amount: Amount (number) of purchased items. The default is 1. For example, if `user-x` purchases two `item-y` during a single order (session...), the `amount` should equal 2.
     
-    :param price: Price paid by the user for the item. If `amount` is greater than 1, sum of prices of all the items should be given.
+    :param price: Price paid by the user for the item. If `amount` is greater than 1, the sum of prices of all the items should be given.
     
-    :param profit: Your profit from the purchased item. The profit is natural in e-commerce domain (for example if `user-x` purchases `item-y` for $100 and the gross margin is 30 %, then the profit is $30), but is applicable also in other domains (for example at a news company it may be income from displayed advertisement on article page). If `amount` is greater than 1, sum of profit of all the items should be given.
+    :param profit: Your profit from the purchased item. The profit is natural in the e-commerce domain (for example, if `user-x` purchases `item-y` for $100 and the gross margin is 30 %, then the profit is $30) but is also applicable in other domains (for example, at a news company it may be income from a displayed advertisement on article page). If `amount` is greater than 1, the sum of profit of all the items should be given.
     
     :param recomm_id: If this purchase is based on a recommendation request, `recommId` is the id of the clicked recommendation.
     
@@ -35,7 +35,7 @@ class AddPurchase(Request):
     """
 
     def __init__(self, user_id: str, item_id: str, timestamp: Union[str, int] = DEFAULT, cascade_create: bool = DEFAULT, amount: float = DEFAULT, price: float = DEFAULT, profit: float = DEFAULT, recomm_id: str = DEFAULT, additional_data: dict = DEFAULT):
-        super().__init__(path="/purchases/" % (), method='post', timeout=1000, ensure_https=False)
+        super().__init__(path="/purchases/", method='post', timeout=1000, ensure_https=False)
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp

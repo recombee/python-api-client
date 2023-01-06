@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class ListUserBookmarks(Request):
     """
-    List all the bookmarks ever made by a given user.
+    Lists all the bookmarks ever made by the given user.
     Required parameters:
     
     :param user_id: ID of the user whose bookmarks are to be listed.

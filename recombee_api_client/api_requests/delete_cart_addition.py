@@ -6,24 +6,24 @@ DEFAULT = uuid.uuid4()
 
 class DeleteCartAddition(Request):
     """
-    Deletes an existing cart addition uniquely specified by `userId`, `itemId`, and `timestamp` or all the cart additions with given `userId` and `itemId` if `timestamp` is omitted.
+    Deletes an existing cart addition uniquely specified by `userId`, `itemId`, and `timestamp` or all the cart additions with the given `userId` and `itemId` if `timestamp` is omitted.
     
     Required parameters:
     
     :param user_id: ID of the user who made the cart addition.
     
-    :param item_id: ID of the item of which was added to cart.
+    :param item_id: ID of the item which was added to the cart.
     
     
     Optional parameters:
     
-    :param timestamp: Unix timestamp of the cart addition. If the `timestamp` is omitted, then all the cart additions with given `userId` and `itemId` are deleted.
+    :param timestamp: Unix timestamp of the cart addition. If the `timestamp` is omitted, then all the cart additions with the given `userId` and `itemId` are deleted.
     
 
     """
 
     def __init__(self, user_id: str, item_id: str, timestamp: Union[str, int] = DEFAULT):
-        super().__init__(path="/cartadditions/" % (), method='delete', timeout=1000, ensure_https=False)
+        super().__init__(path="/cartadditions/", method='delete', timeout=1000, ensure_https=False)
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp

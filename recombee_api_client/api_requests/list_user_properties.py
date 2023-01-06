@@ -12,7 +12,7 @@ class ListUserProperties(Request):
     """
 
     def __init__(self):
-        super().__init__(path="/users/properties/list/" % (), method='get', timeout=100000, ensure_https=False)
+        super().__init__(path="/users/properties/list/", method='get', timeout=100000, ensure_https=False)
 
     def get_body_parameters(self) -> dict:
         """

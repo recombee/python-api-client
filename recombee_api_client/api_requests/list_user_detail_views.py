@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class ListUserDetailViews(Request):
     """
-    Lists all the detail views of different items ever made by a given user.
+    Lists all the detail views of different items ever made by the given user.
     Required parameters:
     
     :param user_id: ID of the user whose detail views are to be listed.

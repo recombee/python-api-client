@@ -32,7 +32,7 @@ class AddSearchSynonym(Request):
     """
 
     def __init__(self, term: str, synonym: str, one_way: bool = DEFAULT):
-        super().__init__(path="/synonyms/items/" % (), method='post', timeout=10000, ensure_https=False)
+        super().__init__(path="/synonyms/items/", method='post', timeout=10000, ensure_https=False)
         self.term = term
         self.synonym = synonym
         self.one_way = one_way

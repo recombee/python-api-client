@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class DeleteUserProperty(Request):
     """
-    Deleting an user property is roughly equivalent to removing a column from the table of users.
+    Deleting a user property is roughly equivalent to removing a column from the table of users.
     
     Required parameters:
     

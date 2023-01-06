@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class ListUserPurchases(Request):
     """
-    List all the purchases ever made by a given user.
+    Lists all the purchases ever made by the given user.
     Required parameters:
     
     :param user_id: ID of the user whose purchases are to be listed.

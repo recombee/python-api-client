@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class DeleteRating(Request):
     """
-    Deletes an existing rating specified by (`userId`, `itemId`, `timestamp`) from the database or all the ratings with given `userId` and `itemId` if `timestamp` is omitted.
+    Deletes an existing rating specified by (`userId`, `itemId`, `timestamp`) from the database or all the ratings with the given `userId` and `itemId` if `timestamp` is omitted.
     
     Required parameters:
     
@@ -17,13 +17,13 @@ class DeleteRating(Request):
     
     Optional parameters:
     
-    :param timestamp: Unix timestamp of the rating. If the `timestamp` is omitted, then all the ratings with given `userId` and `itemId` are deleted.
+    :param timestamp: Unix timestamp of the rating. If the `timestamp` is omitted, then all the ratings with the given `userId` and `itemId` are deleted.
     
 
     """
 
     def __init__(self, user_id: str, item_id: str, timestamp: Union[str, int] = DEFAULT):
-        super().__init__(path="/ratings/" % (), method='delete', timeout=1000, ensure_https=False)
+        super().__init__(path="/ratings/", method='delete', timeout=1000, ensure_https=False)
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp

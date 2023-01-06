@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class ListUserRatings(Request):
     """
-    List all the ratings ever submitted by a given user.
+    Lists all the ratings ever submitted by the given user.
     Required parameters:
     
     :param user_id: ID of the user whose ratings are to be listed.

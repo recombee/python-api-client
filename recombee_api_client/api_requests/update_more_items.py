@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class UpdateMoreItems(Request):
     """
-    Update (some) property values of all the items that pass the filter.
+    Updates (some) property values of all the items that pass the filter.
     
     Example: *Setting all the items that are older than a week as unavailable*
     
@@ -19,15 +19,15 @@ class UpdateMoreItems(Request):
     
     Required parameters:
     
-    :param filter: A [ReQL](https://docs.recombee.com/reql.html) expression, which return `true` for the items that shall be updated.
+    :param filter: A [ReQL](https://docs.recombee.com/reql.html) expression, which returns `true` for the items that shall be updated.
     
-    :param changes: A dictionary where the keys are properties which shall be updated.
+    :param changes: A dictionary where the keys are properties that shall be updated.
     
 
     """
 
     def __init__(self, filter: str, changes: dict):
-        super().__init__(path="/more-items/" % (), method='post', timeout=1000, ensure_https=False)
+        super().__init__(path="/more-items/", method='post', timeout=1000, ensure_https=False)
         self.filter = filter
         self.changes = changes
 

@@ -6,9 +6,9 @@ DEFAULT = uuid.uuid4()
 
 class DeleteGroup(Request):
     """
-    Deletes the group of given `groupId` from the database.
+    Deletes the group of the given `groupId` from the database.
     
-    Deleting a group will only delete assignment of items to it, not the items themselves!
+    Deleting a group will only delete the assignment of items to it, not the items themselves!
     
     Required parameters:
     

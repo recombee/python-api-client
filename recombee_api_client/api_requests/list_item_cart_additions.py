@@ -6,10 +6,10 @@ DEFAULT = uuid.uuid4()
 
 class ListItemCartAdditions(Request):
     """
-    List all the ever-made cart addition of a given item.
+    Lists all the ever-made cart additions of the given item.
     Required parameters:
     
-    :param item_id: ID of the item of which the cart addition are to be listed.
+    :param item_id: ID of the item whose cart additions are to be listed.
     
     
 

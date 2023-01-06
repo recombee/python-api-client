@@ -6,10 +6,10 @@ DEFAULT = uuid.uuid4()
 
 class ListItemPurchases(Request):
     """
-    List all the ever-made purchases of a given item.
+    Lists all the ever-made purchases of the given item.
     Required parameters:
     
-    :param item_id: ID of the item of which the pucrhases are to be listed.
+    :param item_id: ID of the item whose purchases are to be listed.
     
     
 

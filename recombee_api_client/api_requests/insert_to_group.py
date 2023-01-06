@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class InsertToGroup(Request):
     """
-    Inserts an existing item/group into group of given `groupId`.
+    Inserts an existing item/group into a group of the given `groupId`.
     
     Required parameters:
     
@@ -19,7 +19,7 @@ class InsertToGroup(Request):
     
     Optional parameters:
     
-    :param cascade_create: Indicates that any non-existing entity specified within the request should be created (as is corresponding PUT requests were invoked). This concerns both the `groupId` and the `groupId`. If `cascadeCreate` is set true, the behavior also depends on the `itemType`. Either items or group may be created if not present in the database.
+    :param cascade_create: Indicates that any non-existing entity specified within the request should be created (as if corresponding PUT requests were invoked). This concerns both the `groupId` and the `groupId`. If `cascadeCreate` is set to true, the behavior also depends on the `itemType`. Either items or group may be created if not present in the database.
     
 
     """

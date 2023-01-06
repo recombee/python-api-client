@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class AddDetailView(Request):
     """
-    Adds a detail view of a given item made by a given user.
+    Adds a detail view of the given item made by the given user.
     
     Required parameters:
     
@@ -31,7 +31,7 @@ class AddDetailView(Request):
     """
 
     def __init__(self, user_id: str, item_id: str, timestamp: Union[str, int] = DEFAULT, duration: int = DEFAULT, cascade_create: bool = DEFAULT, recomm_id: str = DEFAULT, additional_data: dict = DEFAULT):
-        super().__init__(path="/detailviews/" % (), method='post', timeout=1000, ensure_https=False)
+        super().__init__(path="/detailviews/", method='post', timeout=1000, ensure_https=False)
         self.user_id = user_id
         self.item_id = item_id
         self.timestamp = timestamp

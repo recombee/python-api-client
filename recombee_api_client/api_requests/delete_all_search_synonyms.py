@@ -12,7 +12,7 @@ class DeleteAllSearchSynonyms(Request):
     """
 
     def __init__(self):
-        super().__init__(path="/synonyms/items/" % (), method='delete', timeout=10000, ensure_https=False)
+        super().__init__(path="/synonyms/items/", method='delete', timeout=10000, ensure_https=False)
 
     def get_body_parameters(self) -> dict:
         """

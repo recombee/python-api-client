@@ -6,10 +6,10 @@ DEFAULT = uuid.uuid4()
 
 class ListItemBookmarks(Request):
     """
-    List all the ever-made bookmarks of a given item.
+    Lists all the ever-made bookmarks of the given item.
     Required parameters:
     
-    :param item_id: ID of the item of which the bookmarks are to be listed.
+    :param item_id: ID of the item whose bookmarks are to be listed.
     
     
 

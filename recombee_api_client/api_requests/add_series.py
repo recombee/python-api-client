@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class AddSeries(Request):
     """
-    Creates new series in the database.
+    Creates a new series in the database.
     Required parameters:
     
     :param series_id: ID of the series to be created.

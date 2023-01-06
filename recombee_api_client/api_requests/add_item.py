@@ -6,9 +6,9 @@ DEFAULT = uuid.uuid4()
 
 class AddItem(Request):
     """
-    Adds new item of given `itemId` to the items catalog.
+    Adds new item of the given `itemId` to the items catalog.
     
-    All the item properties for the newly created items are set null.
+    All the item properties for the newly created items are set to null.
     
     Required parameters:
     

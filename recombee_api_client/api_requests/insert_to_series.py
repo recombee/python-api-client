@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class InsertToSeries(Request):
     """
-    Inserts an existing item/series into series of given seriesId at position determined by time.
+    Inserts an existing item/series into a series of the given seriesId at a position determined by time.
     
     Required parameters:
     
@@ -21,7 +21,7 @@ class InsertToSeries(Request):
     
     Optional parameters:
     
-    :param cascade_create: Indicates that any non-existing entity specified within the request should be created (as is corresponding PUT requests were invoked). This concerns both the `seriesId` and the `itemId`. If `cascadeCreate` is set true, the behavior also depends on the `itemType`. Either item or series may be created if not present in the database.
+    :param cascade_create: Indicates that any non-existing entity specified within the request should be created (as if corresponding PUT requests were invoked). This concerns both the `seriesId` and the `itemId`. If `cascadeCreate` is set to true, the behavior also depends on the `itemType`. Either item or series may be created if not present in the database.
     
 
     """

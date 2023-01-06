@@ -11,7 +11,7 @@ class ListSeries(Request):
     """
 
     def __init__(self):
-        super().__init__(path="/series/list/" % (), method='get', timeout=100000, ensure_https=False)
+        super().__init__(path="/series/list/", method='get', timeout=100000, ensure_https=False)
 
     def get_body_parameters(self) -> dict:
         """

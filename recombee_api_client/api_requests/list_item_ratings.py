@@ -6,10 +6,10 @@ DEFAULT = uuid.uuid4()
 
 class ListItemRatings(Request):
     """
-    List all the ratings of an item ever submitted by different users.
+    Lists all the ratings of an item ever submitted by different users.
     Required parameters:
     
-    :param item_id: ID of the item of which the ratings are to be listed.
+    :param item_id: ID of the item whose ratings are to be listed.
     
     
 

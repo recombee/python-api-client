@@ -7,7 +7,7 @@ DEFAULT = uuid.uuid4()
 class SetViewPortion(Request):
     """
     Sets viewed portion of an item (for example a video or article) by a user (at a session).
-    If you send new request with the same (`userId`, `itemId`, `sessionId`), the portion gets updated.
+    If you send a new request with the same (`userId`, `itemId`, `sessionId`), the portion gets updated.
     
     Required parameters:
     
@@ -15,12 +15,12 @@ class SetViewPortion(Request):
     
     :param item_id: Viewed item
     
-    :param portion: Viewed portion of the item (number between 0.0 (viewed nothing) and 1.0 (viewed full item) ). It should be the really viewed part of the item, no matter seeking, so for example if the user seeked immediately to half of the item and then viewed 10% of the item, the `portion` should still be `0.1`.
+    :param portion: Viewed portion of the item (number between 0.0 (viewed nothing) and 1.0 (viewed full item) ). It should be the actual viewed part of the item, no matter the seeking. For example, if the user seeked immediately to half of the item and then viewed 10% of the item, the `portion` should still be `0.1`.
     
     
     Optional parameters:
     
-    :param session_id: ID of session in which the user viewed the item. Default is `null` (`None`, `nil`, `NULL` etc. depending on language).
+    :param session_id: ID of the session in which the user viewed the item. Default is `null` (`None`, `nil`, `NULL` etc., depending on the language).
     
     :param timestamp: UTC timestamp of the rating as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
     
@@ -34,7 +34,7 @@ class SetViewPortion(Request):
     """
 
     def __init__(self, user_id: str, item_id: str, portion: float, session_id: str = DEFAULT, timestamp: Union[str, int] = DEFAULT, cascade_create: bool = DEFAULT, recomm_id: str = DEFAULT, additional_data: dict = DEFAULT):
-        super().__init__(path="/viewportions/" % (), method='post', timeout=1000, ensure_https=False)
+        super().__init__(path="/viewportions/", method='post', timeout=1000, ensure_https=False)
         self.user_id = user_id
         self.item_id = item_id
         self.portion = portion

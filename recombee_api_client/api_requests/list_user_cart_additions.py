@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class ListUserCartAdditions(Request):
     """
-    List all the cart additions ever made by a given user.
+    Lists all the cart additions ever made by the given user.
     Required parameters:
     
     :param user_id: ID of the user whose cart additions are to be listed.

@@ -6,10 +6,10 @@ DEFAULT = uuid.uuid4()
 
 class ListSeriesItems(Request):
     """
-    List all the items present in the given series, sorted according to their time index values.
+    Lists all the items present in the given series, sorted according to their time index values.
     Required parameters:
     
-    :param series_id: ID of the series items of which are to be listed.
+    :param series_id: ID of the series whose items are to be listed.
     
 
     """

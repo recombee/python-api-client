@@ -6,11 +6,11 @@ DEFAULT = uuid.uuid4()
 
 class ListItemViewPortions(Request):
     """
-    List all the view portions of an item ever submitted by different users.
+    Lists all the view portions of an item ever submitted by different users.
     
     Required parameters:
     
-    :param item_id: ID of the item of which the view portions are to be listed.
+    :param item_id: ID of the item whose view portions are to be listed.
     
     
 

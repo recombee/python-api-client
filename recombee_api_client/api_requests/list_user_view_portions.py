@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class ListUserViewPortions(Request):
     """
-    List all the view portions ever submitted by a given user.
+    Lists all the view portions ever submitted by the given user.
     
     Required parameters:
     

@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class DeleteSearchSynonym(Request):
     """
-    Deletes synonym of given `id` and this synonym is no longer taken into account in the [Search items](https://docs.recombee.com/api.html#search-items).
+    Deletes synonym of the given `id`. This synonym is no longer taken into account in the [Search items](https://docs.recombee.com/api.html#search-items).
     
     Required parameters:
     

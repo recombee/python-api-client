@@ -48,7 +48,7 @@ class ListUsers(Request):
     ```
     
     
-    :param included_properties: Allows to specify, which properties should be returned when `returnProperties=true` is set. The properties are given as a comma-separated list. 
+    :param included_properties: Allows specifying which properties should be returned when `returnProperties=true` is set. The properties are given as a comma-separated list.
     
     
     Example response for `includedProperties=country`:
@@ -80,7 +80,7 @@ class ListUsers(Request):
     """
 
     def __init__(self, filter: str = DEFAULT, count: int = DEFAULT, offset: int = DEFAULT, return_properties: bool = DEFAULT, included_properties: list = DEFAULT):
-        super().__init__(path="/users/list/" % (), method='get', timeout=100000, ensure_https=False)
+        super().__init__(path="/users/list/", method='get', timeout=100000, ensure_https=False)
         self.filter = filter
         self.count = count
         self.offset = offset

@@ -6,11 +6,11 @@ DEFAULT = uuid.uuid4()
 
 class GetItemValues(Request):
     """
-    Get all the current property values of a given item.
+    Gets all the current property values of the given item.
     
     Required parameters:
     
-    :param item_id: ID of the item properties of which are to be obtained.
+    :param item_id: ID of the item whose properties are to be obtained.
     
     
 
