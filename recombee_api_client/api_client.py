@@ -36,6 +36,7 @@ class RecombeeClient:
     :param region: region of the Recombee cluster where the database is located
     """
     BATCH_MAX_SIZE = 10000
+    CLIENT_CLS = httpx.Client
 
     def __init__(self, database_id: str, token: str, protocol: str = 'https', options: dict = None, region: Region = None):
         self.database_id = database_id
@@ -43,13 +44,9 @@ class RecombeeClient:
         self.protocol = protocol
 
         self.base_uri = self._get_base_uri(options=options or {}, region=region)
-        self.client = httpx.Client()
+        self.client = self.CLIENT_CLS()
 
-    def send(self, request: Request) -> Union[dict, str, list]:
-        """
-        :param request: Request to be sent to Recombee recommender
-        """
-        
+    def _send(self, request: Request) -> Union[dict, str, list]:
         if isinstance(request, Batch) and len(request.requests) > self.BATCH_MAX_SIZE:
             return self._send_multipart_batch(request)
 
@@ -58,15 +55,22 @@ class RecombeeClient:
         uri = self._sign_url(uri)
         protocol = 'https' if request.ensure_https else self.protocol
         uri = protocol + '://' + self.base_uri + uri
+
+        if request.method == 'put':
+            return self._put(request, uri, timeout)
+        elif request.method == 'get':
+            return self._get(request, uri, timeout)
+        elif request.method == 'post':
+            return self._post(request, uri, timeout)
+        elif request.method == 'delete':
+            return self._delete(request, uri, timeout)
+
+    def send(self, request: Request) -> Union[dict, str, list]:
+        """
+        :param request: Request to be sent to Recombee recommender
+        """
         try:
-            if request.method == 'put':
-                response = self._put(request, uri, timeout)
-            elif request.method == 'get':
-                response = self._get(request, uri, timeout)
-            elif request.method == 'post':
-                response = self._post(request, uri, timeout)
-            elif request.method == 'delete':
-                response = self._delete(request, uri, timeout)
+            response = self._send(request)
         except httpx.TimeoutException:
             raise ApiTimeoutException(request)
 
@@ -182,3 +186,19 @@ class RecombeeClient:
         url = uri + time_part
         sign = hmac.new(str.encode(self.token), str.encode(url), sha1).hexdigest()
         return sign
+
+
+class AsyncRecombeeClient(RecombeeClient):
+    CLIENT_CLS = httpx.AsyncClient
+
+    async def send(self, request: Request) -> Union[dict, str, list]:
+        """
+        :param request: Request to be sent to Recombee recommender
+        """
+        try:
+            response = await self._send(request)
+        except httpx.TimeoutException:
+            raise ApiTimeoutException(request)
+
+        self._check_errors(response, request)
+        return response.json()
