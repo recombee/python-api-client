@@ -60,15 +60,18 @@ class RecombeeClient:
         uri = protocol + '://' + self.base_uri + uri
         try:
             if request.method == 'put':
-                return self._put(request, uri, timeout)
+                response = self._put(request, uri, timeout)
             elif request.method == 'get':
-                return self._get(request, uri, timeout)
+                response = self._get(request, uri, timeout)
             elif request.method == 'post':
-                return self._post(request, uri, timeout)
+                response = self._post(request, uri, timeout)
             elif request.method == 'delete':
-                return self._delete(request, uri, timeout)
+                response = self._delete(request, uri, timeout)
         except httpx.TimeoutException:
             raise ApiTimeoutException(request)
+
+        self._check_errors(response, request)
+        return response.json()
 
     @staticmethod
     def _get_regional_base_uri(region: Region) -> str:
@@ -101,35 +104,27 @@ class RecombeeClient:
         return headers
 
     def _put(self, request: Request, uri: str, timeout: int):
-        response = self.client.put(uri,
-                                   data=json.dumps(request.get_body_parameters()),
-                                   headers=self._get_http_headers({'Content-Type': 'application/json'}),
-                                   timeout=timeout)
-        self._check_errors(response, request)
-        return response.json()
+        return self.client.put(uri,
+                               data=json.dumps(request.get_body_parameters()),
+                               headers=self._get_http_headers({'Content-Type': 'application/json'}),
+                               timeout=timeout)
 
     def _get(self, request: Request, uri: str, timeout: int):
-        response = self.client.get(uri,
-                                   headers=self._get_http_headers(),
-                                   timeout=timeout)
-        self._check_errors(response, request)
-        return response.json()
+        return self.client.get(uri,
+                               headers=self._get_http_headers(),
+                               timeout=timeout)
 
     def _post(self, request: Request, uri: str, timeout: int):
-        response = self.client.post(uri,
-                                    data=json.dumps(request.get_body_parameters()),
-                                    headers=self._get_http_headers({'Content-Type': 'application/json'}),
-                                    timeout=timeout)
-        self._check_errors(response, request)
-        return response.json()
+        return self.client.post(uri,
+                                data=json.dumps(request.get_body_parameters()),
+                                headers=self._get_http_headers({'Content-Type': 'application/json'}),
+                                timeout=timeout)
 
     def _delete(self, request: Request, uri: str, timeout: int):
-        response = self.client.delete(uri,
-                                      data=json.dumps(request.get_body_parameters()),
-                                      headers=self._get_http_headers({'Content-Type': 'application/json'}),
-                                      timeout=timeout)
-        self._check_errors(response, request)
-        return response.json()
+        return self.client.delete(uri,
+                                  data=json.dumps(request.get_body_parameters()),
+                                  headers=self._get_http_headers({'Content-Type': 'application/json'}),
+                                  timeout=timeout)
 
     def _check_errors(self, response, request: Request):
         status_code = response.status_code
