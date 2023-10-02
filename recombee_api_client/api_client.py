@@ -5,7 +5,7 @@ import hmac
 from typing import Union
 from enum import Enum
 
-import requests
+import httpx
 from hashlib import sha1
 from urllib.parse import quote
 
@@ -43,6 +43,7 @@ class RecombeeClient:
         self.protocol = protocol
 
         self.base_uri = self.__get_base_uri(options=options or {}, region=region)
+        self.client = httpx.Client()
 
     def send(self, request: Request) -> Union[dict, str, list]:
         """
@@ -66,7 +67,7 @@ class RecombeeClient:
                 return self.__post(request, uri, timeout)
             elif request.method == 'delete':
                 return self.__delete(request, uri, timeout)
-        except requests.exceptions.Timeout:
+        except httpx.TimeoutException:
             raise ApiTimeoutException(request)
 
     @staticmethod
@@ -100,33 +101,33 @@ class RecombeeClient:
         return headers
 
     def __put(self, request: Request, uri: str, timeout: int):
-        response = requests.put(uri, 
-                                data=json.dumps(request.get_body_parameters()),
-                                headers=self.__get_http_headers({'Content-Type': 'application/json'}),
-                                timeout=timeout)
+        response = self.client.put(uri,
+                                   data=json.dumps(request.get_body_parameters()),
+                                   headers=self.__get_http_headers({'Content-Type': 'application/json'}),
+                                   timeout=timeout)
         self.__check_errors(response, request)
         return response.json()
 
     def __get(self, request: Request, uri: str, timeout: int):
-        response = requests.get(uri,
-                                headers=self.__get_http_headers(),
-                                timeout=timeout)
+        response = self.client.get(uri,
+                                   headers=self.__get_http_headers(),
+                                   timeout=timeout)
         self.__check_errors(response, request)
         return response.json()
 
     def __post(self, request: Request, uri: str, timeout: int):
-        response = requests.post(uri,
-                                 data=json.dumps(request.get_body_parameters()),
-                                 headers=self.__get_http_headers({'Content-Type': 'application/json'}),
-                                 timeout=timeout)
+        response = self.client.post(uri,
+                                    data=json.dumps(request.get_body_parameters()),
+                                    headers=self.__get_http_headers({'Content-Type': 'application/json'}),
+                                    timeout=timeout)
         self.__check_errors(response, request)
         return response.json()
 
     def __delete(self, request: Request, uri: str, timeout: int):
-        response = requests.delete(uri,
-                                   data=json.dumps(request.get_body_parameters()),
-                                   headers=self.__get_http_headers({'Content-Type': 'application/json'}),
-                                   timeout=timeout)
+        response = self.client.delete(uri,
+                                      data=json.dumps(request.get_body_parameters()),
+                                      headers=self.__get_http_headers({'Content-Type': 'application/json'}),
+                                      timeout=timeout)
         self.__check_errors(response, request)
         return response.json()
 
