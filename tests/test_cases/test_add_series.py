@@ -9,5 +9,5 @@ from recombee_api_client.api_requests import *
 
 class AddSeriesTestCase(AddEntityTest):
 
-    def create_request(self, series_id):
-        return AddSeries(series_id)
+    def create_request(self, series_id, cascade_create=None):
+        return AddSeries(series_id, cascade_create=cascade_create)

@@ -9,5 +9,5 @@ from recombee_api_client.api_requests import *
 
 class DeleteSeriesTestCase(DeleteEntityTest):
 
-    def create_request(self, series_id):
-        return DeleteSeries(series_id)
+    def create_request(self, series_id, cascade_delete=None):
+        return DeleteSeries(series_id, cascade_delete=cascade_delete)

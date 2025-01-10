@@ -21,13 +21,13 @@ class InsertToSeries(Request):
     
     Optional parameters:
     
-    :param cascade_create: Indicates that any non-existing entity specified within the request should be created (as if corresponding PUT requests were invoked). This concerns both the `seriesId` and the `itemId`. If `cascadeCreate` is set to true, the behavior also depends on the `itemType`. Either item or series may be created if not present in the database.
+    :param cascade_create: Indicates that any non-existing entity specified within the request should be created (as if corresponding PUT requests were invoked). This concerns both the `seriesId` and the `itemId`. If `cascadeCreate` is set to true, the behavior also depends on the `itemType`. In case of `item`, an item is created, in case of `series` a series + corresponding item with the same ID is created.
     
 
     """
 
     def __init__(self, series_id: str, item_type: str, item_id: str, time: float, cascade_create: bool = DEFAULT):
-        super().__init__(path="/series/%s/items/" % (series_id), method='post', timeout=1000, ensure_https=False)
+        super().__init__(path="/series/%s/items/" % (series_id), method='post', timeout=3000, ensure_https=False)
         self.series_id = series_id
         self.item_type = item_type
         self.item_id = item_id

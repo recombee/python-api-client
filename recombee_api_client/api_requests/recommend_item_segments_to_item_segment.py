@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class RecommendItemSegmentsToItemSegment(Request):
     """
-    Recommends Segments from a result Segmentation that are the most relevant to a particular Segment from a context Segmentation.
+    Recommends Segments from a result [Segmentation](https://docs.recombee.com/segmentations.html) that are the most relevant to a particular Segment from a context Segmentation.
     
     Based on the used Segmentations, this endpoint can be used for example for:
     
@@ -14,7 +14,7 @@ class RecommendItemSegmentsToItemSegment(Request):
       - Recommending the related brands to particular category
       - Recommending the related artists to a particular genre (assuming songs are the Items)
     
-    You need to set the used context and result Segmentation the Admin UI in the Scenario settings prior to using this endpoint.
+    You need to set the used context and result Segmentation the Admin UI in the [Scenario settings](https://docs.recombee.com/scenarios) prior to using this endpoint.
     
     The returned segments are sorted by relevance (first segment being the most relevant).
     

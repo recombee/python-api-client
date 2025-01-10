@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class AddItemProperty(Request):
     """
-    Adding an item property is somehow equivalent to adding a column to the table of items. The items may be characterized by various properties of different types.
+    Adding an item property is somewhat equivalent to adding a column to the table of items. The items may be characterized by various properties of different types.
     
     Required parameters:
     

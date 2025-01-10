@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class RecommendItemSegmentsToUser(Request):
     """
-    Recommends the top Segments from a Segmentation for a particular user, based on the user's past interactions.
+    Recommends the top Segments from a [Segmentation](https://docs.recombee.com/segmentations.html) for a particular user, based on the user's past interactions.
     
     Based on the used Segmentation, this endpoint can be used for example for:
     
@@ -15,7 +15,7 @@ class RecommendItemSegmentsToUser(Request):
       - Recommending the top brands for the user
       - Recommending the top artists for the user
     
-    You need to set the used Segmentation the Admin UI in the Scenario settings prior to using this endpoint.
+    You need to set the used Segmentation the Admin UI in the [Scenario settings](https://docs.recombee.com/scenarios) prior to using this endpoint.
     
     The returned segments are sorted by relevance (first segment being the most relevant).
     

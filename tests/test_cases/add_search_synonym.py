@@ -4,12 +4,15 @@
 # This file is auto-generated, do not edit
 #
 
+import time
+from abc import ABC, abstractmethod
 from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, RecommendationsTest
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class AddSearchSynonymTest(RecombeeTest):
+class AddSearchSynonymTest(RecombeeTest, ABC):
 
+    @abstractmethod
     def create_request(self,term,synonym,one_way=None):
         pass
 
@@ -23,7 +26,7 @@ class AddSearchSynonymTest(RecombeeTest):
         req = self.create_request('sci-fi', 'science fiction', one_way=True)
         try:
             self.client.send(req)
-            self.assertFail()
+            self.fail()
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 409)
 

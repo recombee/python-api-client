@@ -4,12 +4,15 @@
 # This file is auto-generated, do not edit
 #
 
+import time
+from abc import ABC, abstractmethod
 from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, RecommendationsTest
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class AddPropertyTest(RecombeeTest):
+class AddPropertyTest(RecombeeTest, ABC):
 
+    @abstractmethod
     def create_request(self,property_name,type):
         pass
 
@@ -24,7 +27,7 @@ class AddPropertyTest(RecombeeTest):
         req = self.create_request('prop', 'integer')
         try:
             self.client.send(req)
-            self.assertFail()
+            self.fail()
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 400)
         # it 'really stores property to the system'
@@ -32,7 +35,7 @@ class AddPropertyTest(RecombeeTest):
         resp = self.client.send(req)
         try:
             self.client.send(req)
-            self.assertFail()
+            self.fail()
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 409)
 

@@ -4,12 +4,15 @@
 # This file is auto-generated, do not edit
 #
 
+import time
+from abc import ABC, abstractmethod
 from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, RecommendationsTest
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class AddInteractionTest(RecombeeTest):
+class AddInteractionTest(RecombeeTest, ABC):
 
+    @abstractmethod
     def create_request(self,user_id,item_id,timestamp=None,cascade_create=None,recomm_id=None,additional_data=None):
         pass
 
@@ -28,29 +31,22 @@ class AddInteractionTest(RecombeeTest):
         req = self.create_request('entity_id', 'nonex_id')
         try:
             self.client.send(req)
-            self.assertFail()
+            self.fail()
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 404)
         # it 'fails with nonexisting user id'
         req = self.create_request('nonex_id', 'entity_id')
         try:
             self.client.send(req)
-            self.assertFail()
+            self.fail()
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 404)
-        # it 'fails with invalid time'
-        req = self.create_request('entity_id', 'entity_id', timestamp=-15)
-        try:
-            self.client.send(req)
-            self.assertFail()
-        except ResponseException as ex:
-            self.assertEqual(ex.status_code, 400)
         # it 'really stores interaction to the system'
         req = self.create_request('u_id2', 'i_id2', cascade_create=True, timestamp=5)
         resp = self.client.send(req)
         try:
             self.client.send(req)
-            self.assertFail()
+            self.fail()
         except ResponseException as ex:
             self.assertEqual(ex.status_code, 409)
 

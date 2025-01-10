@@ -4,17 +4,21 @@
 # This file is auto-generated, do not edit
 #
 
+import time
+from abc import ABC, abstractmethod
 from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, RecommendationsTest
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class ListSearchSynonymsTest(RecombeeTest):
+class ListSearchSynonymsTest(RecombeeTest, ABC):
 
+    @abstractmethod
     def create_request(self,count=None,offset=None):
         pass
 
     def test_list_search_synonyms(self):
 
+        time.sleep(10)
         # it 'lists search synonyms'
         req = AddSearchSynonym('sci-fi', 'science fiction')
         resp = self.client.send(req)

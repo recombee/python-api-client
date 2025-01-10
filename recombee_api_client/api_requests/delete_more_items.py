@@ -17,7 +17,7 @@ class DeleteMoreItems(Request):
     """
 
     def __init__(self, filter: str):
-        super().__init__(path="/more-items/", method='delete', timeout=1000, ensure_https=False)
+        super().__init__(path="/more-items/", method='delete', timeout=100000, ensure_https=False)
         self.filter = filter
 
     def get_body_parameters(self) -> dict:

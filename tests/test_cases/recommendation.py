@@ -4,12 +4,15 @@
 # This file is auto-generated, do not edit
 #
 
+import time
+from abc import ABC, abstractmethod
 from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, RecommendationsTest
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class RecommendationTest(RecommendationsTest):
+class RecommendationTest(RecommendationsTest, ABC):
 
+    @abstractmethod
     def create_request(self,user_id,count,scenario=None,cascade_create=None,return_properties=None,included_properties=None,filter=None,booster=None,logic=None,diversity=None,expert_settings=None,return_ab_group=None):
         pass
 

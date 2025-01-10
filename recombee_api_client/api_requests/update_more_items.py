@@ -27,7 +27,7 @@ class UpdateMoreItems(Request):
     """
 
     def __init__(self, filter: str, changes: dict):
-        super().__init__(path="/more-items/", method='post', timeout=1000, ensure_https=False)
+        super().__init__(path="/more-items/", method='post', timeout=100000, ensure_https=False)
         self.filter = filter
         self.changes = changes
 

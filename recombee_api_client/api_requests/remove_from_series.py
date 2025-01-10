@@ -15,23 +15,22 @@ class RemoveFromSeries(Request):
     
     :param item_id: ID of the item iff `itemType` is `item`. ID of the series iff `itemType` is `series`.
     
-    :param time: Time index of the item to be removed.
-    
 
     """
 
-    def __init__(self, series_id: str, item_type: str, item_id: str, time: float):
-        super().__init__(path="/series/%s/items/" % (series_id), method='delete', timeout=1000, ensure_https=False)
+    def __init__(self, series_id: str, item_type: str, item_id: str):
+        super().__init__(path="/series/%s/items/" % (series_id), method='delete', timeout=3000, ensure_https=False)
         self.series_id = series_id
         self.item_type = item_type
         self.item_id = item_id
-        self.time = time
 
     def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
+        p['itemType'] = self.item_type
+        p['itemId'] = self.item_id
         return p
 
     def get_query_parameters(self) -> dict:
@@ -39,7 +38,4 @@ class RemoveFromSeries(Request):
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """
         params = dict()
-        params['itemType'] = self.item_type
-        params['itemId'] = self.item_id
-        params['time'] = self.time
         return params

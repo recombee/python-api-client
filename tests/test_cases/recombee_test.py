@@ -46,8 +46,6 @@ class RecombeeTest( unittest.TestCase ):
       AddItem('entity_id'),
       AddUser('entity_id'),
       AddSeries('entity_id'),
-      AddGroup('entity_id'),
-      InsertToGroup('entity_id', 'item', 'entity_id'),
       InsertToSeries('entity_id', 'item', 'entity_id', 1),
       AddItemProperty('int_property', 'int'),
       AddItemProperty('str_property', 'string'),

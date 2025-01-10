@@ -4,12 +4,15 @@
 # This file is auto-generated, do not edit
 #
 
+import time
+from abc import ABC, abstractmethod
 from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, RecommendationsTest
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
-class UpdateAutoReqlSegmentationTest(RecombeeTest):
+class UpdateAutoReqlSegmentationTest(RecombeeTest, ABC):
 
+    @abstractmethod
     def create_request(self,segmentation_id,expression=None,title=None,description=None):
         pass
 

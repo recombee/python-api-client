@@ -35,7 +35,7 @@ class BatchTestCase(RecombeeTest):
     self.assertEqual(sorted(resp[5]['json']), ['entity_id', 'item1', 'item2'])
     self.assertEqual(resp[6]['json'], ['item2'])
     self.assertEqual(resp[8]['json'], [])
-    self.assertEqual(resp[12]['json'], ['item2'])
+    self.assertEqual(resp[12]['json']['recomms'], ['item2'])
 
   def test_large_batch(self):
     NUM = 23578

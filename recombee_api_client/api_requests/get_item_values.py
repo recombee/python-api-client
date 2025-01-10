@@ -17,7 +17,7 @@ class GetItemValues(Request):
     """
 
     def __init__(self, item_id: str):
-        super().__init__(path="/items/%s" % (item_id), method='get', timeout=1000, ensure_https=False)
+        super().__init__(path="/items/%s" % (item_id), method='get', timeout=3000, ensure_https=False)
         self.item_id = item_id
 
     def get_body_parameters(self) -> dict:

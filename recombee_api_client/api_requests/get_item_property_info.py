@@ -16,7 +16,7 @@ class GetItemPropertyInfo(Request):
     """
 
     def __init__(self, property_name: str):
-        super().__init__(path="/items/properties/%s" % (property_name), method='get', timeout=1000, ensure_https=False)
+        super().__init__(path="/items/properties/%s" % (property_name), method='get', timeout=3000, ensure_https=False)
         self.property_name = property_name
 
     def get_body_parameters(self) -> dict:

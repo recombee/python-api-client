@@ -48,18 +48,6 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(InsertToSeriesTestCase))
     from tests.test_cases.test_remove_from_series import RemoveFromSeriesTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RemoveFromSeriesTestCase))
-    from tests.test_cases.test_add_group import AddGroupTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(AddGroupTestCase))
-    from tests.test_cases.test_delete_group import DeleteGroupTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteGroupTestCase))
-    from tests.test_cases.test_list_groups import ListGroupsTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListGroupsTestCase))
-    from tests.test_cases.test_list_group_items import ListGroupItemsTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListGroupItemsTestCase))
-    from tests.test_cases.test_insert_to_group import InsertToGroupTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(InsertToGroupTestCase))
-    from tests.test_cases.test_remove_from_group import RemoveFromGroupTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RemoveFromGroupTestCase))
     from tests.test_cases.test_add_user import AddUserTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(AddUserTestCase))
     from tests.test_cases.test_delete_user import DeleteUserTestCase
@@ -144,6 +132,8 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemSegmentsToItemTestCase))
     from tests.test_cases.test_recommend_item_segments_to_item_segment import RecommendItemSegmentsToItemSegmentTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemSegmentsToItemSegmentTestCase))
+    from tests.test_cases.test_recommend_items_to_item_segment import RecommendItemsToItemSegmentTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemsToItemSegmentTestCase))
     from tests.test_cases.test_search_items import SearchItemsTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SearchItemsTestCase))
     from tests.test_cases.test_search_item_segments import SearchItemSegmentsTestCase

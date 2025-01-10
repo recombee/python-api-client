@@ -23,7 +23,7 @@ class DeleteViewPortion(Request):
     """
 
     def __init__(self, user_id: str, item_id: str, session_id: str = DEFAULT):
-        super().__init__(path="/viewportions/", method='delete', timeout=1000, ensure_https=False)
+        super().__init__(path="/viewportions/", method='delete', timeout=3000, ensure_https=False)
         self.user_id = user_id
         self.item_id = item_id
         self.session_id = session_id

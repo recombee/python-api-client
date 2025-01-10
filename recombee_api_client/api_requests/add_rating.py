@@ -31,7 +31,7 @@ class AddRating(Request):
     """
 
     def __init__(self, user_id: str, item_id: str, rating: float, timestamp: Union[str, int] = DEFAULT, cascade_create: bool = DEFAULT, recomm_id: str = DEFAULT, additional_data: dict = DEFAULT):
-        super().__init__(path="/ratings/", method='post', timeout=1000, ensure_https=False)
+        super().__init__(path="/ratings/", method='post', timeout=3000, ensure_https=False)
         self.user_id = user_id
         self.item_id = item_id
         self.rating = rating
