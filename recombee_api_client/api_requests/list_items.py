@@ -21,7 +21,7 @@ class ListItems(Request):
     
     Example response:
     
-    ```
+    ```json
     
     [
     
@@ -61,7 +61,7 @@ class ListItems(Request):
     
     Example response for `includedProperties=description,price`:
     
-    ```
+    ```json
     
     [
     

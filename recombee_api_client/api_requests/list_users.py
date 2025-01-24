@@ -21,7 +21,7 @@ class ListUsers(Request):
     
     Example response:
     
-    ```
+    ```json
     
     [
     
@@ -53,7 +53,7 @@ class ListUsers(Request):
     
     Example response for `includedProperties=country`:
     
-    ```
+    ```json
     
     [
     

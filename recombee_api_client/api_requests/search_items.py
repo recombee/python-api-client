@@ -48,7 +48,7 @@ class SearchItems(Request):
     
     Example response:
     
-    ```
+    ```json
     
     E{lb}
     
@@ -103,7 +103,7 @@ class SearchItems(Request):
     
     Example response for `includedProperties=description,price`:
     
-    ```
+    ```json
     
     E{lb}
     

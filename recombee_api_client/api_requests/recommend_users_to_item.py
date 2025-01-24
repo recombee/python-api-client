@@ -37,7 +37,7 @@ class RecommendUsersToItem(Request):
     
     Example response:
     
-    ```
+    ```json
     
     E{lb}
     
@@ -84,7 +84,7 @@ class RecommendUsersToItem(Request):
     
     Example response for `includedProperties=country`:
     
-    ```
+    ```json
     
     E{lb}
     

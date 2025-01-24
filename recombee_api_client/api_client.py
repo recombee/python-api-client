@@ -94,7 +94,7 @@ class RecombeeClient:
 
     @staticmethod
     def __get_http_headers(additional_headers: dict = None) -> dict:
-        headers = {'User-Agent': 'recombee-python-api-client/5.0.0'}
+        headers = {'User-Agent': 'recombee-python-api-client/5.0.1'}
         if additional_headers:
             headers.update(additional_headers)
         return headers

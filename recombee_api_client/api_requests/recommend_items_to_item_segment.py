@@ -76,7 +76,7 @@ class RecommendItemsToItemSegment(Request):
     
     Example response:
     
-    ```
+    ```json
     
     E{lb}
     
@@ -131,7 +131,7 @@ class RecommendItemsToItemSegment(Request):
     
     Example response for `includedProperties=description,price`:
     
-    ```
+    ```json
     
     E{lb}
     

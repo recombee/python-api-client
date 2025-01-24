@@ -120,6 +120,8 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemsToUserTestCase))
     from tests.test_cases.test_recommend_items_to_item import RecommendItemsToItemTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemsToItemTestCase))
+    from tests.test_cases.test_recommend_items_to_item_segment import RecommendItemsToItemSegmentTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemsToItemSegmentTestCase))
     from tests.test_cases.test_recommend_next_items import RecommendNextItemsTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendNextItemsTestCase))
     from tests.test_cases.test_recommend_users_to_user import RecommendUsersToUserTestCase
@@ -132,8 +134,6 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemSegmentsToItemTestCase))
     from tests.test_cases.test_recommend_item_segments_to_item_segment import RecommendItemSegmentsToItemSegmentTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemSegmentsToItemSegmentTestCase))
-    from tests.test_cases.test_recommend_items_to_item_segment import RecommendItemsToItemSegmentTestCase
-    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(RecommendItemsToItemSegmentTestCase))
     from tests.test_cases.test_search_items import SearchItemsTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(SearchItemsTestCase))
     from tests.test_cases.test_search_item_segments import SearchItemSegmentsTestCase

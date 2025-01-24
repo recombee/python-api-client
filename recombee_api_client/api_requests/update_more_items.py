@@ -10,7 +10,7 @@ class UpdateMoreItems(Request):
     
     Example: *Setting all the items that are older than a week as unavailable*
     
-      ```
+      ```json
         {
           "filter": "'releaseDate' < now() - 7*24*3600",
           "changes": {"available": false}
