@@ -8,10 +8,10 @@ class DeleteMoreItems(Request):
     """
     Deletes all the items that pass the filter.
     
-    If an item becomes obsolete/no longer available, it is meaningful to **keep it in the catalog** (along with all the interaction data, which are very useful) and **only exclude the item from recommendations**. In such a case, use [ReQL filter](https://docs.recombee.com/reql.html) instead of deleting the item completely.
+    If an item becomes obsolete/no longer available, it is meaningful to **keep it in the catalog** (along with all the interaction data, which are very useful) and **only exclude the item from recommendations**. In such a case, use [ReQL filter](https://docs.recombee.com/reql) instead of deleting the item completely.
     Required parameters:
     
-    :param filter: A [ReQL](https://docs.recombee.com/reql.html) expression, which returns `true` for the items that shall be updated.
+    :param filter: A [ReQL](https://docs.recombee.com/reql) expression, which returns `true` for the items that shall be updated.
     
 
     """

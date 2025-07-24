@@ -11,6 +11,9 @@ class MergeUsers(Request):
     
     Merging happens between two users referred to as the *target* and the *source*. After the merge, all the interactions of the source user are attributed to the target user, and the source user is **deleted**.
     
+    By default, the *Merge Users* request is only available from server-side integrations for security reasons, to prevent potential abuse.
+    If you need to call this request from a client-side environment (such as a web or mobile app), please contact our support and request access to enable this feature for your database.
+    
     Required parameters:
     
     :param target_user_id: ID of the target user.

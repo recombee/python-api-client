@@ -76,6 +76,7 @@ from recombee_api_client.api_requests.delete_manual_reql_segment import DeleteMa
 from recombee_api_client.api_requests.list_segmentations import ListSegmentations
 from recombee_api_client.api_requests.get_segmentation import GetSegmentation
 from recombee_api_client.api_requests.delete_segmentation import DeleteSegmentation
-from recombee_api_client.api_requests.reset_database import ResetDatabase
 from recombee_api_client.api_requests.batch import Batch
+from recombee_api_client.api_requests.list_scenarios import ListScenarios
+from recombee_api_client.api_requests.reset_database import ResetDatabase
 from recombee_api_client.api_requests.request import Request

@@ -6,7 +6,7 @@ DEFAULT = uuid.uuid4()
 
 class CreateManualReqlSegmentation(Request):
     """
-    Segment the items using multiple [ReQL](https://docs.recombee.com/reql.html) filters.
+    Segment the items using multiple [ReQL](https://docs.recombee.com/reql) filters.
     
     Use the Add Manual ReQL Items Segment endpoint to create the individual segments.
     

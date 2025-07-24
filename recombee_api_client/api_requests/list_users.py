@@ -10,7 +10,7 @@ class ListUsers(Request):
     
     Optional parameters:
     
-    :param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression, which allows you to filter users to be listed. Only the users for which the expression is *true* will be returned.
+    :param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql) expression, which allows you to filter users to be listed. Only the users for which the expression is *true* will be returned.
     
     :param count: The number of users to be listed.
     

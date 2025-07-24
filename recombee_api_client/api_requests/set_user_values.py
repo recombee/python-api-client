@@ -3,7 +3,7 @@ from recombee_api_client.api_requests.set_values import SetValues
 
 class SetUserValues(SetValues):
     """
-    Set/update (some) property values of a given user. The properties (columns) must be previously created by [Add user property](https://docs.recombee.com/api.html#add-user-property).
+    Set/update (some) property values of a given user. The properties (columns) must be previously created by [Add user property](https://docs.recombee.com/api#add-user-property).
 
     Required parameters:
     :param user_id: ID of the user which will be modified.

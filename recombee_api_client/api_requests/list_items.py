@@ -10,7 +10,7 @@ class ListItems(Request):
     
     Optional parameters:
     
-    :param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql.html) expression, which allows you to filter items to be listed. Only the items for which the expression is *true* will be returned.
+    :param filter: Boolean-returning [ReQL](https://docs.recombee.com/reql) expression, which allows you to filter items to be listed. Only the items for which the expression is *true* will be returned.
     
     :param count: The number of items to be listed.
     

@@ -10,10 +10,10 @@ class RecommendNextItems(Request):
     
     It accepts `recommId` of a base recommendation request (e.g., request from the first page) and the number of items that shall be returned (`count`).
     The base request can be one of:
-      - [Recommend Items to Item](https://docs.recombee.com/api.html#recommend-items-to-item)
-      - [Recommend Items to User](https://docs.recombee.com/api.html#recommend-items-to-user)
-      - [Recommend Items to Item Segment](https://docs.recombee.com/api.html#recommend-items-to-item-segment)
-      - [Search Items](https://docs.recombee.com/api.html#search-items)
+      - [Recommend Items to Item](https://docs.recombee.com/api#recommend-items-to-item)
+      - [Recommend Items to User](https://docs.recombee.com/api#recommend-items-to-user)
+      - [Recommend Items to Item Segment](https://docs.recombee.com/api#recommend-items-to-item-segment)
+      - [Search Items](https://docs.recombee.com/api#search-items)
     
     All the other parameters are inherited from the base request.
     

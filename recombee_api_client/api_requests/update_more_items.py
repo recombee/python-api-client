@@ -19,7 +19,7 @@ class UpdateMoreItems(Request):
     
     Required parameters:
     
-    :param filter: A [ReQL](https://docs.recombee.com/reql.html) expression, which returns `true` for the items that shall be updated.
+    :param filter: A [ReQL](https://docs.recombee.com/reql) expression, which returns `true` for the items that shall be updated.
     
     :param changes: A dictionary where the keys are properties that shall be updated.
     

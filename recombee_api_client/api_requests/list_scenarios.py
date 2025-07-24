@@ -4,20 +4,15 @@ import uuid
 
 DEFAULT = uuid.uuid4()
 
-class DeleteSearchSynonym(Request):
+class ListScenarios(Request):
     """
-    Deletes synonym of the given `id`. This synonym is no longer taken into account in the [Search items](https://docs.recombee.com/api#search-items).
-    
-    Required parameters:
-    
-    :param id: ID of the synonym that should be deleted.
+    Get all [Scenarios](https://docs.recombee.com/scenarios) of the given database.
     
 
     """
 
-    def __init__(self, id: str):
-        super().__init__(path="/synonyms/items/%s" % (id), method='delete', timeout=10000, ensure_https=False)
-        self.id = id
+    def __init__(self):
+        super().__init__(path="/scenarios/", method='get', timeout=10000, ensure_https=False)
 
     def get_body_parameters(self) -> dict:
         """

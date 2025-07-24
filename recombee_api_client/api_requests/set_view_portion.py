@@ -22,7 +22,7 @@ class SetViewPortion(Request):
     
     :param session_id: ID of the session in which the user viewed the item. Default is `null` (`None`, `nil`, `NULL` etc., depending on the language).
     
-    :param timestamp: UTC timestamp of the rating as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
+    :param timestamp: UTC timestamp of the view portion as ISO8601-1 pattern or UTC epoch time. The default value is the current time.
     
     :param cascade_create: Sets whether the given user/item should be created if not present in the database.
     

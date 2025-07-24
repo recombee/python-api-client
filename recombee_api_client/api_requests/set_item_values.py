@@ -3,7 +3,7 @@ from recombee_api_client.api_requests.set_values import SetValues
 
 class SetItemValues(SetValues):
     """
-    Set/update (some) property values of a given item. The properties (columns) must be previously created by [Add item property](https://docs.recombee.com/api.html#add-item-property).
+    Set/update (some) property values of a given item. The properties (columns) must be previously created by [Add item property](https://docs.recombee.com/api#add-item-property).
 
     Required parameters:
 

@@ -172,6 +172,8 @@ if __name__ == '__main__':
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(DeleteSegmentationTestCase))
     from tests.test_cases.test_batch import BatchTestCase
     suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(BatchTestCase))
+    from tests.test_cases.test_list_scenarios import ListScenariosTestCase
+    suite.addTests(unittest.defaultTestLoader.loadTestsFromTestCase(ListScenariosTestCase))
 
 
     unittest.TextTestRunner().run(suite)
