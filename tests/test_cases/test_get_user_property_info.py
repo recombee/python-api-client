@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.get_property_info import GetPropertyInfoTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.get_user_property_info import (
+    GetUserPropertyInfo,
+    DEFAULT,
+)
+
 
 class GetUserPropertyInfoTestCase(GetPropertyInfoTest):
 

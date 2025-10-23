@@ -6,25 +6,29 @@
 
 import time
 from abc import ABC, abstractmethod
-from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, RecommendationsTest
+from tests.test_cases.recombee_test import (
+    RecombeeTest,
+    InteractionsTest,
+    RecommendationsTest,
+)
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
+
 
 class NextItemsRecommendationTest(RecommendationsTest, ABC):
 
     @abstractmethod
-    def create_request(self,recomm_id,count):
+    def create_request(self, recomm_id, count):
         pass
 
     def test_next_items_recommendation(self):
 
         # it 'recommends'
-        req = RecommendItemsToUser('entity_id', 3, return_properties=True)
+        req = RecommendItemsToUser("entity_id", 3, return_properties=True)
         resp = self.client.send(req)
-        req = self.create_request(resp['recommId'], 3)
+        req = self.create_request(resp["recommId"], 3)
         resp = self.client.send(req)
-        self.assertEqual(len(resp['recomms']), 3)
-        req = self.create_request(resp['recommId'], 3)
+        self.assertEqual(len(resp["recomms"]), 3)
+        req = self.create_request(resp["recommId"], 3)
         resp = self.client.send(req)
-        self.assertEqual(len(resp['recomms']), 3)
-
+        self.assertEqual(len(resp["recomms"]), 3)

@@ -39,40 +39,87 @@ from recombee_api_client.api_requests.list_item_ratings import ListItemRatings
 from recombee_api_client.api_requests.list_user_ratings import ListUserRatings
 from recombee_api_client.api_requests.add_cart_addition import AddCartAddition
 from recombee_api_client.api_requests.delete_cart_addition import DeleteCartAddition
-from recombee_api_client.api_requests.list_item_cart_additions import ListItemCartAdditions
-from recombee_api_client.api_requests.list_user_cart_additions import ListUserCartAdditions
+from recombee_api_client.api_requests.list_item_cart_additions import (
+    ListItemCartAdditions,
+)
+from recombee_api_client.api_requests.list_user_cart_additions import (
+    ListUserCartAdditions,
+)
 from recombee_api_client.api_requests.add_bookmark import AddBookmark
 from recombee_api_client.api_requests.delete_bookmark import DeleteBookmark
 from recombee_api_client.api_requests.list_item_bookmarks import ListItemBookmarks
 from recombee_api_client.api_requests.list_user_bookmarks import ListUserBookmarks
 from recombee_api_client.api_requests.set_view_portion import SetViewPortion
 from recombee_api_client.api_requests.delete_view_portion import DeleteViewPortion
-from recombee_api_client.api_requests.list_item_view_portions import ListItemViewPortions
-from recombee_api_client.api_requests.list_user_view_portions import ListUserViewPortions
-from recombee_api_client.api_requests.recommend_items_to_user import RecommendItemsToUser
-from recombee_api_client.api_requests.recommend_items_to_item import RecommendItemsToItem
-from recombee_api_client.api_requests.recommend_items_to_item_segment import RecommendItemsToItemSegment
+from recombee_api_client.api_requests.list_item_view_portions import (
+    ListItemViewPortions,
+)
+from recombee_api_client.api_requests.list_user_view_portions import (
+    ListUserViewPortions,
+)
+from recombee_api_client.api_requests.recommend_items_to_user import (
+    RecommendItemsToUser,
+)
+from recombee_api_client.api_requests.recommend_items_to_item import (
+    RecommendItemsToItem,
+)
+from recombee_api_client.api_requests.recommend_items_to_item_segment import (
+    RecommendItemsToItemSegment,
+)
 from recombee_api_client.api_requests.recommend_next_items import RecommendNextItems
-from recombee_api_client.api_requests.recommend_users_to_user import RecommendUsersToUser
-from recombee_api_client.api_requests.recommend_users_to_item import RecommendUsersToItem
-from recombee_api_client.api_requests.recommend_item_segments_to_user import RecommendItemSegmentsToUser
-from recombee_api_client.api_requests.recommend_item_segments_to_item import RecommendItemSegmentsToItem
-from recombee_api_client.api_requests.recommend_item_segments_to_item_segment import RecommendItemSegmentsToItemSegment
+from recombee_api_client.api_requests.recommend_users_to_user import (
+    RecommendUsersToUser,
+)
+from recombee_api_client.api_requests.recommend_users_to_item import (
+    RecommendUsersToItem,
+)
+from recombee_api_client.api_requests.recommend_item_segments_to_user import (
+    RecommendItemSegmentsToUser,
+)
+from recombee_api_client.api_requests.recommend_item_segments_to_item import (
+    RecommendItemSegmentsToItem,
+)
+from recombee_api_client.api_requests.recommend_item_segments_to_item_segment import (
+    RecommendItemSegmentsToItemSegment,
+)
+from recombee_api_client.api_requests.composite_recommendation import (
+    CompositeRecommendation,
+)
 from recombee_api_client.api_requests.search_items import SearchItems
 from recombee_api_client.api_requests.search_item_segments import SearchItemSegments
 from recombee_api_client.api_requests.add_search_synonym import AddSearchSynonym
 from recombee_api_client.api_requests.list_search_synonyms import ListSearchSynonyms
-from recombee_api_client.api_requests.delete_all_search_synonyms import DeleteAllSearchSynonyms
+from recombee_api_client.api_requests.delete_all_search_synonyms import (
+    DeleteAllSearchSynonyms,
+)
 from recombee_api_client.api_requests.delete_search_synonym import DeleteSearchSynonym
-from recombee_api_client.api_requests.create_property_based_segmentation import CreatePropertyBasedSegmentation
-from recombee_api_client.api_requests.update_property_based_segmentation import UpdatePropertyBasedSegmentation
-from recombee_api_client.api_requests.create_auto_reql_segmentation import CreateAutoReqlSegmentation
-from recombee_api_client.api_requests.update_auto_reql_segmentation import UpdateAutoReqlSegmentation
-from recombee_api_client.api_requests.create_manual_reql_segmentation import CreateManualReqlSegmentation
-from recombee_api_client.api_requests.update_manual_reql_segmentation import UpdateManualReqlSegmentation
-from recombee_api_client.api_requests.add_manual_reql_segment import AddManualReqlSegment
-from recombee_api_client.api_requests.update_manual_reql_segment import UpdateManualReqlSegment
-from recombee_api_client.api_requests.delete_manual_reql_segment import DeleteManualReqlSegment
+from recombee_api_client.api_requests.create_property_based_segmentation import (
+    CreatePropertyBasedSegmentation,
+)
+from recombee_api_client.api_requests.update_property_based_segmentation import (
+    UpdatePropertyBasedSegmentation,
+)
+from recombee_api_client.api_requests.create_auto_reql_segmentation import (
+    CreateAutoReqlSegmentation,
+)
+from recombee_api_client.api_requests.update_auto_reql_segmentation import (
+    UpdateAutoReqlSegmentation,
+)
+from recombee_api_client.api_requests.create_manual_reql_segmentation import (
+    CreateManualReqlSegmentation,
+)
+from recombee_api_client.api_requests.update_manual_reql_segmentation import (
+    UpdateManualReqlSegmentation,
+)
+from recombee_api_client.api_requests.add_manual_reql_segment import (
+    AddManualReqlSegment,
+)
+from recombee_api_client.api_requests.update_manual_reql_segment import (
+    UpdateManualReqlSegment,
+)
+from recombee_api_client.api_requests.delete_manual_reql_segment import (
+    DeleteManualReqlSegment,
+)
 from recombee_api_client.api_requests.list_segmentations import ListSegmentations
 from recombee_api_client.api_requests.get_segmentation import GetSegmentation
 from recombee_api_client.api_requests.delete_segmentation import DeleteSegmentation

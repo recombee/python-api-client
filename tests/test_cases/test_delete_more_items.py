@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.delete_more_items import DeleteMoreItemsTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.delete_more_items import DeleteMoreItems, DEFAULT
+
 
 class DeleteMoreItemsTestCase(DeleteMoreItemsTest):
 

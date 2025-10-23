@@ -19,10 +19,17 @@ class Batch(Request):
     :param distinct_recomms: Makes all the recommended items for a certain user distinct among multiple recommendation requests in the batch.
     """
 
-    def __init__(self, requests: List[Request], distinct_recomms: bool = None, distinctRecomms=None):
-        super().__init__(path='/batch/', method='post', timeout=0, ensure_https=True)
+    def __init__(
+        self,
+        requests: List[Request],
+        distinct_recomms: bool = None,
+        distinctRecomms=None,
+    ):
+        super().__init__(path="/batch/", method="post", timeout=0, ensure_https=True)
         self.requests = requests
-        self.distinct_recomms = distinctRecomms or distinct_recomms  # wrongly formatted distinctRecomms are kept for backward compatibility
+        self.distinct_recomms = (
+            distinctRecomms or distinct_recomms
+        )  # wrongly formatted distinctRecomms are kept for backward compatibility
         self.timeout = sum([req.timeout for req in self.requests])
 
     def get_body_parameters(self):
@@ -32,26 +39,23 @@ class Batch(Request):
         reqs = []
         for r in self.requests:
             reqs.append(self.__request_to_batch_dict(r))
-        result = {'requests': reqs}
+        result = {"requests": reqs}
         if self.distinct_recomms is not None:
-            result['distinctRecomms'] = self.distinct_recomms
+            result["distinctRecomms"] = self.distinct_recomms
         return result
 
     @staticmethod
     def __request_to_batch_dict(req: Request) -> dict:
 
         path = req.path
-        bd = {
-            'method': req.method.upper(),
-            'path': path
-        }
+        bd = {"method": req.method.upper(), "path": path}
         params = req.get_query_parameters()
 
         if len(req.get_body_parameters()) > 0:
             params.update(req.get_body_parameters())
-            
+
         if len(params) > 0:
-            bd['params'] = params
+            bd["params"] = params
         return bd
 
     def get_query_parameters(self):

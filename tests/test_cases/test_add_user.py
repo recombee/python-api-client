@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.add_entity import AddEntityTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.add_user import AddUser, DEFAULT
+
 
 class AddUserTestCase(AddEntityTest):
 

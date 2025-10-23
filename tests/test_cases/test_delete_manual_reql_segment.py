@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.delete_manual_reql_segment import DeleteManualReqlSegmentTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.delete_manual_reql_segment import (
+    DeleteManualReqlSegment,
+    DEFAULT,
+)
+
 
 class DeleteManualReqlSegmentTestCase(DeleteManualReqlSegmentTest):
 

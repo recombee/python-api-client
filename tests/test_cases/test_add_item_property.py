@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.add_property import AddPropertyTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.add_item_property import AddItemProperty, DEFAULT
+
 
 class AddItemPropertyTestCase(AddPropertyTest):
 

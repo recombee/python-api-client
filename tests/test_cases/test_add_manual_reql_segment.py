@@ -5,9 +5,13 @@
 #
 
 from tests.test_cases.add_manual_reql_segment import AddManualReqlSegmentTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.add_manual_reql_segment import (
+    AddManualReqlSegment,
+    DEFAULT,
+)
+
 
 class AddManualReqlSegmentTestCase(AddManualReqlSegmentTest):
 
-    def create_request(self, segmentation_id, segment_id, filter, title=None):
+    def create_request(self, segmentation_id, segment_id, filter, title=DEFAULT):
         return AddManualReqlSegment(segmentation_id, segment_id, filter, title=title)

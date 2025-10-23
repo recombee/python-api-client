@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.update_more_items import UpdateMoreItemsTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.update_more_items import UpdateMoreItems, DEFAULT
+
 
 class UpdateMoreItemsTestCase(UpdateMoreItemsTest):
 

@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.delete_segmentation import DeleteSegmentationTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.delete_segmentation import (
+    DeleteSegmentation,
+    DEFAULT,
+)
+
 
 class DeleteSegmentationTestCase(DeleteSegmentationTest):
 

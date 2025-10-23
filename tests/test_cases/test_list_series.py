@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.list_entities import ListEntitiesTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.list_series import ListSeries, DEFAULT
+
 
 class ListSeriesTestCase(ListEntitiesTest):
 

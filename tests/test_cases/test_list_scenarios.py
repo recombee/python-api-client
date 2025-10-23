@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.list_scenarios import ListScenariosTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.list_scenarios import ListScenarios, DEFAULT
+
 
 class ListScenariosTestCase(ListScenariosTest):
 

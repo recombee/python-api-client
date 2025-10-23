@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.delete_entity import DeleteEntityTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.delete_item import DeleteItem, DEFAULT
+
 
 class DeleteItemTestCase(DeleteEntityTest):
 

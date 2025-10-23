@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.delete_search_synonym import DeleteSearchSynonymTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.delete_search_synonym import (
+    DeleteSearchSynonym,
+    DEFAULT,
+)
+
 
 class DeleteSearchSynonymTestCase(DeleteSearchSynonymTest):
 

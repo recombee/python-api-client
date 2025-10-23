@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.get_segmentation import GetSegmentationTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.get_segmentation import GetSegmentation, DEFAULT
+
 
 class GetSegmentationTestCase(GetSegmentationTest):
 

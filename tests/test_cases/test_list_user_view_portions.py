@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.list_user_interactions import ListUserInteractionsTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.list_user_view_portions import (
+    ListUserViewPortions,
+    DEFAULT,
+)
+
 
 class ListUserViewPortionsTestCase(ListUserInteractionsTest):
 

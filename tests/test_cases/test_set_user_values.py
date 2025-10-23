@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.set_values import SetValuesTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.set_user_values import SetUserValues
+
 
 class SetUserValuesTestCase(SetValuesTest):
 

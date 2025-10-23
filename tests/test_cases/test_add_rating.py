@@ -5,9 +5,27 @@
 #
 
 from tests.test_cases.add_rating import AddRatingTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.add_rating import AddRating, DEFAULT
+
 
 class AddRatingTestCase(AddRatingTest):
 
-    def create_request(self, user_id, item_id, rating, timestamp=None, cascade_create=None, recomm_id=None, additional_data=None):
-        return AddRating(user_id, item_id, rating, timestamp=timestamp, cascade_create=cascade_create, recomm_id=recomm_id, additional_data=additional_data)
+    def create_request(
+        self,
+        user_id,
+        item_id,
+        rating,
+        timestamp=DEFAULT,
+        cascade_create=DEFAULT,
+        recomm_id=DEFAULT,
+        additional_data=DEFAULT,
+    ):
+        return AddRating(
+            user_id,
+            item_id,
+            rating,
+            timestamp=timestamp,
+            cascade_create=cascade_create,
+            recomm_id=recomm_id,
+            additional_data=additional_data,
+        )

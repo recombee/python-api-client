@@ -5,9 +5,10 @@
 #
 
 from tests.test_cases.add_entity import AddEntityTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.add_series import AddSeries, DEFAULT
+
 
 class AddSeriesTestCase(AddEntityTest):
 
-    def create_request(self, series_id, cascade_create=None):
+    def create_request(self, series_id, cascade_create=DEFAULT):
         return AddSeries(series_id, cascade_create=cascade_create)

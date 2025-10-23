@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.delete_property import DeletePropertyTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.delete_user_property import (
+    DeleteUserProperty,
+    DEFAULT,
+)
+
 
 class DeleteUserPropertyTestCase(DeletePropertyTest):
 

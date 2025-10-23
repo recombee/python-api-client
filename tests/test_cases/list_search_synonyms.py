@@ -6,26 +6,30 @@
 
 import time
 from abc import ABC, abstractmethod
-from tests.test_cases.recombee_test import RecombeeTest, InteractionsTest, RecommendationsTest
+from tests.test_cases.recombee_test import (
+    RecombeeTest,
+    InteractionsTest,
+    RecommendationsTest,
+)
 from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
+
 
 class ListSearchSynonymsTest(RecombeeTest, ABC):
 
     @abstractmethod
-    def create_request(self,count=None,offset=None):
+    def create_request(self, count=None, offset=None):
         pass
 
     def test_list_search_synonyms(self):
 
         time.sleep(10)
         # it 'lists search synonyms'
-        req = AddSearchSynonym('sci-fi', 'science fiction')
+        req = AddSearchSynonym("sci-fi", "science fiction")
         resp = self.client.send(req)
         req = self.create_request()
         resp = self.client.send(req)
-        self.assertEqual(len(resp['synonyms']), 1)
+        self.assertEqual(len(resp["synonyms"]), 1)
         req = self.create_request(count=10, offset=1)
         resp = self.client.send(req)
-        self.assertEqual(len(resp['synonyms']), 0)
-
+        self.assertEqual(len(resp["synonyms"]), 0)

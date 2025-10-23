@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.list_segmentations import ListSegmentationsTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.list_segmentations import (
+    ListSegmentations,
+    DEFAULT,
+)
+
 
 class ListSegmentationsTestCase(ListSegmentationsTest):
 

@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.list_item_interactions import ListItemInteractionsTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.list_item_cart_additions import (
+    ListItemCartAdditions,
+    DEFAULT,
+)
+
 
 class ListItemCartAdditionsTestCase(ListItemInteractionsTest):
 

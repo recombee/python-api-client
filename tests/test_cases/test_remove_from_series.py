@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.remove_from_series import RemoveFromSeriesTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.remove_from_series import (
+    RemoveFromSeries,
+    DEFAULT,
+)
+
 
 class RemoveFromSeriesTestCase(RemoveFromSeriesTest):
 

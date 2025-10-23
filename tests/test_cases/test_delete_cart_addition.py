@@ -5,9 +5,13 @@
 #
 
 from tests.test_cases.delete_interaction import DeleteInteractionTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.delete_cart_addition import (
+    DeleteCartAddition,
+    DEFAULT,
+)
+
 
 class DeleteCartAdditionTestCase(DeleteInteractionTest):
 
-    def create_request(self, user_id, item_id, timestamp=None):
+    def create_request(self, user_id, item_id, timestamp=DEFAULT):
         return DeleteCartAddition(user_id, item_id, timestamp=timestamp)

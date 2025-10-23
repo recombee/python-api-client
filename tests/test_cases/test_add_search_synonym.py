@@ -5,9 +5,13 @@
 #
 
 from tests.test_cases.add_search_synonym import AddSearchSynonymTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.add_search_synonym import (
+    AddSearchSynonym,
+    DEFAULT,
+)
+
 
 class AddSearchSynonymTestCase(AddSearchSynonymTest):
 
-    def create_request(self, term, synonym, one_way=None):
+    def create_request(self, term, synonym, one_way=DEFAULT):
         return AddSearchSynonym(term, synonym, one_way=one_way)

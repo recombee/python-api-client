@@ -5,7 +5,11 @@
 #
 
 from tests.test_cases.next_items_recommendation import NextItemsRecommendationTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.recommend_next_items import (
+    RecommendNextItems,
+    DEFAULT,
+)
+
 
 class RecommendNextItemsTestCase(NextItemsRecommendationTest):
 

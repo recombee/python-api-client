@@ -2,6 +2,7 @@ class Request(object):
     """
     Base class for all the requests
     """
+
     def __init__(self, path: str, method: str, timeout: int, ensure_https: bool):
         self.path = path
         self.method = method

@@ -1,22 +1,29 @@
 from recombee_api_client.api_requests.request import Request
+from recombee_api_client.utils.serialize_to_json import serialize_to_json
 from typing import Union, List
+from datetime import datetime
 import uuid
 
 DEFAULT = uuid.uuid4()
 
+
 class GetItemPropertyInfo(Request):
     """
     Gets information about specified item property.
-    
+
     Required parameters:
-    
+
     :param property_name: Name of the property about which the information is to be retrieved.
-    
 
     """
 
     def __init__(self, property_name: str):
-        super().__init__(path="/items/properties/%s" % (property_name), method='get', timeout=3000, ensure_https=False)
+        super().__init__(
+            path="/items/properties/%s" % (property_name),
+            method="get",
+            timeout=3000,
+            ensure_https=False,
+        )
         self.property_name = property_name
 
     def get_body_parameters(self) -> dict:
@@ -24,6 +31,7 @@ class GetItemPropertyInfo(Request):
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
+
         return p
 
     def get_query_parameters(self) -> dict:
@@ -31,4 +39,5 @@ class GetItemPropertyInfo(Request):
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """
         params = dict()
+
         return params

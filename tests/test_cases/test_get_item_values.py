@@ -5,7 +5,8 @@
 #
 
 from tests.test_cases.get_values import GetValuesTest
-from recombee_api_client.api_requests import *
+from recombee_api_client.api_requests.get_item_values import GetItemValues, DEFAULT
+
 
 class GetItemValuesTestCase(GetValuesTest):
 
