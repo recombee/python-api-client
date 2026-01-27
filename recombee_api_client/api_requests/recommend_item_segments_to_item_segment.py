@@ -100,6 +100,69 @@ class RecommendItemSegmentsToItemSegment(Request):
     :param return_ab_group: If there is a custom AB-testing running, return the name of the group to which the request belongs.
 
 
+    :param reql_expressions: A dictionary of [ReQL](https://docs.recombee.com/reql) expressions that will be executed for each recommended Item Segment.
+
+    This can be used to compute additional properties of the recommended Item Segments.
+
+
+    The keys are the names of the expressions, and the values are the actual ReQL expressions.
+
+
+    Example request:
+
+    ```json
+
+    E{lb}
+
+    "reqlExpressions": E{lb}
+
+    "countItems": "size(segment_items(\"categories\", 'segmentId'))"
+    E{rb}
+    E{rb}
+
+    ```
+
+
+    Example response:
+
+    ```json
+
+    E{lb}
+
+    "recommId": "a7ac55a4-8d6e-4f19-addc-abac4164d8a8",
+
+    "recomms":
+
+    [
+
+    E{lb}
+
+    "id": "category-fantasy-books",
+
+    "reqlEvaluations": E{lb}
+
+    "countItems": 486
+    E{rb}
+    E{rb},
+
+    E{lb}
+
+    "id": "category-sci-fi-costumes",
+
+    "reqlEvaluations": E{lb}
+
+    "countItems": 19
+    E{rb}
+    E{rb}
+
+    ],
+
+    "numberNextRecommsCalls": 0
+    E{rb}
+
+    ```
+
+
     """
 
     def __init__(
@@ -114,6 +177,7 @@ class RecommendItemSegmentsToItemSegment(Request):
         logic: Logic = DEFAULT,
         expert_settings: dict = DEFAULT,
         return_ab_group: bool = DEFAULT,
+        reql_expressions: dict = DEFAULT,
     ):
         super().__init__(
             path="/recomms/item-segments/item-segments/",
@@ -131,6 +195,7 @@ class RecommendItemSegmentsToItemSegment(Request):
         self.logic = logic
         self.expert_settings = expert_settings
         self.return_ab_group = return_ab_group
+        self.reql_expressions = reql_expressions
 
     def get_body_parameters(self) -> dict:
         """
@@ -154,6 +219,8 @@ class RecommendItemSegmentsToItemSegment(Request):
             p["expertSettings"] = serialize_to_json(self.expert_settings)
         if self.return_ab_group is not DEFAULT:
             p["returnAbGroup"] = serialize_to_json(self.return_ab_group)
+        if self.reql_expressions is not DEFAULT:
+            p["reqlExpressions"] = serialize_to_json(self.reql_expressions)
 
         return p
 

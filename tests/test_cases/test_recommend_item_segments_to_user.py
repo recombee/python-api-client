@@ -26,6 +26,7 @@ class RecommendItemSegmentsToUserTestCase(RecommendItemSegmentsToUserTest):
         logic=DEFAULT,
         expert_settings=DEFAULT,
         return_ab_group=DEFAULT,
+        reql_expressions=DEFAULT,
     ):
         return RecommendItemSegmentsToUser(
             user_id,
@@ -37,4 +38,5 @@ class RecommendItemSegmentsToUserTestCase(RecommendItemSegmentsToUserTest):
             logic=logic,
             expert_settings=expert_settings,
             return_ab_group=return_ab_group,
+            reql_expressions=reql_expressions,
         )

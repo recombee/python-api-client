@@ -28,6 +28,7 @@ class RecommendToItemSegmentTest(RecombeeTest, ABC):
         filter=None,
         booster=None,
         logic=None,
+        reql_expressions=None,
         expert_settings=None,
         return_ab_group=None,
     ):

@@ -25,6 +25,7 @@ class SearchItemSegmentsTestCase(SearchItemSegmentsTest):
         logic=DEFAULT,
         expert_settings=DEFAULT,
         return_ab_group=DEFAULT,
+        reql_expressions=DEFAULT,
     ):
         return SearchItemSegments(
             user_id,
@@ -37,4 +38,5 @@ class SearchItemSegmentsTestCase(SearchItemSegmentsTest):
             logic=logic,
             expert_settings=expert_settings,
             return_ab_group=return_ab_group,
+            reql_expressions=reql_expressions,
         )

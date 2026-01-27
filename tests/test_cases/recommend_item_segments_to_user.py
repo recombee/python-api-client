@@ -29,6 +29,7 @@ class RecommendItemSegmentsToUserTest(RecombeeTest, ABC):
         logic=None,
         expert_settings=None,
         return_ab_group=None,
+        reql_expressions=None,
     ):
         pass
 
