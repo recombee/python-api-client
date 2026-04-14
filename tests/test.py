@@ -326,6 +326,15 @@ if __name__ == "__main__":
             RecommendItemSegmentsToItemSegmentTestCase
         )
     )
+    from tests.test_cases.test_recommend_next_item_segments import (
+        RecommendNextItemSegmentsTestCase,
+    )
+
+    suite.addTests(
+        unittest.defaultTestLoader.loadTestsFromTestCase(
+            RecommendNextItemSegmentsTestCase
+        )
+    )
     from tests.test_cases.test_composite_recommendation import (
         CompositeRecommendationTestCase,
     )

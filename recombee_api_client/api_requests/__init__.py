@@ -82,6 +82,9 @@ from recombee_api_client.api_requests.recommend_item_segments_to_item import (
 from recombee_api_client.api_requests.recommend_item_segments_to_item_segment import (
     RecommendItemSegmentsToItemSegment,
 )
+from recombee_api_client.api_requests.recommend_next_item_segments import (
+    RecommendNextItemSegments,
+)
 from recombee_api_client.api_requests.composite_recommendation import (
     CompositeRecommendation,
 )

@@ -26,6 +26,7 @@ class CompositeRecommendationTest(RecombeeTest, ABC):
         user_id=None,
         logic=None,
         segment_id=None,
+        search_query=None,
         cascade_create=None,
         source_settings=None,
         result_settings=None,
