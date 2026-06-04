@@ -4,11 +4,11 @@
 # This file is auto-generated, do not edit
 #
 
-from tests.test_cases.add_property import AddPropertyTest
+from tests.test_cases.add_user_property import AddUserPropertyTest
 from recombee_api_client.api_requests.add_user_property import AddUserProperty, DEFAULT
 
 
-class AddUserPropertyTestCase(AddPropertyTest):
+class AddUserPropertyTestCase(AddUserPropertyTest):
 
-    def create_request(self, property_name, type):
-        return AddUserProperty(property_name, type)
+    def create_request(self, property_name, type, role=DEFAULT, metadata=DEFAULT):
+        return AddUserProperty(property_name, type, role=role, metadata=metadata)

@@ -15,13 +15,13 @@ from recombee_api_client.exceptions import ResponseException
 from recombee_api_client.api_requests import *
 
 
-class AddPropertyTest(RecombeeTest, ABC):
+class AddUserPropertyTest(RecombeeTest, ABC):
 
     @abstractmethod
-    def create_request(self, property_name, type):
+    def create_request(self, property_name, type, role=None, metadata=None):
         pass
 
-    def test_add_property(self):
+    def test_add_user_property(self):
 
         # it 'does not fail with valid name and type'
         req = self.create_request("number", "int")

@@ -1,3 +1,5 @@
+from recombee_api_client.inputs.property_metadata import PropertyMetadata
+from recombee_api_client.inputs.property_role import PropertyRole
 from recombee_api_client.api_requests.request import Request
 from recombee_api_client.utils.serialize_to_json import serialize_to_json
 from typing import Union, List
@@ -31,15 +33,29 @@ class AddUserProperty(Request):
     * `boolean` - *true* / *false*
 
 
-    * `timestamp` - Value representing date and time.
+    * `timestamp` - Value representing date and time. ISO8601-1 pattern (string) or UTC epoch time (number).
 
 
     * `set` - Set of strings.
 
 
+
+    Optional parameters:
+
+    :param role: [Role](https://docs.recombee.com/api/property_roles_metadata#roles) to assign to the property.
+
+
+    :param metadata: List of [metadata](https://docs.recombee.com/api/property_roles_metadata#metadata) entries to assign to the property.
+
     """
 
-    def __init__(self, property_name: str, type: str):
+    def __init__(
+        self,
+        property_name: str,
+        type: str,
+        role: PropertyRole = DEFAULT,
+        metadata: List[PropertyMetadata] = DEFAULT,
+    ):
         super().__init__(
             path="/users/properties/%s" % (property_name),
             method="put",
@@ -48,12 +64,19 @@ class AddUserProperty(Request):
         )
         self.property_name = property_name
         self.type = type
+        self.role = role
+        self.metadata = metadata
 
     def get_body_parameters(self) -> dict:
         """
         Values of body parameters as a dictionary (name of parameter: value of the parameter).
         """
         p = dict()
+        p["type"] = serialize_to_json(self.type)
+        if self.role is not DEFAULT:
+            p["role"] = serialize_to_json(self.role)
+        if self.metadata is not DEFAULT:
+            p["metadata"] = serialize_to_json(self.metadata)
 
         return p
 
@@ -62,6 +85,5 @@ class AddUserProperty(Request):
         Values of query parameters as a dictionary (name of parameter: value of the parameter).
         """
         params = dict()
-        params["type"] = serialize_to_json(self.type)
 
         return params

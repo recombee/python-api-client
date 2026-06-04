@@ -10,7 +10,7 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 
 setup(
     name="recombee-api-client",
-    version="6.2.0",
+    version="6.3.0",
     description="Client for Recombee recommendation API",
     long_description=long_description,
     url="https://github.com/Recombee/python-api-client",
