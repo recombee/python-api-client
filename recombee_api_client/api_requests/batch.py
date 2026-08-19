@@ -2,6 +2,7 @@
 from typing import List
 
 from recombee_api_client.api_requests.request import Request
+from recombee_api_client.utils.serialize_to_json import serialize_to_json
 
 
 class Batch(Request):
@@ -53,6 +54,11 @@ class Batch(Request):
 
         if len(req.get_body_parameters()) > 0:
             params.update(req.get_body_parameters())
+
+        for name, value in req.additional_query_parameters.items():
+            params[name] = serialize_to_json(value)
+        for name, value in req.additional_body_parameters.items():
+            params[name] = serialize_to_json(value)
 
         if len(params) > 0:
             bd["params"] = params

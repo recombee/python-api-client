@@ -11,6 +11,7 @@ from urllib.parse import quote
 
 from recombee_api_client.exceptions import ApiTimeoutException, ResponseException
 from recombee_api_client.api_requests import Batch, Request
+from recombee_api_client.utils.serialize_to_json import serialize_to_json
 
 
 class Region(Enum):
@@ -35,6 +36,8 @@ class RecombeeClient:
     :param protocol: Default protocol for sending requests. Possible values: 'http', 'https'.
 
     :param region: region of the Recombee cluster where the database is located
+
+    :param additional_http_headers: Custom HTTP headers sent with every request made by this client
     """
 
     BATCH_MAX_SIZE = 10000
@@ -46,10 +49,12 @@ class RecombeeClient:
         protocol: str = "https",
         options: dict = None,
         region: Region = None,
+        additional_http_headers: dict = None,
     ):
         self.database_id = database_id
         self.token = token
         self.protocol = protocol
+        self.additional_http_headers = additional_http_headers or {}
 
         self.base_uri = self.__get_base_uri(options=options or {}, region=region)
 
@@ -103,17 +108,24 @@ class RecombeeClient:
 
         return base_uri or "rapi.recombee.com"
 
-    @staticmethod
-    def __get_http_headers(additional_headers: dict = None) -> dict:
-        headers = {"User-Agent": "recombee-python-api-client/6.3.0"}
+    def __get_http_headers(self, additional_headers: dict = None) -> dict:
+        headers = {"User-Agent": "recombee-python-api-client/6.3.1"}
+        headers.update(self.additional_http_headers)
         if additional_headers:
             headers.update(additional_headers)
         return headers
 
+    @staticmethod
+    def __get_body_parameters(request: Request) -> dict:
+        params = request.get_body_parameters()
+        for name, value in request.additional_body_parameters.items():
+            params[name] = serialize_to_json(value)
+        return params
+
     def __put(self, request: Request, uri: str, timeout: int):
         response = requests.put(
             uri,
-            data=json.dumps(request.get_body_parameters()),
+            data=json.dumps(self.__get_body_parameters(request)),
             headers=self.__get_http_headers({"Content-Type": "application/json"}),
             timeout=timeout,
         )
@@ -128,7 +140,7 @@ class RecombeeClient:
     def __post(self, request: Request, uri: str, timeout: int):
         response = requests.post(
             uri,
-            data=json.dumps(request.get_body_parameters()),
+            data=json.dumps(self.__get_body_parameters(request)),
             headers=self.__get_http_headers({"Content-Type": "application/json"}),
             timeout=timeout,
         )
@@ -138,7 +150,7 @@ class RecombeeClient:
     def __delete(self, request: Request, uri: str, timeout: int):
         response = requests.delete(
             uri,
-            data=json.dumps(request.get_body_parameters()),
+            data=json.dumps(self.__get_body_parameters(request)),
             headers=self.__get_http_headers({"Content-Type": "application/json"}),
             timeout=timeout,
         )
@@ -173,6 +185,8 @@ class RecombeeClient:
     def __query_parameters_to_url(self, request: Request) -> str:
         ps = ""
         query_params = request.get_query_parameters()
+        for name, value in request.additional_query_parameters.items():
+            query_params[name] = serialize_to_json(value)
         for name in query_params:
             val = query_params[name]
             ps += "&" if ps.find("?") != -1 else "?"
